@@ -1,28 +1,51 @@
 \chapter{Pendahuluan}
 \section{Latar Belakang}
 
-WHO mencatat terjadi sekitar 17,7 juta kematian diakibatkan oleh Cardiovascular Diseases (CVDs, penyakit jantung) di seluruh dunia pada tahun 2015 \cite{guting1994}. Bahkan menurut Dinas Kesehatan Republik Indonesia, lebih dari 3 juta kematian akibat penyakit jantung terjadi sebelum usia 60 tahun[]. Penyakit jantung juga umumnya tidak memiliki gejala sebelum penyakit menyerang. Hal ini menunjukkan bahwa bahaya penyakit jantung dapat menyerang siapa saja, dimana saja dan kapan saja.
+WHO mencatat terjadi sekitar 17,7 juta kematian diakibatkan oleh penyakit jantung (Cardiovascular Diseases, CVDs) di seluruh dunia pada tahun 2015\cite{who2015facts}. Bahkan menurut Dinas Kesehatan Republik Indonesia, lebih dari 3 juta kematian akibat penyakit jantung terjadi sebelum usia 60 tahun\cite{depkes2014}. Penyakit jantung juga umumnya tidak memiliki gejala sebelum penyakit menyerang\cite{who2015facts}. Oleh karena itu, diperlukan \textit{monitoring} (pemantauan) jantung yang dapat dilakukan secara terus-menerus. 
 
+Monitoring yang terus-menerus akan mudah dilakukan kepada pasien yang menjalani perawatan intensif di sebuah rumah sakit. Namun tentunya hal tersebut sulit dilakukan kepada pasien yang menjalani rawat jalan. Padahal seseorang yang pernah terkena penyakit jantung akan rawan mengalami serangan baik kecil (tidak berbahaya) maupun besar (berbahaya) dimana saja dan kapan saja.
+
+Telah banyak dikembangkan produk kesehatan untuk melakukan monitoring terus-menerus secara \textit{Ubiquitous} (dimana saja, kapan saja) baik menggunakan \textit{Electrocardiogram} (ECG) dan \textit{Photoplethysmogram} (PPG)[..., ...]. Namun produk-produk tersebut hanya dapat memberitahu jumlah \textit{Beat Per Minute} (BPM, detak jantung tiap menit) dan tidak melakukan perekaman aktivitas jantung. Padahal gambar rekaman jantung dapat menjadi bahan analisis dokter untuk mengidentifikasi penyakit dan merancang pengobatan. Adapun yang dapat melakukan perekaman, rekam jantungnya harus diberikan secara manual kepada dokter pada lain hari. Padahal telah banyak riset yang dapat memberikan kemampuan lebih kepada produk tersebut untuk melakukan deteksi penyakit seperti Aritmia[..., ...], sehingga dapat memberikan peringatan kepada dokter maupun keluarga ketika muncul sebuah serangan.
+
+Aritmia sendiri merupakan salah satu jenis dari CVDs. Umumnya aritmia tidak berbahaya (serangan kecil). Aritmia juga tergolong mudah untuk diidentifikasi berdasarkan gambar rekam jantung seseorang. Walaupun umumnya tidak berbahaya, ketika aritmia sering terjadi dapat menandakan kemunculan serangan besar, contohnya ketika \textit{Premature Ventricular Contraction} (PVC) terjadi berulang kali dapat menandakan terjadinya serangan besar seperti \textit{Ventricular Tachycardia} (VT) dan \textit{Ventricular Fibrillation} (VF) [...]. 
+
+Berdasarkan fakta diatas penulis melihat adanya kebutuhan akan pengembangan terhadap sistem monitoring yang telah ada. Oleh karena itu pada tugas akhir ini penulis merancang sistem monitoring dimana sistem juga dapat melakukan perekaman aktivitas jantung, mendeteksi terjadinya aritmia dan memberikan peringatan ketika aritmia terjadi.
 
 \section{Perumusan Masalah}
-Berikut rumusan masalah yang ingin saya angkat adalah
+Berdasarkan fakta dan permasalahan yang disebutkan pada sub bab 1.1, latar belakang, diatas, dapat disimpulkan beberapa masalah utama yang ingin diselesaikan pada tugas akhir ini sebagai berikut:
 \begin{enumerate}
-    \item Mengapa ini terjadi?
-    \item Bagaimana proses kejadiannya?
-    \item Apa saja yang dipengaruhinya?
+	\item Mengapa sistem yang sudah ada tidak memiliki fitur perekaman dan deteksi?
+	\item Bagaimana membangun sistem monitoring detak jantung yang bersifat ubiquitous dan terus menerus?
+	\item Bagaimana memberikan kemampuan deteksi terjadinya aritmia?
+	\item Bagaimana memberikan fitur peringatan ketika aritmia terjadi?
+\end{enumerate}
+\section{Batasan Masalah}
+Untuk membatasi perancangan sistem tugas akhir ini menetapkan batasan sebagai berikut:
+\begin{enumerate}
+	\item Sensor dibangun menggunakan PPG dengan kontroller ESP12E;
+    \item Server dibangun dengan spesifikasi server Processor Intel-i3 (2.3GHz), RAM 6 GB, Storage Samsung SSD EVO 750;
+    \item Iterkoneksi jaringan menggunakan WiFi;
+    \item Komunikasi sensor dan server menggunakan protokol
+     komunikasi MQTT;
+    \item Tidak terdapat hambatan atau masalah komunikasi antara Sensor dan Server;
 \end{enumerate}
 \section{Tujuan}
 Berikut adalah tujuan yang ingin dicapai pada penulisan proposal/TA.
 \begin{enumerate}
-    \item Untuk mengetahui mengapa ini terjadi;
-    \item Untuk mempelajari proses kejadian masalah;
-    \item Untuk melihat dampak yang dipengaruhi oleh kejadian ini.
+    \item Untuk mengetahui mengapa sistem yang sudah ada tidak memiliki fitur perekaman dan deteksi;
+    \item Untuk merancang sistem monitoring detak jantung yang bersifat ubiquitous dan terus menerus;
+    \item Untuk memberikan kemampuan deteksi aritmia kepada sistem monitoring;
+    \item Untuk memberikan fitur peringatan ketika aritmia terjadi.
 \end{enumerate}
-\section{Hipotesis (opsional)}
+\section{Hipotesis}
 Hipotesis dari tulisan ini adalah
 \begin{enumerate}
-    \item Masalah timbul karena A;
-    \item Hasil numeriknya menuju $x \rightarrow \infty$
+    \item Sistem yang telah ada tidak memiliki perekaman dan deteksi karena keterbatasan sumber daya baik processor, memory, dan ram;
+    \item Dengan memindahkan proses perhitungan dan penyimpanan ke server dapat memungkinkan sistem untuk melakukan pemrosesan lebih besar dan cepat
+    \item Terdapat fitur yang dimiliki baik oleh ECG maupun PPG sehingga memungkinkan kedua jenis sensor digunakan pada sistem tanpa merubah algoritma klasifikasi
+    \item Dengan komunikasi menggunakan MQTT akan memungkin banyak pihak untuk mendapat peringatan dari sistem ketika terdeteksi Aritmia
+	\item Dengan melakukan pengujian dapat mengetahui performansi dari sistem yang dirancang
+    
 \end{enumerate}
 \iflogTA
 \else

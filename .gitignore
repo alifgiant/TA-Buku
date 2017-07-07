@@ -1,6 +1,8 @@
 build/
 *.aux
 *.gz
+*.bcf
+*.xml
 *.bbl
 *.blg
 *.lof

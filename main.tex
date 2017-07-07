@@ -4,6 +4,8 @@
 %% Template ini digunakan untuk penulisan proposal TA 1 atau TA Fakultas Informatika, Telkom University.
 
 \documentclass[a4paper,12pt,oneside]{book}
+\usepackage[backend=biber, style=ieee]{biblatex}
+\addbibresource{References.bib}
 \usepackage[utf8]{inputenc}
 \usepackage{sectsty}
 \usepackage{graphicx}
@@ -143,8 +145,7 @@
 %
 \cleardoublepage
 \addcontentsline{toc}{chapter}{Daftar Pustaka}
-\bibliographystyle{acm} %harvard style
-\bibliography{References}
+\printbibliography[title=Daftar Pustaka]
 %
 %\pagebreak
 \cleardoublepage
