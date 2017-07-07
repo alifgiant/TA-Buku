@@ -1,2 +1,9 @@
 build/
 *.aux
+*.gz
+*.bbl
+*.blg
+*.lof
+*.log
+*.lot
+*.toc
