@@ -1,19 +1,25 @@
 \chapter{Kajian Pustaka}
 
 \section{ECG dan PPG}
-Terdapat 2 jenis sensor yang umum digunakan untuk melakukan monitoring jantung, yaitu \textit{Electrocardiogram} (ECG) dan \textit{Photoplethysmogram} (PPG). Kedua jenis sensor ini menjadi pilihan utama dalam monitoring jantung karena keduanya mengusung konsep \textit{non-invasive}. Sensor non-invasive memungkinkan melakukan pengambilan data tubuh tanpa perlu melukai/menusuk bagian tubuh tertentu. Walaupun demikian kedua jenis sensor ini memiliki kelebihan dan kekurangan untuk digunakan. Secara umum ECG akan menghasilkan pengukuran lebih akurat dari pada PPG. Namun PPG lebih nyaman digunakan dalam jangka panjang dari pada ECG.
-
-\begin{equation}\label{nama-rumus}
-    \int_0^1 \frac{f(x)}{g(x)}\ {\rm dx}=\sin x
-\end{equation}
-
-Rumus (\ref{nama-rumus}) merupakan contoh persamaan matematika. persamaan matematika diatas diberi nama \textbackslash label\{nama-rumus\}.
+Terdapat 2 jenis sensor yang umum digunakan untuk melakukan monitoring jantung, yaitu \textit{Electrocardiogram} (ECG) dan \textit{Photoplethysmogram} (PPG) seperti yang terlihat pada gambar \ref{fig:ecg_n_ppg}. Kedua jenis sensor ini menjadi pilihan utama dalam monitoring jantung karena keduanya mengusung konsep \textit{non-invasive}. Sensor non-invasive memungkinkan melakukan pengambilan data tubuh tanpa perlu melukai/menusuk bagian tubuh tertentu. Secara umum ECG akan menghasilkan pengukuran lebih akurat dari pada PPG. Namun PPG lebih nyaman digunakan dalam jangka panjang dari pada ECG.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[scale=0.3]{Tel-U-Logo.png}
-    \caption{Caption}
-    \label{fig:my_label}
+    \includegraphics[scale=0.3]{images/sensors.png}
+    \caption{a. Sensor ECG dengan 3 titik timbal, b. Sensor PPG ujung jari, c. Sensor PPG di pergelangan tangan}
+    \label{fig:ecg_n_ppg}
 \end{figure}
-\subsection{Cara memanggil pustaka}
-Contoh pustaka prosiding \cite{doyen2014explicit}, jurnal \cite{gunawan2015hydrostatic} dan buku \cite{toro2013riemann}. Atau dapat juga mengguanakan dua pustaka atau lebih dalam \cite{gunawan2015hydrostatic,toro2013riemann}.
+
+\subsection{Pembacaan Sinyal}
+Walaupun kedua jenis sensor dapat digunakan untuk monitor jantung, sinyal yang dihasilkan sedikit berbeda, terlihat pada gambar \ref{fig:ecg_vs_ppg} \cite{ppg_vs_ecg}. Secara langsung dapat dilihat sinyal hasil dari PPG dengan ECG berbeda secara morfologi (bentuk). Karena sumber sinyal yang sama (dari jantung) siklus PPG dan ECG juga sama sehingga kedua sinyal dapat disinkronisasi (saling dipetakan) berdasarkan waktu seperti gambar \ref{fig:ecg_vs_ppg2} \cite{ecg_syncro}.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{images/ecg_vs_ppg.png}
+    \caption{Perbandingan sinyal PPG dan ECG (ideal, dan termodulasi)}
+    \label{fig:ecg_vs_ppg}
+    \includegraphics[scale=0.5]{images/similarity.png}
+    \caption{Sinkronisasi antara ECG dan PPG}
+    \label{fig:ecg_vs_ppg2}
+\end{figure}
+
+\section{Aritmia}
