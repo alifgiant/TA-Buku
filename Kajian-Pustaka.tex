@@ -12,9 +12,9 @@ Terdapat 2 jenis sensor yang umum digunakan untuk melakukan \textit{monitoring} 
 \end{figure}
 
 \subsection{Titik Fiducial}
-Sebuah siklus sinyal ECG dapat dilihat menjadi beberapa titik \textit{fiducial} (pembanding) yaitu P-QRS-T, seperti terlihat pada gambar \ref{fig:ecg_points}. Sedangkan siklus sinyal PPG dilihat menjadi siklus Diastolic-Systolic-Dicrotic seperti terlihat pada gambar \ref{fig:ppg_points}
+Untuk mengenali sebuah detak jatung pada rekam ECG maupun PPG diperlukan untuk mencari titik titik \textit{fiducial} (pembanding). Kemunculan titik fiducial menandakan adanya siklus \textit{beat} (detak) pada waktu kemunculan titik tersebut. Sebuah siklus sinyal ECG dapat dilihat dari beberapa titik fiducial yaitu P-QRS-T, seperti terlihat pada gambar \ref{fig:ecg_points}. Sedangkan siklus sinyal PPG dilihat dari siklus Diastolic-Systolic-Dicrotic seperti terlihat pada gambar \ref{fig:ppg_points}
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.2]{images/ecg_points.png}
     \caption{Sinyal ECG berdasarkan titik fiducial}
@@ -39,15 +39,17 @@ Walaupun kedua jenis sensor dapat digunakan untuk monitor jantung, sinyal yang d
 \end{figure}
 
 \section{Aritmia}
-Aritmia adalah kategori gangguan jantung yang berupa irama jantung yang tidak normal. Beberapa panyakit jantung yang tergolong aritmia ialah \textit{Tachycardia} (detak lebih cepat dari normal), \textit{Bradycardia} (detak lebih lambat dari normal), \textit{Premature Atrial Contraction} (PAC), \textit{Premature Vantricular Contraction} (PVC), \textit{Ventricular Tachycardia} (VT), dan \textit{Ventricular Fibrillation} (VF). Contoh kemunculan PAC, PVC dan VF dapat dilihat pada gambar \ref{fig:contoh_aritmia}.
+Aritmia adalah kategori gangguan jantung yang berupa irama jantung yang tidak normal. Beberapa panyakit jantung yang tergolong aritmia ialah \textit{Tachycardia} (detak lebih cepat dari normal), \textit{Bradycardia} (detak lebih lambat dari normal), \textit{Premature Atrial Contraction} (PAC), \textit{Premature Vantricular Contraction} (PVC), \textit{Ventricular Tachycardia} (VT) (detak ventrikel sangat cepat), dan \textit{Ventricular Fibrillation} (VF) (detak ventrikel tidak beraturan). \textit{Premature Contraction} berarti terjadinya kontraksi lebih cepat atau lebih lambat pada bagian jantung baik atrium maupun ventrikel. \textit{Premature contraction} merupakan awal dari peristiwa VT maupun VF. Contoh kemunculan PAC, PVC dan VF dapat dilihat pada gambar \ref{fig:contoh_aritmia}.
 
 \begin{figure}[H]
     \centering
+    \includegraphics[scale=0.4]{images/jantung.jpg}
+    \caption{Struktur jantung sederhana}
 	\includegraphics[scale=1.2]{images/VF.jpg}
     \includegraphics[scale=0.5]{images/PAC1.png}
 	\includegraphics[scale=0.25]{images/PVC1.png}
     \caption{a. Sinyal VF; b. Sinyal PAC; c. Sinyal PVC}
-    \label{fig:contoh_aritmia}
+    \label{fig:contoh_aritmia}	
 \end{figure}
 
 \subsection{Riset Klasifikasi Aritmia Otomatis}
@@ -81,8 +83,8 @@ Pada tahun xxx, asme asme asem
 	Penemuan bla bla adu adu & Alif Akbar & Titik R & Decisin & 90\% \\
 	\hline
 	\end{tabular}
-	\caption{Street Data}
-	\label{table:tbljalan}
+	\caption{Perbandingan riset mengenai klasifikasi aritmia otomasis}
+	\label{table:tbl_comparison}
 \end{table}
 
 \section{Produk Monitoring Jantung di Pasaran}
@@ -90,25 +92,34 @@ Meningkatnya kesadaran masyarakat akan penyakit jantung mendorong banyak perusah
 
 \begin{figure}[H]
     \centering
-	\includegraphics[scale=0.4]{images/fitbit.png}
+	\includegraphics[scale=0.4]{images/gears3.jpg}
     \includegraphics[scale=1]{images/ppg_clip.jpg}
 	\includegraphics[scale=0.3]{images/ecg_1.jpg}	
 	\includegraphics[scale=0.05]{images/heart_app1.jpg}
 	\includegraphics[scale=0.2]{images/heart_app2.jpg}
-    \caption{a. Jam produksi fitbit; b. Finger clip PPG; c. Portable ECG; d. Heart Rate App; e. Heart Rate App 2}
+    \caption{a. Gear S3, Jam pintar produksi Samsung; b. Finger clip PPG; c. Portable ECG; d. Heart Rate App; e. Heart Rate App 2}
 \end{figure}
 
-\section{Node.Js, Mongo.Db dan Express.Js}
-Sebuah sistem monitoring yang dapat berjalan secara Ubiquitous haruslah dibangun dengan konsep \textit{Internet of Things} (IoT). IoT ialah konsep dimana objek objek (Things) dapat saling berinteraksi pada jaringan Internet tanpa membutuhkan manusia. Pada konsep IoT diperlukan setidaknya 3 komponen yaitu Sensor, Server dan Actuator. Sensor berfungsi sebagai pengambil data. Server berfungsi sebagai pengolah data yang menjalankan \textit{web service} (layanan web). Actuator berfungsi sebagai pelaksana keputusan, seperti mengeluarkan suara dan membelokkan/memutus arus listrik.
+\section{Node.Js dan Mongo.Db}
+Sebuah sistem monitoring yang dapat berjalan secara Ubiquitous haruslah dibangun dengan konsep \textit{Internet of Things} (IoT). IoT ialah konsep dimana objek objek (Things) dapat saling berinteraksi pada jaringan Internet tanpa membutuhkan manusia. Pada konsep IoT diperlukan setidaknya 3 komponen yaitu Sensor, Server dan Actuator. Sensor berfungsi sebagai pengambil data. Server yang menjalankan \textit{web service} (layanan web, contoh: http server, mqtt broker dan db server) berfungsi sebagai pengolah data. Actuator berfungsi sebagai pelaksana perintah dari server, seperti mengeluarkan suara dan membelokkan/memutus arus listrik. Node.Js dan Mongo.Db, keduanya dibutuhkan untuk membangun sebuah web service pada server.
 
-Node.Js, Mongo.Db dan Express.Js, sesuai urutan, merupakan teknologi Javascript (JS) \textit{runtime}, \textit{Document Db  (database)}, dan \textit{Web Framework} berbasis JS. Ketiga hal ini dibutuhkan untuk membangun sebuah web service. Node.Js dirancang menggunakan skema \textit{event-driven} dan \textit{non-blocking IO}, sangat sesuai untuk aplikasi \textit{data-intensive real-time} \cite{nodejs}. Node.JS juga telah terbukti secara performansi lebih cepat dari bahasa scripting lain seperti PHP, Python, dan Ruby bahkan tidak jauh lambat dibanding bahasa ter-\textit{compile} seperti JAVA, C, dan C++ \cite{node_comparisson}.
+\subsection{Node.Js}
+Node.Js adalah teknologi Javascript (Js) \textit{Runtime} yang dibangun diatas Chrome V8 JS Engine. Node.Js memungkinkan bahasa pemrograman Js menjalankan web service. Node.Js dirancang menggunakan skema \textit{event-driven} dan \textit{non-blocking IO}, sangat sesuai untuk aplikasi \textit{data-intensive real-time} \cite{nodejs}. Node.JS juga telah terbukti secara performansi lebih cepat dari bahasa scripting lain seperti PHP, Python, dan Ruby bahkan tidak jauh lambat dibanding bahasa ter-\textit{compile} seperti JAVA, C, dan C++ \cite{node_comparisson}.
+
+\subsection{MongoDB}
+MongoDB adalah salah satu jenis program penyimpanan data yang bersifat NoSQL. MongoDB menyimpan data dengan bentuk dokumen dan format JSON. MongoDB dirancang untuk kasus penggunaan yang \cite{why_mongo}:
+\begin{enumerate}
+	\item Membutuhkan beban penulisan data yang tinggi,
+	\item Skema data yang tidak stabil,
+	\item Ukuran data akan menjadi sangat besar,
+	\item Tidak memiliki seorang \textbf{database administrator}
+\end{enumerate}
 
 \begin{figure}[H]
     \centering
 	\includegraphics[scale=0.15]{images/nodejs.png}
     \includegraphics[scale=0.3]{images/mongodb.png}
-	\includegraphics[scale=0.2]{images/express.png}
-    \caption{a. Node JS; b. Mongo DB; c. Express}
+    \caption{a. Node JS; b. Mongo DB;}
 \end{figure}
 
 \section{ESP-12}

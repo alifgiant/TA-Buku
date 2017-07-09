@@ -7,14 +7,13 @@ Monitoring yang terus-menerus akan mudah dilakukan kepada pasien yang menjalani 
 
 Telah banyak dikembangkan produk kesehatan untuk melakukan monitoring terus-menerus secara \textit{Ubiquitous} (dimana saja, kapan saja) baik menggunakan \textit{Electrocardiogram} (ECG) dan \textit{Photoplethysmogram} (PPG)[..., ...]. Namun produk-produk tersebut hanya dapat memberitahu jumlah \textit{Beat Per Minute} (BPM, detak jantung tiap menit) dan tidak melakukan perekaman aktivitas jantung. Padahal gambar rekaman jantung dapat menjadi bahan analisis dokter untuk mengidentifikasi penyakit dan merancang pengobatan. Adapun yang dapat melakukan perekaman, rekam jantungnya harus diberikan secara manual kepada dokter pada lain hari. Padahal telah banyak riset yang dapat memberikan kemampuan lebih kepada produk tersebut untuk melakukan deteksi penyakit seperti Aritmia[..., ...], sehingga dapat memberikan peringatan kepada dokter maupun keluarga ketika muncul sebuah serangan.
 
-Aritmia sendiri merupakan salah satu jenis dari CVDs. Umumnya aritmia tidak berbahaya (serangan kecil). Aritmia juga tergolong mudah untuk diidentifikasi berdasarkan gambar rekam jantung seseorang. Walaupun umumnya tidak berbahaya, ketika aritmia sering terjadi dapat menandakan kemunculan serangan besar, contohnya ketika \textit{Premature Ventricular Contraction} (PVC) terjadi berulang kali dapat menandakan terjadinya serangan besar seperti \textit{Ventricular Tachycardia} (VT) dan \textit{Ventricular Fibrillation} (VF) [...]. 
+Aritmia merupakan salah satu jenis dari CVDs. Umumnya aritmia tidak berbahaya (serangan kecil). Aritmia juga tergolong mudah untuk diidentifikasi berdasarkan gambar rekam jantung seseorang. Walaupun umumnya tidak berbahaya, ketika aritmia sering terjadi dapat menandakan kemunculan serangan besar, contohnya ketika \textit{Premature Ventricular Contraction} (PVC) terjadi berulang kali dapat menandakan terjadinya serangan besar seperti \textit{Ventricular Tachycardia} (VT) dan \textit{Ventricular Fibrillation} (VF) [...]. 
 
 Berdasarkan fakta diatas penulis melihat adanya kebutuhan akan pengembangan terhadap sistem monitoring yang telah ada. Oleh karena itu pada tugas akhir ini penulis merancang sistem monitoring dimana sistem juga dapat melakukan perekaman aktivitas jantung, mendeteksi terjadinya aritmia dan memberikan peringatan ketika aritmia terjadi.
 
 \section{Perumusan Masalah}
 Berdasarkan fakta dan permasalahan yang disebutkan pada sub bab 1.1, latar belakang, diatas, dapat disimpulkan beberapa masalah utama yang ingin diselesaikan pada tugas akhir ini sebagai berikut:
 \begin{enumerate}
-	\item Mengapa sistem yang sudah ada tidak memiliki fitur perekaman dan deteksi?
 	\item Bagaimana membangun sistem monitoring detak jantung yang bersifat ubiquitous dan terus menerus?
 	\item Bagaimana memberikan kemampuan deteksi terjadinya aritmia?
 	\item Bagaimana memberikan fitur peringatan ketika aritmia terjadi?
@@ -28,29 +27,30 @@ Untuk membatasi perancangan sistem tugas akhir ini menetapkan batasan sebagai be
     \item Komunikasi sensor dan server menggunakan protokol
      komunikasi MQTT;
     \item Tidak terdapat hambatan atau masalah komunikasi antara Sensor dan Server;
+    \item Jenis aritmia yang dapat dideteksi ialah PAC, PVC, \textit{Tachycardia}, dan \textit{Bradycardia}
+    \item Metode klasifikasi yang diuji ialah metode yang diusulkan oleh Pan-Tomkins dan Tsipouras-Fotiadis
 \end{enumerate}
 \section{Tujuan}
 Berikut adalah tujuan yang ingin dicapai pada penulisan proposal/TA.
 \begin{enumerate}
-    \item Untuk mengetahui mengapa sistem yang sudah ada tidak memiliki fitur perekaman dan deteksi;
     \item Untuk merancang sistem monitoring detak jantung yang bersifat ubiquitous dan terus menerus;
     \item Untuk memberikan kemampuan deteksi aritmia kepada sistem monitoring;
-    \item Untuk memberikan fitur peringatan ketika aritmia terjadi.
+    \item Untuk memberikan fitur peringatan ketika aritmia terjadi kepada sistem monitoring.
 \end{enumerate}
 \section{Hipotesis}
 Hipotesis dari tulisan ini adalah
 \begin{enumerate}
-    \item Sistem yang telah ada tidak memiliki perekaman dan deteksi karena keterbatasan sumber daya baik processor, memory, dan ram;
-    \item Dengan memindahkan proses perhitungan dan penyimpanan ke server dapat memungkinkan sistem untuk melakukan pemrosesan lebih besar dan cepat
-    \item Terdapat fitur yang dimiliki baik oleh ECG maupun PPG sehingga memungkinkan kedua jenis sensor digunakan pada sistem tanpa merubah algoritma klasifikasi
-    \item Dengan komunikasi menggunakan MQTT akan memungkin banyak pihak untuk mendapat peringatan dari sistem ketika terdeteksi Aritmia
-	\item Dengan melakukan pengujian dapat mengetahui performansi dari sistem yang dirancang
-    
+    \item Sistem yang telah ada tidak memiliki perekaman dan deteksi karena keterbatasan sumber daya baik processor, memory, dan ram,
+    \item Dengan memindahkan proses perhitungan dan penyimpanan ke server dapat memungkinkan sistem untuk melakukan pemrosesan lebih besar dan cepat,
+    \item Terdapat fitur yang dimiliki baik oleh ECG maupun PPG sehingga memungkinkan kedua jenis sensor digunakan pada sistem tanpa merubah algoritma klasifikasi,
+    \item Dengan komunikasi menggunakan MQTT akan memungkin banyak pihak untuk mendapat peringatan dari sistem ketika terdeteksi Aritmia,
+	\item Dengan melakukan pengujian dapat mengetahui performansi dari sistem yang dirancang,
+	\item Pesan peringatan akan diterima pasien atau dokter jika halaman \textit{web} atau aplikasi di ponsel android sedang dibuka.
 \end{enumerate}
 \iflogTA
 \else
 \section{Rencana Kegiatan}
-Rencana kegitana yang akan saya lakukan adalah sebagia berikut:
+Rencana kegitan yang akan saya lakukan adalah sebagia berikut:
 \begin{itemize}
     \item Studi literatur
     \item Memeriksa hasil
