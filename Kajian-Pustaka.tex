@@ -4,12 +4,31 @@ Tugas akhir ini membahas perancangan sistem pengawasan jantung. Untuk mendirikan
 \section{ECG dan PPG}
 Terdapat 2 jenis sensor yang umum digunakan untuk melakukan \textit{monitoring} jantung, yaitu \textit{Electrocardiogram} (ECG) dan \textit{Photoplethysmogram} (PPG) seperti yang terlihat pada gambar \ref{fig:ecg_n_ppg}. Kedua jenis sensor ini menjadi pilihan utama dalam \textit{monitoring} jantung karena keduanya mengusung konsep \textit{non-invasive}. Sensor non-invasive memungkinkan melakukan pengambilan data tubuh tanpa perlu melukai/menusuk bagian tubuh tertentu. Secara umum ECG akan menghasilkan pengukuran lebih akurat dari pada PPG. Namun PPG lebih nyaman digunakan dalam jangka panjang dari pada ECG.
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{images/sensors.png}
     \caption{a. Sensor ECG dengan 3 titik timbal; b. Sensor PPG ujung jari; c. Sensor PPG di pergelangan tangan}
     \label{fig:ecg_n_ppg}
 \end{figure}
+
+\subsection{Lokasi Penempatan Sensor}
+\subsubsection{ECG}
+ECG perlu melakukan pengukuran minimal di 3 lokasi. Hal ini disebabkan karena ECG secara langsung mengukur perubahan nilai kelistrikan yang dihasilkan tubuh. Untuk mengukur kelistrikan tubuh ECG memerlukan minimal 3 elektroda yaitu + (positif), - (negatif) dan N (netral), terlihat pada gambar \ref{fig:electrode3}. Untuk pengukuran lebih dari 3 titik, elektroda ECG dapat diletakkan pada posisi yang ditunjukkan gambar \ref{fig:multi_elctrode}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{images/3_ecg_place.jpg}
+	\includegraphics[scale=0.6]{images/3_ecg_place_2.png}    
+    \caption{a. Penempatan 3 Elektroda di Dada, b. Penempatan 3 Elektroda di Tangan}
+    \label{fig:electrode3}
+	\includegraphics[scale=0.8]{images/multi_ecg.png}
+    \caption{Lokasi Penempatan Lebih 3 titik}
+    \label{fig:multi_elctrode}
+\end{figure}
+
+\subsubsection{PPG}
+PPG dapat melakukan pengukuran hanya di satu lokasi. Hal ini disebabkan karena PPG mengukur tingkat penyerapan cahaya oleh darah, sedangkan pembuluh darah menjalar ke seluruh tubuh. Namun, untuk menghasilkan pengukuran maksimal PPG perlu diletakkan di lokasi tubuh yang pembuluh darah dekat dengan permukaan kulit \cite{ppg_placement}\cite{ppg_placement2}. Beberapa lokasi tubuh yang sesuai kriteria tersebut terdapat pada ujung jari, pergelangan tangan, lengan atas, leher, dan daun kuping.
+
 
 \subsection{Titik Fiducial}
 Untuk mengenali sebuah detak jatung pada rekam ECG maupun PPG diperlukan untuk mencari titik titik \textit{fiducial} (pembanding). Kemunculan titik fiducial menandakan adanya siklus \textit{beat} (detak) pada waktu kemunculan titik tersebut. Sebuah siklus sinyal ECG dapat dilihat dari beberapa titik fiducial yaitu P-QRS-T, seperti terlihat pada gambar \ref{fig:ecg_points}. Sedangkan siklus sinyal PPG dilihat dari siklus Diastolic-Systolic-Dicrotic seperti terlihat pada gambar \ref{fig:ppg_points}
@@ -25,8 +44,8 @@ Untuk mengenali sebuah detak jatung pada rekam ECG maupun PPG diperlukan untuk m
 \end{figure}
 
 
-\subsection{Pembacaan Sinyal}
-Walaupun kedua jenis sensor dapat digunakan untuk monitor jantung, sinyal yang dihasilkan sedikit berbeda, terlihat pada gambar \ref{fig:ecg_vs_ppg} \cite{ppg_vs_ecg}. Secara langsung dapat dilihat sinyal hasil dari PPG dengan ECG berbeda secara morfologi (bentuk). Karena sumber sinyal yang sama (dari jantung) siklus PPG dan ECG dapat disinkronisasi (saling dipetakan) berdasarkan titik R pada ECG dan puncak sistolik pada PPG seperti gambar \ref{fig:ecg_vs_ppg2} \cite{ecg_syncro}. Perbedaan waktu kemunculan R dan Sistolik dikenal sebagai \textit{Pulse Arrival Time} (PAT). PAT dapat digunakan sebagai parameter mengukur tekanan darah, yang mana tidak dicakup pada tugas akhir ini.
+\subsection{Bentuk Sinyal}
+Dapat dilihat, pada gambar \ref{fig:ecg_vs_ppg}, dengan mudah bahwa sinyal bentukan dari PPG dengan ECG berbeda secara morfologi (bentuk)\cite{ppg_vs_ecg}. Namun, karena sumber sinyal yang sama (dari jantung) siklus PPG dan ECG dapat disinkronisasi (saling dipetakan) berdasarkan titik R pada ECG dan puncak sistolik pada PPG seperti gambar \ref{fig:ecg_vs_ppg2} \cite{ecg_syncro}. Perbedaan waktu kemunculan R dan Sistolik dikenal sebagai \textit{Pulse Arrival Time} (PAT). PAT dapat digunakan sebagai parameter mengukur tekanan darah, yang mana tidak dicakup pada tugas akhir ini.
 
 \begin{figure}[H]
     \centering
@@ -39,7 +58,17 @@ Walaupun kedua jenis sensor dapat digunakan untuk monitor jantung, sinyal yang d
 \end{figure}
 
 \section{Aritmia}
-Aritmia adalah kategori gangguan jantung yang berupa irama jantung yang tidak normal. Beberapa panyakit jantung yang tergolong aritmia ialah \textit{Tachycardia} (detak lebih cepat dari normal), \textit{Bradycardia} (detak lebih lambat dari normal), \textit{Premature Atrial Contraction} (PAC), \textit{Premature Vantricular Contraction} (PVC), \textit{Ventricular Tachycardia} (VT) (detak ventrikel sangat cepat), dan \textit{Ventricular Fibrillation} (VF) (detak ventrikel tidak beraturan). \textit{Premature Contraction} berarti terjadinya kontraksi lebih cepat atau lebih lambat pada bagian jantung baik atrium maupun ventrikel. \textit{Premature contraction} merupakan awal dari peristiwa VT maupun VF. Contoh kemunculan PAC, PVC dan VF dapat dilihat pada gambar \ref{fig:contoh_aritmia}.
+Aritmia adalah kategori gangguan jantung yang berupa tidak normal-nya irama jantung. Beberapa panyakit jantung yang tergolong aritmia antara lain:
+\begin{itemize}
+	\item \textit{Tachycardia} (detak lebih cepat dari normal),
+	\item \textit{Bradycardia} (detak lebih lambat dari normal),
+	\item \textit{Premature Atrial Contraction} (PAC),
+	\item \textit{Premature Vantricular Contraction} (PVC),
+	\item \textit{Ventricular Tachycardia} (VT) (detak ventrikel sangat cepat), dan
+	\item \textit{Ventricular Fibrillation} (VF) (detak ventrikel tidak beraturan).
+\end{itemize}
+
+\textit{Premature Contraction} berarti siklus detak yang \textit{premature} (tidak pada waktunya) disebabkan oleh kontraksi pada atrium (bilik) atau ventrikel (serambi) terjadi lebih cepat atau lebih lambat dari seharusnya. \textit{Premature Contraction} tergolong serangan kecil (tidak berbahaya)[xx], sedangkan VT dan VF tergolong serangan besar (berbahaya). \textit{Premature contraction} yang terjadi berulang kali dan cepat merupakan awal dari peristiwa VT maupun VF. Contoh kemunculan PAC, PVC dan VF dapat dilihat pada gambar \ref{fig:contoh_aritmia}.
 
 \begin{figure}[H]
     \centering
@@ -53,9 +82,9 @@ Aritmia adalah kategori gangguan jantung yang berupa irama jantung yang tidak no
 \end{figure}
 
 \subsection{Riset Klasifikasi Aritmia Otomatis}
-Untuk mengklasifikasian aritmia seorang dokter perlu melihat hasil rekam jantung seorang pasien baik rekam ECG maupun PPG. Akan sangat melelahkan jika seorang dokter secara terus menerus memeriksa rekam jantung seorang pasien. Oleh karena itu dibutuhkan sebuah algoritma yang dapat melakukan klasifikasi secara otomatis. 
+Untuk mengklasifikasian aritmia seorang dokter perlu melihat hasil rekam jantung seorang pasien seperti gambar \ref{fig:contoh_aritmia}, baik hasil rekam ECG maupun PPG. Akan sangat melelahkan jika seorang dokter secara terus menerus memeriksa rekam jantung seorang pasien. Oleh karena itu dibutuhkan sebuah algoritma yang dapat melakukan klasifikasi secara otomatis. 
 
-Telah banyak penelitian yang dilakukan untuk melakukan otomasi klasifikasi aritmia[xx]. Kini penelitian tersebut telah memiliki keakuratan yang cukup baik, mencapai 90\%, dengan berbagai macam metode dan ekstraksi fitur.
+Telah banyak penelitian yang dilakukan yang melakukan otomasi klasifikasi aritmia[xx]. Kini penelitian tersebut telah memiliki keakuratan yang cukup baik, mencapai 90\%, dengan berbagai macam metode dan ekstraksi fitur.
 
 Pada tahun xxx, asme asme asem
 
@@ -88,7 +117,7 @@ Pada tahun xxx, asme asme asem
 \end{table}
 
 \section{Produk Monitoring Jantung di Pasaran}
-Meningkatnya kesadaran masyarakat akan penyakit jantung mendorong banyak perusahaan untuk membuat produk \textit{monitoring} jantung. Perusahaan seakan berlomba memproduksi alat monitoring baik yang berstandar medis untuk penggunaan rawat intesif maupun yang tidak berstandar medis untuk penggunaan sehari hari. Salah satu perusahaan yang ikut memproduksi alat \textit{monitoring} ialah perusahaan raksasa dari Korea, Samsung, yang mengeluarkan "Gear S3" pada tahun 2017 []. Selain produk berbentuk alat (\textit{hardware}), produk berbentuk program (\textit{software}) yang hanya memanfaatkan \textit{flash} di kamera \textit{smartphone} sebagai sensor PPG juga banyak ditemukan[xx-xx-xx].
+Meningkatnya kesadaran masyarakat akan penyakit jantung mendorong banyak perusahaan untuk membuat produk \textit{monitoring} jantung. Perusahaan seakan berlomba memproduksi alat monitoring baik yang berstandar medis untuk penggunaan rawat intesif maupun yang tidak berstandar medis untuk penggunaan sehari hari. Salah satu perusahaan yang ikut memproduksi alat \textit{monitoring} ialah perusahaan raksasa dari Korea, Samsung, yang mengeluarkan "Gear S3" pada tahun 2017 [xx]. Selain produk berbentuk alat (\textit{hardware}), produk berbentuk program (\textit{software}) yang hanya memanfaatkan \textit{LED flash} di kamera \textit{smartphone} sebagai sensor PPG juga banyak ditemukan[xx-xx-xx].
 
 \begin{figure}[H]
     \centering
@@ -112,7 +141,7 @@ MongoDB adalah salah satu jenis program penyimpanan data yang bersifat NoSQL. Mo
 	\item Membutuhkan beban penulisan data yang tinggi,
 	\item Skema data yang tidak stabil,
 	\item Ukuran data akan menjadi sangat besar,
-	\item Tidak memiliki seorang \textbf{database administrator}
+	\item Tidak memiliki seorang \textit{administrator}
 \end{enumerate}
 
 \begin{figure}[H]
@@ -123,12 +152,13 @@ MongoDB adalah salah satu jenis program penyimpanan data yang bersifat NoSQL. Mo
 \end{figure}
 
 \section{ESP-12}
-ESP-12 adalah salah satu tipe \textit{System on Module} (SoC) yang diproduksi oleh Espressif dari China. SoC berarti papan sirkuit yang telah terintegrasi oleh sistem tertentu. Kelebihan utama ESP ialah ukurannya yang kecil (16x24x3 mm) tapi dapat berfungsi sebagai controller dan telah dilengkapi modul Wi-Fi. Hal ini memungkinkan komunikasi sensor-server melalui jaringan WiFi tanpa perlu menambah modul jaringan lagi.
+ESP-12 adalah salah satu tipe \textit{System on Module} (SoC) yang diproduksi oleh Espressif dari China. SoC berarti papan sirkuit yang telah terintegrasi oleh sistem tertentu. Kelebihan utama ESP ialah ukurannya yang kecil (16x24x3 mm) tapi dapat berfungsi sebagai \textit{controller} dan telah dilengkapi modul Wi-Fi. Hal ini memungkinkan komunikasi sensor-server melalui jaringan WiFi tanpa perlu menambah modul jaringan lagi.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.22]{images/esp12e.jpg}
-	\caption{ESP-12E dengan koin 1/4 dollar amerika}
+	\includegraphics[scale=0.22]{images/coin_esp_pulse.jpg}
+	\caption{Koin Rp200 - ESP-12E - Pulse Sensor}
+	\label{fig:coin_esp_pulse}
 \end{figure}
 
 \section{Protokol MQTT}
