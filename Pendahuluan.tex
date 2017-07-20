@@ -1,16 +1,16 @@
-\chapter{Pendahuluan}
+s\chapter{Pendahuluan}
 \section{Latar Belakang}
 %--Overview--\\
 Penyakit jantung (Cardiovascular Diseases, CVDs) merupakan penyakit yang dapat menyerang siapa saja, terjadi kapan saja dan dimana saja. WHO mencatat terjadi sekitar 17,7 juta kematian diakibatkan oleh penyakit jantung (Cardiovascular Diseases, CVDs) di seluruh dunia pada tahun 2015\cite{who2015facts}. Dilain pihak menurut Dinas Kesehatan Republik Indonesia, lebih dari 3 juta kematian akibat CVDs terjadi sebelum usia 60 tahun\cite{depkes2014}. CVDs juga umumnya tidak memiliki gejala sebelum penyakit menyerang\cite{who2015facts}. Oleh karena itu, diperlukan \textit{monitoring} (pemantauan) jantung yang dapat dilakukan secara terus-menerus.
 
 Telah banyak dikembangkan produk untuk melakukan monitoring baik menggunakan \textit{Electrocardiogram} (ECG) dan \textit{Photoplethysmogram} (PPG)[xx, xx]. Beberapa produk tersebut bahkan dapat memberitahu jumlah \textit{Beat Per Minute} (BPM, detak jantung tiap menit) dan melakukan perekaman aktivitas jantung. Rekam jantung bermanfaat bagi dokter jantung untuk melakukan analisis penyakit dan merancang metode pengobatan. Salah satu jenis CVDs yang dapat diidentifikasi dari rekam jantung ialah Aritmia.
 
-Aritmia merupakan salah satu jenis dari CVDs yang merupakan kemunculan pola tidak beratur pada detak jantung\cite{cvd_is}. Aritmia tergolong mudah untuk diidentifikasi berdasarkan gambar rekam jantung seseorang. Sebagian besar jenis aritmia tergolong tidak berbahaya (serangan kecil). Walaupun tidak berbahaya, ketika aritmia serangan kecil sering terjadi dapat menandakan kemunculan serangan besar, contohnya ketika \textit{Premature Ventricular Contraction} (PVC) terjadi berulang kali dapat menandakan terjadinya serangan besar seperti \textit{Ventricular Tachycardia} (VT) dan \textit{Ventricular Fibrillation} (VF) [xx]. Berdasarkan studi pustaka yang penulis lakukan, beberapa penelitian sebelumnya telah berhasil membuat algoritma untuk mendeteksi aritmia secara otomatis[xx-xx].
+Menurut literatur, Aritmia adalah ritme detak jantung yang tidak teratur\cite{cvd_is}. Aritmia tergolong mudah untuk diidentifikasi berdasarkan gambar rekam jantung seseorang. Sebagian besar jenis aritmia tergolong tidak berbahaya (serangan kecil)\cite{arrhythmia_is}. Walaupun tidak berbahaya, ketika aritmia serangan kecil sering terjadi dapat menandakan kemunculan serangan besar, contohnya ketika \textit{Premature Ventricular Contraction} (PVC) terjadi berulang kali dapat menandakan terjadinya serangan besar seperti \textit{Ventricular Tachycardia} (VT) dan \textit{Ventricular Fibrillation} (VF) [xx]. Berdasarkan studi pustaka yang penulis lakukan, beberapa penelitian sebelumnya telah berhasil membuat algoritma untuk mendeteksi aritmia secara otomatis[xx-xx].
 
 %--Problem--\\
 Monitoring yang terus-menerus akan mudah dilakukan kepada pasien yang menjalani perawatan intensif di sebuah rumah sakit. Namun tentunya hal tersebut sulit dilakukan kepada pasien yang menjalani rawat jalan. Padahal seseorang yang pernah terkena penyakit jantung akan rawan mengalami serangan baik kecil (tidak berbahaya) maupun besar (berbahaya) dimana saja dan kapan saja.
 
-Rekam jantung yang dihasilkan oleh produk yang telah ada harus diberikan di lain hari kepada dokter. Hal ini tentunya akan merepotkan seorang pasien. Bukan hanya menyulitkan pasien, bagi seorang dokter untuk memperiksa rekaman jantung sepanjang 24 jam saja akan membutuhkan waktu yang lama. Terlebih menurut sekertaris PERKI, Isman Firdaus, Indonesia masih kekurangan jumlah dokter \cite{doctor_deff}. Bahkan secara ideal pun seorang dokter jantung masih ditargetkan untuk melayani sangat banyak pasien yaitu sekitar 100,000 pasien\cite{doctor_deff}. 
+Sedangkan, produk yang telah ada tidak dapat melakukan \textit{monitoring} secara terus menerus dan tidak dapat melakukan analisis otomatis. Analisis harus dilakukan secara manual oleh seorang dokter jantung. Di lain pihak, menurut sekertaris PERKI, Isman Firdaus, Indonesia masih kekurangan jumlah dokter jantung \cite{doctor_deff}. Bahkan secara ideal pun seorang dokter jantung masih ditargetkan untuk mengawasi sangat banyak pasien (sekitar 100 ribu orang)\cite{doctor_deff}. Hal ini mengakibatkan seorang dokter tidak mungkin melakukan \textit{monitoring} seorang pasien secara terus menerus.
 
 %--Objective--\\
 Berdasarkan fakta diatas penulis melihat adanya kebutuhan akan pengembangan terhadap sistem monitoring yang telah ada. Oleh karena itu pada tugas akhir ini penulis merancang arsitektur sistem monitoring dimana sistem dapat melakukan \textit{monitoring} jantung secara ubiquitous dan terus menerus, dapat terkoneksi secara \textit{real time} kepada dokter, mampu melayani banyak pasien sekaligus dan dapat memberikan peringatan ketika aritmia terjadi.
@@ -60,10 +60,10 @@ Tugas Akhir ini disusun dengan sistematika penulisan sebagai berikut :
 \subsubsection{Bab 1 Pendahuluan}
 Bab ini membahas mengenai latar belakang, rumusan masalah, dan tujuan pengerjaan Tugas Akhir ini. Sekaligus memuat pernyataan mengenai batasan masalah, hipotesis dan sistematika penulisan.
 \subsubsection{Bab 2 Kajian Pustaka}
-Bab ini membahas re mengenai teori penunjang seperti skema IBE, skema ECC dan RSA, fungsi Hashing, metode El-Gamal serta metode brute force dan parameter-parameter pengujian seperti running time, memory usage dan avalanche affect.
+Bab ini membahas fakta dan teori yang berkaitan dengan perancangan sistem untuk mendirikan landasan berfikir. Dengan menggunakan fakta dan teori yang dikemukakan pada bab ini penulis menganalisis kebutuhan akan rancangan arsitektur sistem yang dibangun.
 \subsubsection{Bab 3 Metodologi dan Desain Sistem}
-Pada bab ini membahas tentang alur pengerjaan tugas akhir yang meliputi desain IBE-ECC dan skenario pengujian yang akan dilakukan pada bab selanjutnya.
+Bab ini membahas secara rinci tentang rancangan arsitektur dan metode yang dibangun oleh penulis. Sekaligus metode pengujian performansi terhadap arsitektur sistem yang dirancang.
 \subsubsection{Bab 4 Hasil dan Pembahasan}
-Pada bab ini membahas tentang pengujian dari hasil implementasi. Pengujian dilakukan dengan skenario yang telah dibuat pada bab sebelumnya untuk menguji dan menganalisis metode sesuai dengan permasalahan yang sudah di definisikan pada bab pendahuluan
+Pada bab ini membahas tentang hasil pengujian dari implementasi arsitektur sistem. Pengujian dilakukan sesuai skenario yang telah dibuat pada bab sebelumnya.
 \subsubsection{Bab 5 Kesimpulan dan Saran}
 Bab ini berisi kesimpulan dari penetilian tugas akhir yang telah dilakukan dan saran yang di perlukan untuk penelitian selanjutnya.
