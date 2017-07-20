@@ -1,32 +1,40 @@
 \chapter{Pendahuluan}
 \section{Latar Belakang}
+%--Overview--\\
+Penyakit jantung (Cardiovascular Diseases, CVDs) merupakan penyakit yang dapat menyerang siapa saja, terjadi kapan saja dan dimana saja. WHO mencatat terjadi sekitar 17,7 juta kematian diakibatkan oleh penyakit jantung (Cardiovascular Diseases, CVDs) di seluruh dunia pada tahun 2015\cite{who2015facts}. Dilain pihak menurut Dinas Kesehatan Republik Indonesia, lebih dari 3 juta kematian akibat CVDs terjadi sebelum usia 60 tahun\cite{depkes2014}. CVDs juga umumnya tidak memiliki gejala sebelum penyakit menyerang\cite{who2015facts}. Oleh karena itu, diperlukan \textit{monitoring} (pemantauan) jantung yang dapat dilakukan secara terus-menerus.
 
-WHO mencatat terjadi sekitar 17,7 juta kematian diakibatkan oleh penyakit jantung (Cardiovascular Diseases, CVDs) di seluruh dunia pada tahun 2015\cite{who2015facts}. Bahkan menurut Dinas Kesehatan Republik Indonesia, lebih dari 3 juta kematian akibat penyakit jantung terjadi sebelum usia 60 tahun\cite{depkes2014}. Penyakit jantung juga umumnya tidak memiliki gejala sebelum penyakit menyerang\cite{who2015facts}. Oleh karena itu, diperlukan \textit{monitoring} (pemantauan) jantung yang dapat dilakukan secara terus-menerus. 
+Telah banyak dikembangkan produk untuk melakukan monitoring baik menggunakan \textit{Electrocardiogram} (ECG) dan \textit{Photoplethysmogram} (PPG)[xx, xx]. Beberapa produk tersebut bahkan dapat memberitahu jumlah \textit{Beat Per Minute} (BPM, detak jantung tiap menit) dan melakukan perekaman aktivitas jantung. Rekam jantung bermanfaat bagi dokter jantung untuk melakukan analisis penyakit dan merancang metode pengobatan. Salah satu jenis CVDs yang dapat diidentifikasi dari rekam jantung ialah Aritmia.
 
+Aritmia merupakan salah satu jenis dari CVDs yang merupakan kemunculan pola tidak beratur pada detak jantung\cite{cvd_is}. Aritmia tergolong mudah untuk diidentifikasi berdasarkan gambar rekam jantung seseorang. Sebagian besar jenis aritmia tergolong tidak berbahaya (serangan kecil). Walaupun tidak berbahaya, ketika aritmia serangan kecil sering terjadi dapat menandakan kemunculan serangan besar, contohnya ketika \textit{Premature Ventricular Contraction} (PVC) terjadi berulang kali dapat menandakan terjadinya serangan besar seperti \textit{Ventricular Tachycardia} (VT) dan \textit{Ventricular Fibrillation} (VF) [xx]. Berdasarkan studi pustaka yang penulis lakukan, beberapa penelitian sebelumnya telah berhasil membuat algoritma untuk mendeteksi aritmia secara otomatis[xx-xx].
+
+%--Problem--\\
 Monitoring yang terus-menerus akan mudah dilakukan kepada pasien yang menjalani perawatan intensif di sebuah rumah sakit. Namun tentunya hal tersebut sulit dilakukan kepada pasien yang menjalani rawat jalan. Padahal seseorang yang pernah terkena penyakit jantung akan rawan mengalami serangan baik kecil (tidak berbahaya) maupun besar (berbahaya) dimana saja dan kapan saja.
 
-Telah banyak dikembangkan produk kesehatan untuk melakukan monitoring terus-menerus secara \textit{Ubiquitous} (dimana saja, kapan saja) baik menggunakan \textit{Electrocardiogram} (ECG) dan \textit{Photoplethysmogram} (PPG)[..., ...]. Namun produk-produk tersebut hanya dapat memberitahu jumlah \textit{Beat Per Minute} (BPM, detak jantung tiap menit) dan tidak melakukan perekaman aktivitas jantung. Padahal gambar rekaman jantung dapat menjadi bahan analisis dokter untuk mengidentifikasi penyakit dan merancang pengobatan. Adapun yang dapat melakukan perekaman, rekam jantungnya harus diberikan secara manual kepada dokter pada lain hari. Padahal telah banyak riset yang dapat memberikan kemampuan lebih kepada produk tersebut untuk melakukan deteksi penyakit seperti Aritmia[..., ...], sehingga dapat memberikan peringatan kepada dokter maupun keluarga ketika muncul sebuah serangan.
+Rekam jantung yang dihasilkan oleh produk yang telah ada harus diberikan di lain hari kepada dokter. Hal ini tentunya akan merepotkan seorang pasien. Bukan hanya menyulitkan pasien, bagi seorang dokter untuk memperiksa rekaman jantung sepanjang 24 jam saja akan membutuhkan waktu yang lama. Terlebih menurut sekertaris PERKI, Isman Firdaus, Indonesia masih kekurangan jumlah dokter \cite{doctor_deff}. Bahkan secara ideal pun seorang dokter jantung masih ditargetkan untuk melayani sangat banyak pasien yaitu sekitar 100,000 pasien\cite{doctor_deff}. 
 
-Aritmia merupakan salah satu jenis dari CVDs. Umumnya aritmia tidak berbahaya (serangan kecil). Aritmia juga tergolong mudah untuk diidentifikasi berdasarkan gambar rekam jantung seseorang. Walaupun umumnya tidak berbahaya, ketika aritmia sering terjadi dapat menandakan kemunculan serangan besar, contohnya ketika \textit{Premature Ventricular Contraction} (PVC) terjadi berulang kali dapat menandakan terjadinya serangan besar seperti \textit{Ventricular Tachycardia} (VT) dan \textit{Ventricular Fibrillation} (VF) [...]. 
-
-Berdasarkan fakta diatas penulis melihat adanya kebutuhan akan pengembangan terhadap sistem monitoring yang telah ada. Oleh karena itu pada tugas akhir ini penulis merancang sistem monitoring dimana sistem juga dapat melakukan perekaman aktivitas jantung, mendeteksi terjadinya aritmia dan memberikan peringatan ketika aritmia terjadi.
-
-\section{Perumusan Masalah}
-Berdasarkan fakta dan permasalahan yang disebutkan pada sub bab 1.1, latar belakang, diatas, dapat disimpulkan beberapa masalah utama yang ingin diselesaikan pada tugas akhir ini sebagai berikut:
+%--Objective--\\
+Berdasarkan fakta diatas penulis melihat adanya kebutuhan akan pengembangan terhadap sistem monitoring yang telah ada. Oleh karena itu pada tugas akhir ini penulis merancang arsitektur sistem monitoring dimana sistem dapat melakukan \textit{monitoring} jantung secara ubiquitous dan terus menerus, dapat terkoneksi secara \textit{real time} kepada dokter, mampu melayani banyak pasien sekaligus dan dapat memberikan peringatan ketika aritmia terjadi.
+\section{Pernyataan Masalah}
+Berdasarkan latar belakang diatas, sub bab 1.1, dapat disimpulkan terdapat permasalahan pada sistem yang sudah ada, yaitu:
 \begin{enumerate}
-	\item Bagaimana membangun sistem monitoring detak jantung yang bersifat ubiquitous dan terus menerus?
-	\item Bagaimana mengembangkan fitur perekaman jantung?
-	\item Bagaimana mengembangkan fitur deteksi terjadinya aritmia?
-	\item Bagaimana mengembangkan fitur peringatan ketika aritmia terjadi?
+	\item Sistem tidak dapat berjalan secara \textit{Ubiquitous} dan terus menerus,
+	\item Analisis sistem dilakukan manual sehingga membutuhkan waktu lama,
+	\item Seorang dokter jantung harus menangani banyak pasien sekaligus.
+\end{enumerate}
+\section{Perumusan Masalah}
+Berdasarkan fakta dan permasalahan yang ditemukan, pada tugas akhir ini penulis merancang sebuah solusi berupa arsitektur sistem monitoring. Yang menjadi rumusan masalah untuk perancangan arsitektur ini ialah sebagai berikut:
+\begin{enumerate}
+	\item Bagaimana merancang arsitektur sistem monitoring jantung yang bersifat ubiquitous dan terus menerus?
+	\item Bagaimana mengembangkan metode \textit{monitoring} dan peringatan yang dapat mengawasi banyak pasien sekaligus?
+	\item Bagaimana melakukan analisis performansi terhadap aristektur dan metode yang dikembangkan?
 \end{enumerate}
 \section{Batasan Masalah}
 Untuk membatasi perancangan sistem tugas akhir ini menetapkan batasan sebagai berikut:
 \begin{enumerate}
 	\item Sensor dibangun menggunakan PPG dengan kontroller ESP12E;
     \item Server dibangun dengan spesifikasi server Processor Intel-i3 (2.3GHz), RAM 6 GB, Storage Samsung SSD EVO 750;
+	\item Sistem bekerja pada \textit{foreground} atau thread utama
     \item Iterkoneksi jaringan menggunakan WiFi;
-    \item Komunikasi sensor dan server menggunakan protokol
-     komunikasi MQTT;
     \item Tidak terdapat hambatan atau masalah komunikasi antara Sensor dan Server;
     \item Jenis aritmia yang dapat dideteksi ialah PAC, PVC, \textit{Tachycardia}, dan \textit{Bradycardia}
     \item Metode klasifikasi yang diuji ialah metode yang diusulkan oleh Pan-Tomkins dan Tsipouras-Fotiadis
@@ -34,56 +42,28 @@ Untuk membatasi perancangan sistem tugas akhir ini menetapkan batasan sebagai be
 \section{Tujuan}
 Berikut adalah tujuan yang ingin dicapai pada penulisan proposal/TA.
 \begin{enumerate}
-    \item Untuk merancang sistem monitoring detak jantung yang bersifat ubiquitous dan terus menerus;
-    \item Untuk mengembangkan fitur perekaman jantung;
-    \item Untuk mengembangkan fitur deteksi aritmia kepada sistem monitoring;
-    \item Untuk mengembangkan fitur peringatan ketika aritmia terjadi kepada sistem monitoring.
+    \item Untuk merancang arsitektur sistem monitoring detak jantung yang bersifat ubiquitous dan terus menerus,
+    \item Untuk mengembangkan metode \textit{monitoring} dan peringatan otomatis yang dapat mengawasi banyak pasien sekaligus,
+    \item Untuk menganalisis performansi terhadap arsitektur dan metode yang dikembangkan.
 \end{enumerate}
 \section{Hipotesis}
 Hipotesis dari tulisan ini adalah
 \begin{enumerate}
-    \item Sistem yang telah ada tidak memiliki perekaman dan deteksi karena keterbatasan sumber daya baik processor, memory, dan ram,
     \item Dengan memindahkan proses perhitungan dan penyimpanan ke server dapat memungkinkan sistem untuk melakukan pemrosesan lebih besar dan cepat,
     \item Terdapat fitur yang dimiliki baik oleh ECG maupun PPG sehingga memungkinkan kedua jenis sensor digunakan pada sistem tanpa merubah algoritma klasifikasi,
     \item Dengan komunikasi menggunakan MQTT akan memungkin banyak pihak untuk mendapat peringatan dari sistem ketika terdeteksi Aritmia,
 	\item Dengan melakukan pengujian dapat mengetahui performansi dari sistem yang dirancang,
-	\item Pesan peringatan akan diterima pasien atau dokter jika halaman \textit{web} atau aplikasi di ponsel android sedang dibuka.
 \end{enumerate}
-\iflogTA
-\else
-\section{Rencana Kegiatan}
-Rencana kegitan yang akan saya lakukan adalah sebagia berikut:
-\begin{itemize}
-    \item Studi literatur
-    \item Memeriksa hasil
-\end{itemize}
-\section{Jadwal Kegiatan}
-The table \ref{table:1} is an example of referenced \LaTeX elements. Laporan proposal ini akan dijadwalkan sesuai dengan tabel yang diberikna berikutnya. 
 
- 
-\begin{table}[h!]
-  \centering
-  \begin{tabular}{|c|m{2.5cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|m{0.01cm}|}
-    \hline
-    \multirow{2}{*}{\textbf{No}} & \multirow{2}{*}{\textbf{Kegiatan}} & \multicolumn{24}{|c|}{\textbf{Bulan ke-}} \\
-    \hhline{~~------------------------}
-    {} & {} & \multicolumn{4}{|c|}{\textbf{1}} & \multicolumn{4}{|c|}{\textbf{2}} & \multicolumn{4}{|c|}{\textbf{3}} & \multicolumn{4}{|c|}{\textbf{4}} & \multicolumn{4}{|c|}{\textbf{5}} & \multicolumn{4}{|c|}{\textbf{6}}\\
-    \hline
-    1 & Studi Literatur & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}& \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}& \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}& \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}& \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}& \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}\\
-    \hline
-    2 & Pengumpulan Data & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & {} & {} & {} & {} & {} & {} & {} & {}& {} & {} & {} & {}& {} & {} & {} & {}& {} & {} & {} & {}\\
-    \hline
-    3 & Analisis dan Perancangan Sistem &  {} & {} & {} & {}  & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & {} & {} & {} & {}& {} & {} & {} & {}& {} & {} & {} & {}\\
-    \hline
-    4 & Implementasi Sistem &  {} & {} & {} & {} & {} & {} & {} & {}& \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & {} & {} & {} & {}& {} & {} & {} & {}\\
-    \hline
-    5 & Analisa Hasil Implementasi &  {} & {} & {} & {} & {} & {} & {} & {}& {} & {} & {} & {} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & {} & {} & {} & {}\\
-    \hline
-    6 & Penulisan Laporan & {} & {} & {} & {} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}& \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}& \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}& \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}& \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25} & \cellcolor{blue!25}\\
-    \hline
-  \end{tabular}
-  \caption{Jadwal kegiatan proposal tugas akhir}
-  \label{table:1}
-\end{table}
-
-\fi
+\section{Sistematika Penulisan}
+Tugas Akhir ini disusun dengan sistematika penulisan sebagai berikut :
+\subsubsection{Bab 1 Pendahuluan}
+Bab ini membahas mengenai latar belakang, rumusan masalah, dan tujuan pengerjaan Tugas Akhir ini. Sekaligus memuat pernyataan mengenai batasan masalah, hipotesis dan sistematika penulisan.
+\subsubsection{Bab 2 Kajian Pustaka}
+Bab ini membahas re mengenai teori penunjang seperti skema IBE, skema ECC dan RSA, fungsi Hashing, metode El-Gamal serta metode brute force dan parameter-parameter pengujian seperti running time, memory usage dan avalanche affect.
+\subsubsection{Bab 3 Metodologi dan Desain Sistem}
+Pada bab ini membahas tentang alur pengerjaan tugas akhir yang meliputi desain IBE-ECC dan skenario pengujian yang akan dilakukan pada bab selanjutnya.
+\subsubsection{Bab 4 Hasil dan Pembahasan}
+Pada bab ini membahas tentang pengujian dari hasil implementasi. Pengujian dilakukan dengan skenario yang telah dibuat pada bab sebelumnya untuk menguji dan menganalisis metode sesuai dengan permasalahan yang sudah di definisikan pada bab pendahuluan
+\subsubsection{Bab 5 Kesimpulan dan Saran}
+Bab ini berisi kesimpulan dari penetilian tugas akhir yang telah dilakukan dan saran yang di perlukan untuk penelitian selanjutnya.

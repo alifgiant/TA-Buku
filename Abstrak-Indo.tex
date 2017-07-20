@@ -1,8 +1,17 @@
 \chapter*{Abstrak}
-
-Pada tahun 2015 diperkirakan sebanyak 17,7 juta kematian disebabkan oleh penyakit kardiovaskuler (penyakit jantung).  Pada penyakit jantung seringkali ditandai dengan munculnya pola tidak beratur pada detak jantung seseorang. Pola ini dikenal dengan istilah Aritmia. Mengetahui terjadinya pola ini dapat menyelamatkan banyak nyawa. Namun keahlian untuk menganalisis pola detak jantung hanya dimiliki oleh mereka yang telah mengemban pendidikan kesehatan seperti dokter jantung. Pada beberapa penelitian sebelumnya telah dikembangkan berbagai metode pengukuran detak jantung non-invasive dan telah dikembangkan pula metode mendeteksi terjadinya Aritmia. Namun sistem yang ada tidak dapat memberikan peringatan dini ketika Aritmia terjadi. Tugas akhir ini mengusulkan sebuah rancangan sistem pemberian peringatan dini kepada orang terdekat dan atau dokter tentang terjadinya Aritmia.
+%--Overview-- \\
+Penyakit jantung (Cardiovascular Diseases, CVDs) merupakan penyakit yang dapat menyerang siapa saja, terjadi kapan saja dan dimana saja. Terdapat banyak produk di pasaran yang dapat melakukan \textit{monitoring} jantung sekaligus merekam aktivitas jantung penggunanya. Rekam jantung diperlukan oleh dokter jantung untuk melakukan analisis penyakit dan merancang metode pengobatan. Salah satu jenis CVDs yang dapat diidentifikasi dari rekam jantung ialah Aritmia yang merupakan kemunculan pola tidak beratur pada detak jantung. Beberapa penelitian sebelumya telah berhasil mengukur detak jantung per menit (\textit{Beat Per Minute}, BPM) sekaligus mendeteksi Aritmia secara otomatis.
+%--Problem-- \\
+Namun \textit{monitoring} yang dilakukan produk tersebut tidak dapat berjalan secara terus menerus, hanya mengukur BPM dan rekamannya harus diserahkan kepada dokter dilain hari. Menyerahkan hasil rekam di lain hari akan menyulitkan pasien dan memperlambat kinerja dokter. Padahal dengan menerapkan konsep \textit{Internet of Things}(IoT) dan algoritma yang diusulkan pada penelitian sebelumnya, sistem dapat berjalan terus menerus, mendeteksi aritmia dan terkoneksi secara \textit{real time} kepada dokter.
+%--Objective-- \\
+Oleh karena itu tugas akhir ini merancang arsitektur sistem IoT dan menerapkan algoritma yang diusulkan penelitian sebelumnya untuk menyelesaikan masalah diatas.
+%--Methodology-- \\
+Rancangan arsitektur memanfaatkan MQTT sebagai protokol komunikasi jaringan yang dirancang agar dapat memproses banyak \textit{sensor} dan banyak \textit{viewer} sekaligus. Algoritma yang diterapkan pada arsitektur ialah modifikasi algoritma usulan Pan-Tompkin(1985), Deshmane(2009) dan Tsipouras(2005).
+Pan-Tomkins dan Deshmane mengusulkan metode untuk melakukan \textit{preprocessing} dan \textit{processing} terhadap hasil baca sensor. Tsipouras mengusulkan metode \textit{rule based classification} untuk mengklasfikasikan aritmia dengan menggunakan fitur \textit{peak} (titik R atau titik Systolic) pada rekaman jantung.
+%--Outcome-- \\
+Berdasarkan pengujian, performa arsitektur sistem yang diusulkan pada tugas akhir ini dinilai baik, yaitu dapat melayani maksimum xx sensor dengan rata-rata delay xx ms dan tingkat akurasi xx\% untuk deteksi detak walau deteksi aritmia memiliki perfoma yang buruk hanya xx\%.
   
 \vspace{0.5 cm}
 \begin{flushleft}
-{\textbf{Kata Kunci:} Penyakit Jantung, Aritmia, Peringatan Dini.}
+{\textbf{Kata Kunci:} Monitoring Jantung, Aritmia, IoT, MQTT.}
 \end{flushleft}
