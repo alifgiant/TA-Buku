@@ -84,7 +84,7 @@ H = Share Result via Network \\
 \subsection{Riset Terkait}
 Arsitektur sistem yang dirancang pada tugas akhir ini menerapkan konsep Internet of Things (IoT) dan diharapkan mampu melakukan analisis otomatis, khususnya aritmia. Penerapan IoT kedalam \textit{monitoring} jantung sudah pernah dilakukan sebelumnya, begitupun dengan analisis artimia secara otomatis. Untuk mengoptimalkan metode yang diajukan pada tugas akhir ini, diperlukan pembelajaran terhadap riset terkait atas kedua hal tersebut.
 
-Pada tahun 2013, Daniel Barata dan rekannya dari Portugal merancang metode \textit{monitoring} yang dapat bekerja secara \textit{portable} \cite{daniel_barataa}. Sensor yang terhubung dengan sebuah tablet android akan berkomunikasi menggunakan protokol MQTT. Penggunaan MQTT memungkinkan \textit{throughtput} data yang besar dan banyak sensor yang terhubung secara bersamaan. Metode ini menggunakan sensor ECG dan PPG untuk mengambil data tubuh. Pemilihan MQTT untuk meningkatkan jumlah sensor yang dapat terhubung juga dilakukan oleh Karan Motwani pada penilitiannya di tahun 2016 \cite{karan_motwani}. Selain digunakan untuk \textit{monitoring} MQTT juga digunakan pada \textit{facebook messager} [].
+Pada tahun 2013, Daniel Barata dan rekannya dari Portugal merancang metode \textit{monitoring} yang dapat bekerja secara \textit{portable} \cite{daniel_barataa}. Sensor yang terhubung dengan sebuah tablet android akan berkomunikasi menggunakan protokol MQTT. Penggunaan MQTT memungkinkan \textit{throughtput} data yang besar dan banyak sensor yang terhubung secara bersamaan. Metode ini menggunakan sensor ECG dan PPG untuk mengambil data tubuh. Pemilihan MQTT untuk meningkatkan jumlah sensor yang dapat terhubung juga dilakukan oleh Karan Motwani pada penilitiannya di tahun 2016 \cite{karan_motwani}. Selain digunakan untuk \textit{monitoring} MQTT juga digunakan pada \textit{facebook messager} \cite{mqtt_use}.
 
 Pada tahun 2014, Paola Pierleoni dan rekannya merancang metode monitoring yang melibatkan ponsel dan sensor ECG milik produk "Zephyr HxM-BT" \cite{paola_pierleoni}. Zephyr akan mengirimkan sinyal ECG melalui bluetooth menuju polsel untuk di proses. Metode \textit{monitoring} yang dirancang oleh Pierleoni menambahkan analisis aritmia kedalamnya. Aritmia dianalisis menggunakan \textit{rule based classification} yang diusulkan oleh Tsipouras(2005). Aturan yang diajukan oleh Tsipouras memerhatikan fitur RR interval dari gelombang jantung \cite{rr_classification}. Hasil analisis yang dihasilkan dapat dilihat secara \textit{real time} pada layar ponsel.
 
@@ -92,7 +92,7 @@ Pada tahun 2016, Vasu Jindal (seorang peneliti dari Universitas Texas) merancang
 
 Di tempat lain pada tahun 2016, Mamidi Manisha dan rekannya dari India merancang metode \textit{monitoring} yang mirip dengan metode Jindal. Metode Mamidi juga melibatkan ponsel, produk jam tangan pintar \cite{mamidi} dan \textit{cloud processing}. Namun fokus utama dalam sistem yang mereka rancang ialah tentang bagaimana cloud dapat menangani pertukaran data yang besar dan cepat. Salah satu kunci keberhasilan sistem mereka ialah penerapan \textit{database} No-SQL yang berhasil memaksimalkan kecepatan penulisan data. Selain komunikasi yang cepat, sistem mereka dirancang agar memiliki mekanisme pemberitaan darurat kepada rumah sakit.
 
-Dari keempat riset diatas, masing masing memiliki kelebihan dan kekurangan. Metode Lou dan Motwani dapat menghubungkan banyak sensor sekaligus. Metode Pierloeni dapat medeteksi aritmia tapi hanya pasien yang bisa mengetahuinya. Metode Jindal memiliki sistem analisis terpusat sehingga algoritma yang diterapkan dapat terus berkembang semakin akurat namun hanya bisa menganalisis BPM. Metode Manisha memiliki kehandalan dalam menangani banyak pasien dalam sistem terpusat dan mampu memberikan pemberitaan darurat namun analisis masih harus dilakukan manual. Ringkasan mengenai kelebihan dan kekurangan ini dapat dilihat pada tabel \ref{table:monitoring_compare}.
+Dari keempat riset diatas, masing masing memiliki kelebihan dan kekurangan. Metode Barata dan Motwani dapat menghubungkan banyak sensor sekaligus. Metode Pierloeni dapat medeteksi aritmia tapi hanya pasien yang bisa mengetahuinya. Metode Jindal memiliki sistem analisis terpusat sehingga algoritma yang diterapkan dapat terus berkembang semakin akurat namun hanya bisa menganalisis BPM. Metode Manisha memiliki kehandalan dalam menangani banyak pasien dalam sistem terpusat dan mampu memberikan pemberitaan darurat namun analisis masih harus dilakukan manual. Ringkasan mengenai kelebihan dan kekurangan ini dapat dilihat pada tabel \ref{table:monitoring_compare}.
 
 \begin{table}[H]
 	\begin{tabular}{|L{5cm}|L{3cm}|C{1cm}|c|c|c|c|c|}
@@ -101,6 +101,8 @@ Dari keempat riset diatas, masing masing memiliki kelebihan dan kekurangan. Meto
 		\textbf{Judul} & \textbf{Penulis} & \textbf{Ta} & \multicolumn{5}{c}{\textbf{Fitur}} \\
 		\rowcolor{gray}
 		 & & \textbf{hun} & A & B & C & D & E \\
+		 System of acquisition, transmission, storage and visualization of Pulse Oximeter and ECG data using Android and MQTT & Daniel Barata, Goncalo Louzada et al. & 2013 & N & N & N & Y & N \\
+		\hline
 		 An Android-Based Heart Monitoring System for the Elderly and
 for Patients with Heart Disease & Paola Pierleoni, Luca Pernini, et al. & 2014 & Y & Y & N & N & Y \\
 		\hline
@@ -116,17 +118,13 @@ for Patients with Heart Disease & Paola Pierleoni, Luca Pernini, et al. & 2014 &
 Ket: \\
 A = Deteksi BPM \\
 B = Deteksi Artimia \\
-C = Sistem Deteksi Terpusat \\
+C = Sistem Deteksi Cloud \\
 D = Optimasi banyak pengguna \\
 E = Sistem Peringatan \\
 
-Pada konsep IoT, terdapat sedikitnya 3 komponen dalam aristekturnya yaitu \textit{sensor}, \textit{server} dan \textit{actuator}. \textit{Sensor} sebagai pengubah data dari dunia nyata ke bentuk digital agar dipahami oleh mesin. \textit{Server} sebagai pemroses data tersebut. Server
+Analisis terhadap rekam jantung umumnya dilakukan secara manual oleh dokter jantung. Salah satu bentuk analisis yang dapat dilakukan ialah mengklasifikasian kemunculan aritmia. Untuk mengklasifikasikan aritmia seorang dokter perlu melihat hasil rekam jantung seorang pasien (gambar \ref{fig:contoh_aritmia}), baik hasil rekam ECG maupun PPG. Namun, seperti yang ditunjukkan oleh Pierleoni pada penilitiannya dimungkinkan untuk melakukan analisis otomatis, khususnya Aritmia \cite{paola_pierleoni}. Selain Pierleoni, banyak penelitian yang telah dilakukan untk mengklasifikasi aritmia secara otomatis. Bahkan Kini penelitian tersebut telah memiliki keakuratan yang cukup baik, mencapai lebih dari 90\%, dengan berbagai macam metode dan ekstraksi fitur.
 
-memberi Analisis terhadap rekam jantung Untuk mengklasifikasian aritmia seorang dokter perlu melihat hasil rekam jantung seorang pasien seperti gambar \ref{fig:contoh_aritmia}, baik hasil rekam ECG maupun PPG. Akan sangat melelahkan jika seorang dokter secara terus menerus memeriksa rekam jantung seorang pasien. Oleh karena itu dibutuhkan sebuah algoritma yang dapat melakukan klasifikasi secara otomatis. 
-
-Telah banyak penelitian yang dilakukan yang melakukan otomasi klasifikasi aritmia[xx]. Kini penelitian tersebut telah memiliki keakuratan yang cukup baik, mencapai 90\%, dengan berbagai macam metode dan ekstraksi fitur.
-
-Pada tahun xxx, asme asme asem
+Pada tahun 1985, Jiapu Pan dan Willis J. Tompkins mengusulkan sebuah metode deteksi QRS secara \textit{Real Time} \cite{pantom}. Metode ini kemudian menginspirasi peneliti lainnya untuk menerapkannya ke dalam berbagai penelitian mengenai \textit{monitoring} jantung. Salah satu peneliti yang menggunakan metode ini ialah Christos Pavlatos dan rekannya pada tahun 2003 \cite{pantom_hardware}. Christo Pavlatos menerapkan metode Pan dan Tompkins kedalam \textit{embedded system}[xx]. Hal ini dimungkinkan karena algoritma pan tompkins cukup hemat dalam penggunaan memori, panjang buffer yg digunakan yaitu 150ms. Algoritma Pan dan Tompkins berhasil mendeteksi detak jantung dengat tingkat sensitivitas 99.62\%.
 
 Pada tahun xxx, asme asme asem
 
@@ -238,6 +236,8 @@ Aritmia adalah kategori gangguan jantung yang berupa tidak normal-nya irama jant
 
 
 \section{Server dan Database}
+%BARU
+Pada konsep IoT, terdapat sedikitnya 3 komponen dalam aristekturnya yaitu \textit{sensor}, \textit{server} dan \textit{actuator}. \textit{Sensor} sebagai pengubah data dari dunia nyata ke bentuk digital agar dipahami oleh mesin. \textit{Server} sebagai pemroses data tersebut. Server
 %BARU
 IoT memungkinkan komunikasi \textit{Machine to Machine} (M2M) terjadi dalam jaringan Internet. Hal ini berarti \textit{sensor}, \textit{server} dan \textit{receptor} berkomunikasi dimana saja selama dapat terhubung dengan Internet. Selain itu, IoT memodelkan agar banyak objek (\textit{Things}) dapat saling berkomunikasi. Sehingga, sebuah sistem yang dirancang untuk menangani banyak objek saling berkomunikasi dimana saja perlu menerapkan IoT.
 
