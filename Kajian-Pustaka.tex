@@ -11,9 +11,9 @@ Salah satu perusahaan yang ikut memproduksi alat \textit{monitoring} ialah perus
 
 Sama seperti Fitbit, perusahaan raksasa dari Korea, Samsung, juga mengeluarkan produk \textit{lifestyle} berupa sebuah jam tangan pintar yang dapat melakukan \textit{monitoring} jantung. Produk milik Samsung diberi nama "Gear S3" (gambar \ref{fig:device_example} a) dan diluncurkan pada tahun 2017 [xx]. Gear S3 dilengkapi sensor PPG di bagian belakangnya. Gear S3 dapat terhubung ke jaringan secara \textit{wireless} dengan menggunakan koneksi \textit{Bluetooth} dan \textit{Wi-Fi}. Hasil \textit{monitoring} dari Gear S3 hanya dapat dilihat pada layar yang melengkapinya.
 
-PT. Endo Indonesia, sebuah perusahaan peralatan medis asal Indonesia, juga membuat alat \textit{monitoring} jantung. Tidak seperti Fitbit dan Samsung, produk besutan Endo ditujukan untuk pemakaian medis. Endo memproduksi Holter monitor "EDAN SE-2003" (gambar \ref{fig:device_example} b) dan Pulse Oximeter "EDAN H-10" (gambar \ref{fig:device_example} c). "SE-2003" menggunakan sensor berjenis ECG dan mampu melakukan \textit{monitoring} pada 3 \textit{channel} sekaligus [xx]. Berbeda dengan "SE-2003", "H-10" menggunakan PPG . Pulse Oximeter "H-10", sesuai namanya, selain mampu \textit{monitoring} jantung (\textit{Pulse}) juga mampu mengukur kadar oxigen dalam darah (\textit{Oximeter}). "H-10" merupakan pulse oximeter yang diletakkan pada ujung jari (\textit{fingertip}). Hasil \textit{monitoring} holter monitor dan pulse oximeter Endo dapat dilihat pada layar produk tersebut dan aplikasi desktop yang menyertainya.
+PT. Endo Indonesia, sebuah perusahaan peralatan medis asal Indonesia, juga membuat alat \textit{monitoring} jantung. Tidak seperti Fitbit dan Samsung, produk besutan Endo ditujukan untuk pemakaian medis. Endo memproduksi Holter monitor "EDAN SE-2003" (gambar \ref{fig:device_example} b) dan Pulse Oximeter "EDAN H-10" (gambar \ref{fig:device_example} c). "SE-2003" menggunakan sensor berjenis ECG dan mampu melakukan \textit{monitoring} pada 3 \textit{channel} sekaligus \cite{endo_holter}. Berbeda dengan "SE-2003", "H-10" menggunakan PPG \cite{endo_oxi}. Pulse Oximeter "H-10", sesuai namanya, selain mampu \textit{monitoring} jantung (\textit{Pulse}) juga mampu mengukur kadar oxigen dalam darah (\textit{Oximeter}). "H-10" merupakan pulse oximeter yang diletakkan pada ujung jari (\textit{fingertip}). Hasil \textit{monitoring} holter monitor dan pulse oximeter Endo dapat dilihat pada layar produk tersebut dan aplikasi desktop yang menyertainya.
 
-Produk berupa aplikasi/\textit{software} (gambar \ref{fig:device_example} d) dapat ditemukan dengan mudah pada toko aplikasi \textit{virtual} (\textit{playstore}, \textit{app store}, dll). Penulis melakukan studi perbandingan terhadap 10 aplikasi teratas (Juli 2017) dengan kata kunci pencarian "Heart Rate" pada \textit{Play Store} (toko aplikasi virtual ponsel Android). Setelah membandingkan aplikasi tersebut, tidak ditemukan aplikasi yang memiliki fitur \textit{monitoring} lengkap untuk menyelesaikan permasalahan yang diajukan pada bab sebelumnya. Hasil perbandingan terhadap 10 aplikasi ini dicantumkan pada tabel \ref{table:app_comparison}
+Produk berupa aplikasi/\textit{software} (gambar \ref{fig:device_example} d) dapat ditemukan dengan mudah pada toko aplikasi \textit{virtual} (\textit{playstore}, \textit{app store}, dll). Penulis melakukan studi perbandingan terhadap 10 aplikasi teratas (versi Juli 2017) pada daftar hasil pencarian dengan kata kunci "Heart Rate" di \textit{Play Store}. Setelah membandingkan aplikasi tersebut, tidak ditemukan aplikasi yang memiliki fitur \textit{monitoring} lengkap untuk menyelesaikan permasalahan yang diajukan pada bab sebelumnya. Hasil perbandingan terhadap 10 aplikasi ini dicantumkan pada tabel \ref{table:app_comparison}
 
 Semua produk yang disebutkan sebelumnya tidaklah \textit{Open Source}. Sehingga tidak dimungkinkan untuk merubah spesifikasi kinerja produk seperti menaikkan \textit{sample rate} atau mengganti algorima penghitung detak jantung. Walaupun tidak \textit{Open Source}, baik Fitbit dan Samsung memberikan \textit{Application Programming Interface} (\textit{API}) untuk memudahkan pengembang perangkat lunak membuat sistem yang menggunakan produk mereka [xx][xx]. API tersebut memungkinkan pengembang mengambil semua data sensor yang tertanam pada produk. Untuk kasus \textit{monitoring} jantung, pengembang dapat mengambil bentuk gelombang jantung dan BPM dari produk. Sedangkan, Endo tidak menyediakan API sama sekali. Sehingga, untuk mengakses pengukuran dari produk Endo akan sangat sulit untuk dilakukan (mungkin dilakukan dengan \textit{Reverse Engineering}). Rangkuman perbedaan produk berupa alat dapat dilihat pada tabel \ref{table:product_comparison}
 
@@ -22,7 +22,7 @@ Semua produk yang disebutkan sebelumnya tidaklah \textit{Open Source}. Sehingga 
 	\includegraphics[scale=0.4]{images/gears3.jpg}
 	\includegraphics[scale=0.3]{images/ecg_1.jpg}	
 	\includegraphics[scale=1]{images/ppg_clip.jpg}
-	\includegraphics[scale=0.05]{images/heart_app1.jpg}
+	\includegraphics[scale=0.04]{images/heart_app1.jpg}
     \caption{a) Samsung Gear S3; b) Holter Monitor; c) Fingertip Pulse Oximeter; d) Heart Rate App}
     \label{fig:device_example}
 \end{figure}
@@ -51,16 +51,6 @@ Semua produk yang disebutkan sebelumnya tidaklah \textit{Open Source}. Sehingga 
 	\caption{Perbandingan 10 Aplikasi Monitoring Jantung di Play Store}
 	\label{table:app_comparison}
 \end{table}
-
-Ket: \\
-A = Identitas User \\
-B = Real Time Monitoring \\
-C = Melihat Gelombang Jantung \\
-D = Merekam Gelombang Jantung \\
-E = Multiuser Monitoring \\
-F = Deteksi BPM \\
-G = Aritmia Alert \\
-H = Share Result via Network \\
 
 \begin{table}[H]
 	\centering
@@ -92,7 +82,47 @@ G = Aritmia Alert \\
 H = Share Result via Network \\
 
 \subsection{Riset Terkait}
-Analisis terhadap rekam jantung Untuk mengklasifikasian aritmia seorang dokter perlu melihat hasil rekam jantung seorang pasien seperti gambar \ref{fig:contoh_aritmia}, baik hasil rekam ECG maupun PPG. Akan sangat melelahkan jika seorang dokter secara terus menerus memeriksa rekam jantung seorang pasien. Oleh karena itu dibutuhkan sebuah algoritma yang dapat melakukan klasifikasi secara otomatis. 
+Arsitektur sistem yang dirancang pada tugas akhir ini menerapkan konsep Internet of Things (IoT) dan diharapkan mampu melakukan analisis otomatis, khususnya aritmia. Penerapan IoT kedalam \textit{monitoring} jantung sudah pernah dilakukan sebelumnya, begitupun dengan analisis artimia secara otomatis. Untuk mengoptimalkan metode yang diajukan pada tugas akhir ini, diperlukan pembelajaran terhadap riset terkait atas kedua hal tersebut.
+
+Pada tahun 2013, Daniel Barata dan rekannya dari Portugal merancang metode \textit{monitoring} yang dapat bekerja secara \textit{portable} \cite{daniel_barataa}. Sensor yang terhubung dengan sebuah tablet android akan berkomunikasi menggunakan protokol MQTT. Penggunaan MQTT memungkinkan \textit{throughtput} data yang besar dan banyak sensor yang terhubung secara bersamaan. Metode ini menggunakan sensor ECG dan PPG untuk mengambil data tubuh. Pemilihan MQTT untuk meningkatkan jumlah sensor yang dapat terhubung juga dilakukan oleh Karan Motwani pada penilitiannya di tahun 2016 \cite{karan_motwani}. Selain digunakan untuk \textit{monitoring} MQTT juga digunakan pada \textit{facebook messager} [].
+
+Pada tahun 2014, Paola Pierleoni dan rekannya merancang metode monitoring yang melibatkan ponsel dan sensor ECG milik produk "Zephyr HxM-BT" \cite{paola_pierleoni}. Zephyr akan mengirimkan sinyal ECG melalui bluetooth menuju polsel untuk di proses. Metode \textit{monitoring} yang dirancang oleh Pierleoni menambahkan analisis aritmia kedalamnya. Aritmia dianalisis menggunakan \textit{rule based classification} yang diusulkan oleh Tsipouras(2005). Aturan yang diajukan oleh Tsipouras memerhatikan fitur RR interval dari gelombang jantung \cite{rr_classification}. Hasil analisis yang dihasilkan dapat dilihat secara \textit{real time} pada layar ponsel.
+
+Pada tahun 2016, Vasu Jindal (seorang peneliti dari Universitas Texas) merancang metode \textit{monitoring} yang melibatkan penggunaan ponsel dan \textit{cloud}\cite{vasu_jindal}. Ponsel akan membaca gelombang jantung dari sensor PPG milik produk sejenis Fitbit, kemudian mengirimkannya ke \textit{cloud} untuk di proses. \textit{Cloud} akan memprosesnya menggunakan \textit{deep belief network} dan mengembalikan hasil pengukuran berupa BPM. Setiap data gelombang jantung yang diterima \textit{cloud} akan disimpan sebagai bahan prediksi berikutnya.
+
+Di tempat lain pada tahun 2016, Mamidi Manisha dan rekannya dari India merancang metode \textit{monitoring} yang mirip dengan metode Jindal. Metode Mamidi juga melibatkan ponsel, produk jam tangan pintar \cite{mamidi} dan \textit{cloud processing}. Namun fokus utama dalam sistem yang mereka rancang ialah tentang bagaimana cloud dapat menangani pertukaran data yang besar dan cepat. Salah satu kunci keberhasilan sistem mereka ialah penerapan \textit{database} No-SQL yang berhasil memaksimalkan kecepatan penulisan data. Selain komunikasi yang cepat, sistem mereka dirancang agar memiliki mekanisme pemberitaan darurat kepada rumah sakit.
+
+Dari keempat riset diatas, masing masing memiliki kelebihan dan kekurangan. Metode Lou dan Motwani dapat menghubungkan banyak sensor sekaligus. Metode Pierloeni dapat medeteksi aritmia tapi hanya pasien yang bisa mengetahuinya. Metode Jindal memiliki sistem analisis terpusat sehingga algoritma yang diterapkan dapat terus berkembang semakin akurat namun hanya bisa menganalisis BPM. Metode Manisha memiliki kehandalan dalam menangani banyak pasien dalam sistem terpusat dan mampu memberikan pemberitaan darurat namun analisis masih harus dilakukan manual. Ringkasan mengenai kelebihan dan kekurangan ini dapat dilihat pada tabel \ref{table:monitoring_compare}.
+
+\begin{table}[H]
+	\begin{tabular}{|L{5cm}|L{3cm}|C{1cm}|c|c|c|c|c|}
+		\hline
+		\rowcolor{gray}
+		\textbf{Judul} & \textbf{Penulis} & \textbf{Ta} & \multicolumn{5}{c}{\textbf{Fitur}} \\
+		\rowcolor{gray}
+		 & & \textbf{hun} & A & B & C & D & E \\
+		 An Android-Based Heart Monitoring System for the Elderly and
+for Patients with Heart Disease & Paola Pierleoni, Luca Pernini, et al. & 2014 & Y & Y & N & N & Y \\
+		\hline
+		Integrating Mobile and Cloud for PPG Signal Selection to Monitor Heart Rate During Intensive Physical Exercise & Vasu Jindal & 2016 & Y & N & Y & N & N \\
+		\hline
+		IoT on Heart Attack Detection and Heart Rate Monitoring & Mamidi Manisha, Katakam Neeraja, et al. & 2016 & N & N & Y & Y & Y \\
+		\hline
+	\end{tabular}
+	\caption{Perbandingan Riset Metode Monitoring}
+	\label{table:monitoring_compare}
+\end{table}
+
+Ket: \\
+A = Deteksi BPM \\
+B = Deteksi Artimia \\
+C = Sistem Deteksi Terpusat \\
+D = Optimasi banyak pengguna \\
+E = Sistem Peringatan \\
+
+Pada konsep IoT, terdapat sedikitnya 3 komponen dalam aristekturnya yaitu \textit{sensor}, \textit{server} dan \textit{actuator}. \textit{Sensor} sebagai pengubah data dari dunia nyata ke bentuk digital agar dipahami oleh mesin. \textit{Server} sebagai pemroses data tersebut. Server
+
+memberi Analisis terhadap rekam jantung Untuk mengklasifikasian aritmia seorang dokter perlu melihat hasil rekam jantung seorang pasien seperti gambar \ref{fig:contoh_aritmia}, baik hasil rekam ECG maupun PPG. Akan sangat melelahkan jika seorang dokter secara terus menerus memeriksa rekam jantung seorang pasien. Oleh karena itu dibutuhkan sebuah algoritma yang dapat melakukan klasifikasi secara otomatis. 
 
 Telah banyak penelitian yang dilakukan yang melakukan otomasi klasifikasi aritmia[xx]. Kini penelitian tersebut telah memiliki keakuratan yang cukup baik, mencapai 90\%, dengan berbagai macam metode dan ekstraksi fitur.
 
@@ -207,7 +237,10 @@ Aritmia adalah kategori gangguan jantung yang berupa tidak normal-nya irama jant
 \end{figure}
 
 
-\section{Node.Js dan Mongo.Db}
+\section{Server dan Database}
+%BARU
+IoT memungkinkan komunikasi \textit{Machine to Machine} (M2M) terjadi dalam jaringan Internet. Hal ini berarti \textit{sensor}, \textit{server} dan \textit{receptor} berkomunikasi dimana saja selama dapat terhubung dengan Internet. Selain itu, IoT memodelkan agar banyak objek (\textit{Things}) dapat saling berkomunikasi. Sehingga, sebuah sistem yang dirancang untuk menangani banyak objek saling berkomunikasi dimana saja perlu menerapkan IoT.
+
 Sebuah sistem monitoring yang dapat berjalan secara Ubiquitous haruslah dibangun dengan konsep \textit{Internet of Things} (IoT). IoT ialah konsep dimana objek objek (Things) dapat saling berinteraksi pada jaringan Internet tanpa membutuhkan manusia. Pada konsep IoT diperlukan setidaknya 3 komponen yaitu Sensor, Server dan Actuator. Sensor berfungsi sebagai pengambil data. Server yang menjalankan \textit{web service} (layanan web, contoh: http server, mqtt broker dan db server) berfungsi sebagai pengolah data. Actuator berfungsi sebagai pelaksana perintah dari server, seperti mengeluarkan suara dan membelokkan/memutus arus listrik. Node.Js dan Mongo.Db, keduanya dibutuhkan untuk membangun sebuah web service pada server.
 
 \subsection{Node.Js}
