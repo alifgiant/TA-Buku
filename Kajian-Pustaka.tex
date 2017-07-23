@@ -13,7 +13,7 @@ Sama seperti Fitbit, perusahaan raksasa dari Korea, Samsung, juga mengeluarkan p
 
 PT. Endo Indonesia, sebuah perusahaan peralatan medis asal Indonesia, juga membuat alat \textit{monitoring} jantung. Tidak seperti Fitbit dan Samsung, produk besutan Endo ditujukan untuk pemakaian medis. Endo memproduksi Holter monitor "EDAN SE-2003" (gambar \ref{fig:device_example} b) dan Pulse Oximeter "EDAN H-10" (gambar \ref{fig:device_example} c). "SE-2003" menggunakan sensor berjenis ECG dan mampu melakukan \textit{monitoring} pada 3 \textit{channel} sekaligus \cite{endo_holter}. Berbeda dengan "SE-2003", "H-10" menggunakan PPG \cite{endo_oxi}. Pulse Oximeter "H-10", sesuai namanya, selain mampu \textit{monitoring} jantung (\textit{Pulse}) juga mampu mengukur kadar oxigen dalam darah (\textit{Oximeter}). "H-10" merupakan pulse oximeter yang diletakkan pada ujung jari (\textit{fingertip}). Hasil \textit{monitoring} holter monitor dan pulse oximeter Endo dapat dilihat pada layar produk tersebut dan aplikasi desktop yang menyertainya.
 
-Produk berupa aplikasi/\textit{software} (gambar \ref{fig:device_example} d) dapat ditemukan dengan mudah pada toko aplikasi \textit{virtual} (\textit{playstore}, \textit{app store}, dll). Penulis melakukan studi perbandingan terhadap 10 aplikasi teratas (versi Juli 2017) pada daftar hasil pencarian dengan kata kunci "Heart Rate" di \textit{Play Store}. Setelah membandingkan aplikasi tersebut, tidak ditemukan aplikasi yang memiliki fitur \textit{monitoring} lengkap untuk menyelesaikan permasalahan yang diajukan pada bab sebelumnya. Hasil perbandingan terhadap 10 aplikasi ini dicantumkan pada tabel \ref{table:app_comparison}
+Produk berupa aplikasi/\textit{software} (gambar \ref{fig:device_example} d) dapat ditemukan dengan mudah pada toko aplikasi \textit{virtual} (\textit{playstore}, \textit{app store}, dll). Penulis melakukan studi perbandingan terhadap 10 aplikasi teratas (versi Juli 2017) pada daftar hasil pencarian di \textit{Play Store}, dengan kata kunci "Heart Rate". Setelah membandingkan aplikasi tersebut, tidak ditemukan aplikasi yang memiliki fitur \textit{monitoring} lengkap untuk menyelesaikan permasalahan yang diajukan pada bab sebelumnya. Hasil perbandingan terhadap 10 aplikasi ini dicantumkan pada tabel \ref{table:app_comparison}
 
 Semua produk yang disebutkan sebelumnya tidaklah \textit{Open Source}. Sehingga tidak dimungkinkan untuk merubah spesifikasi kinerja produk seperti menaikkan \textit{sample rate} atau mengganti algorima penghitung detak jantung. Walaupun tidak \textit{Open Source}, baik Fitbit dan Samsung memberikan \textit{Application Programming Interface} (\textit{API}) untuk memudahkan pengembang perangkat lunak membuat sistem yang menggunakan produk mereka [xx][xx]. API tersebut memungkinkan pengembang mengambil semua data sensor yang tertanam pada produk. Untuk kasus \textit{monitoring} jantung, pengembang dapat mengambil bentuk gelombang jantung dan BPM dari produk. Sedangkan, Endo tidak menyediakan API sama sekali. Sehingga, untuk mengakses pengukuran dari produk Endo akan sangat sulit untuk dilakukan (mungkin dilakukan dengan \textit{Reverse Engineering}). Rangkuman perbedaan produk berupa alat dapat dilihat pada tabel \ref{table:product_comparison}
 
@@ -90,7 +90,7 @@ Pada tahun 2014, Paola Pierleoni dan rekannya merancang metode monitoring yang m
 
 Pada tahun 2016, Vasu Jindal (seorang peneliti dari Universitas Texas) merancang metode \textit{monitoring} yang melibatkan penggunaan ponsel dan \textit{cloud}\cite{vasu_jindal}. Ponsel akan membaca gelombang jantung dari sensor PPG milik produk sejenis Fitbit, kemudian mengirimkannya ke \textit{cloud} untuk di proses. \textit{Cloud} akan memprosesnya menggunakan \textit{deep belief network} dan mengembalikan hasil pengukuran berupa BPM. Setiap data gelombang jantung yang diterima \textit{cloud} akan disimpan sebagai bahan prediksi berikutnya.
 
-Di tempat lain pada tahun 2016, Mamidi Manisha dan rekannya dari India merancang metode \textit{monitoring} yang mirip dengan metode Jindal. Metode Mamidi juga melibatkan ponsel, produk jam tangan pintar \cite{mamidi} dan \textit{cloud processing}. Namun fokus utama dalam sistem yang mereka rancang ialah tentang bagaimana cloud dapat menangani pertukaran data yang besar dan cepat. Salah satu kunci keberhasilan sistem mereka ialah penerapan \textit{database} No-SQL yang berhasil memaksimalkan kecepatan penulisan data. Selain komunikasi yang cepat, sistem mereka dirancang agar memiliki mekanisme pemberitaan darurat kepada rumah sakit.
+Di tempat lain pada tahun 2016, Mamidi Manisha dan rekannya dari India merancang metode \textit{monitoring} yang mirip dengan metode Jindal. Metode Mamidi juga melibatkan ponsel, produk jam tangan pintar dan \textit{cloud processing}\cite{mamidi}. Namun fokus utama dalam sistem yang mereka rancang ialah tentang bagaimana cloud dapat menangani pertukaran data yang besar dan cepat. Salah satu kunci keberhasilan sistem mereka ialah penerapan \textit{database} No-SQL yang berhasil memaksimalkan kecepatan penulisan data. Selain komunikasi yang cepat, sistem mereka dirancang agar memiliki mekanisme pemberitaan darurat kepada rumah sakit.
 
 Dari keempat riset diatas, masing masing memiliki kelebihan dan kekurangan. Metode Barata dan Motwani dapat menghubungkan banyak sensor sekaligus. Metode Pierloeni dapat medeteksi aritmia tapi hanya pasien yang bisa mengetahuinya. Metode Jindal memiliki sistem analisis terpusat sehingga algoritma yang diterapkan dapat terus berkembang semakin akurat namun hanya bisa menganalisis BPM. Metode Manisha memiliki kehandalan dalam menangani banyak pasien dalam sistem terpusat dan mampu memberikan pemberitaan darurat namun analisis masih harus dilakukan manual. Ringkasan mengenai kelebihan dan kekurangan ini dapat dilihat pada tabel \ref{table:monitoring_compare}.
 
@@ -122,36 +122,47 @@ C = Sistem Deteksi Cloud \\
 D = Optimasi banyak pengguna \\
 E = Sistem Peringatan \\
 
-Analisis terhadap rekam jantung umumnya dilakukan secara manual oleh dokter jantung. Salah satu bentuk analisis yang dapat dilakukan ialah mengklasifikasian kemunculan aritmia. Untuk mengklasifikasikan aritmia seorang dokter perlu melihat hasil rekam jantung seorang pasien (gambar \ref{fig:contoh_aritmia}), baik hasil rekam ECG maupun PPG. Namun, seperti yang ditunjukkan oleh Pierleoni pada penilitiannya dimungkinkan untuk melakukan analisis otomatis, khususnya Aritmia \cite{paola_pierleoni}. Selain Pierleoni, banyak penelitian yang telah dilakukan untk mengklasifikasi aritmia secara otomatis. Bahkan, kini penelitian tersebut telah memiliki keakuratan yang cukup baik, mencapai lebih dari 90\%, dengan berbagai macam metode dan ekstraksi fitur.
+Analisis terhadap rekam jantung umumnya dilakukan secara manual oleh dokter jantung. Salah satu bentuk analisis yang dapat dilakukan ialah mengklasifikasian kemunculan aritmia. Untuk mengklasifikasikan aritmia seorang dokter perlu melihat hasil rekam jantung seorang pasien (gambar \ref{fig:contoh_aritmia}), baik hasil rekam ECG maupun PPG. Namun, seperti yang ditunjukkan oleh Pierleoni (2014) pada penilitiannya dimungkinkan untuk melakukan analisis otomatis, khususnya Aritmia \cite{paola_pierleoni}. Selain Pierleoni, banyak penelitian yang telah dilakukan untk mengklasifikasi aritmia secara otomatis. Bahkan, kini penelitian tersebut telah memiliki keakuratan yang cukup baik, mencapai lebih dari 90\%, dengan berbagai macam metode dan ekstraksi fitur.
 
-Pada tahun 1985, Jiapu Pan dan Willis J. Tompkins mengusulkan sebuah metode deteksi QRS secara \textit{Real Time} \cite{pantom}. Metode ini kemudian menginspirasi peneliti lainnya untuk menerapkannya ke dalam berbagai penelitian mengenai \textit{monitoring} jantung \cite{pantom_hardware}\cite{pantom_hardware2}. Salah satu peneliti yang menggunakan metode ini ialah Christos Pavlatos dan rekannya pada tahun 2003 \cite{pantom_hardware}. Christo Pavlatos menerapkan metode Pan dan Tompkins kedalam \textit{embedded system}. Hal ini dimungkinkan karena algoritma pan tompkins cukup hemat dalam penggunaan memori, panjang buffer yg digunakan yaitu 150ms. Algoritma Pan dan Tompkins berhasil mendeteksi detak jantung dengat tingkat sensitivitas 99.62\% \cite{pantom}.
+Pada tahun 1985, Jiapu Pan dan Willis J. Tompkins mengusulkan sebuah metode deteksi QRS secara \textit{Real Time} \cite{pantom}. Metode ini kemudian menginspirasi peneliti lainnya untuk menerapkannya ke dalam berbagai penelitian mengenai \textit{monitoring} jantung \cite{pantom_hardware}\cite{pantom_hardware2}. Salah satu peneliti yang menggunakan metode ini ialah Christos Pavlatos dan rekannya pada tahun 2003 \cite{pantom_hardware}. Christo Pavlatos menerapkan metode Pan dan Tompkins kedalam \textit{embedded system}. Hal ini dimungkinkan karena algoritma pan tompkins cukup hemat dalam penggunaan memori, panjang buffer yg digunakan yaitu 150ms. Algoritma Pan dan Tompkins berhasil mendeteksi detak jantung dengan tingkat sensitivitas 99.62\% \cite{pantom}.
 
-Pada tahun xxx, asme asme asem
+Pada tahun 2004, Tsipouras dan rekannya mengajukan algoritma klasifikasi aritmia berdasarkan RR-interval \cite{rr_classification}. Klasifikasi yang diajukan berupa \textit{rule-based} yang dirancang bersama dokter ahli jantung. Algoritma yang dianggap simpel dibandingkan penggunaan algoritma \textit{machine learning} seperti SVM \cite{aritmia_svm}, ANN \cite{aritmia_ann}, dan Regressor. Algoritma ini menghasilkan akurasi 98\%.
 
-Pada tahun xxx, asme asme asem
+Pada tahun 2008, Babak Mohammadzadeh dan rekannya mengajukan algoritma yang dapat mendeteksi aritmia menggunakan \textit{Generalized discriminant analysis} (GDA) dan \textit{Support Vector Machine} (SVM) \cite{aritmia_svm}. Algoritma yang diusulkan Mohammadzadeh mampu mengklasifikasikan NSR, PVC, AF, VF and 2$^{\circ}$ Heart Block pada sinyal ECG. Algorima yang diusulkan Mohammadzadeh menghasilkan akurasi 99.1\%.
 
-Pada tahun xxx, asme asme asem
+Pada tahun 2013, Milan S. Shet dan rekannya mengajukan metode klasifikasi aritmia dengan input ECG \cite{aritmia_swarm}. Algoritma mereka melibatkan optimasi \textit{Binary Particle Swarm} dan \textit{Absolute Euclidean Classifier}. Metode Shet menghasilkan akurasi 97.2\%.
 
-Pada tahun xxx, asme asme asem
+Pada tahun 2014, Andrius Solosenko dan Vaidotas Marozas mengajukan metode yang dapat mendeteksi PVC (tipe aritmia) yang menggunakan inputan PPG \cite{aritmia_ann}. Algoritma deteksi yang diterapkan menggunakan klasifikasi \textit{artificial neural network} (ANN) dengan 6 fitur pada 12 detik \textit{window}. Algoritma ini menghasilkan spesitivitas 99.85\%.
 
-Pada tahun xxx, asme asme asem
+Pada tahun 2015, Luisa F. Polania dan rekannya mengajukan metode klasifikasi aritmia dengan menerima input PPG \cite{aritmia_svm_ppg}. Tipe aritmia yang dapat diklasifikasi ialah NSRs, \textit{paced} SVPCs, \textit{paced} VPC dan \textit{paced} VT. SVM digunakan sebagai klasifikasi atas 3 fitur. Algortima yang mereka ajukan memiliki akurasi 96\%.
+
+Pada tahun 2016, Kalidas dan Tamil mengajukan algoritma klasifikasi aritmia yang dapat memproses 3 jenis input, ECG, PPG, dan \textit{Arterial Blood Pressure} (ABP) \cite{ecg_syncro}. Sinyal ECG diproses menggunakan algoritma Pan-Tompkin dan PPG diproses menggunakan "first-order derivative" filter. Klasifikasi yang digunakan kombinasi dari \textit{adaptive threshold} dan SVM. Algoritma yang mereka ajukan menghasilkan spesitivitas 96\%
+
+Ringkasan dari hasil keenam riset diatas dapat dilihat pada tabel \ref{table:analysis_compare}.
 
 \begin{table}[H]
 \centering
-	\begin{tabular}{|c|c|c|c|c|}
+	\begin{tabular}{|L{4cm}|L{2.5cm}|C{1cm}|L{4cm}|L{1cm}|}
 	\hline
 	\rowcolor{gray}
-	\textbf{Judul} & \textbf{Penulis} & \textbf{Fitur} & \textbf{Metode}  & \textbf{Hasil}\\
-	\cline{1-5}
-	Penemuan bla bla adu adu & Alif Akbar & Titik R & Decisin & 90\% \\
-	\cline{1-5}
-	Penemuan bla bla adu adu & Alif Akbar & Titik R & Decisin & 90\% \\
-	\cline{1-5}
-	Penemuan bla bla adu adu & Alif Akbar & Titik R & Decisin & 90\% \\
+	\textbf{Judul} & \textbf{Penulis} & \textbf{Tahun} & \textbf{Hasil} & \textbf{Sensor} \\
+	\hline
+	An arrhythmia classification system based on the
+RR-interval signal & M.G. Tsipouras, D.I. Fotiadis, \textit{et al} & 2004 & Algoritma klasifikasi aritmia dengan fitur RR interval dan rule-base decision & ECG \\
+	\hline	
+	Support vector machine-based arrhythmia classification using reduced features of heart rate variability signal & Babak Mohammadzadeh Asl, Seyed Kamaledin Setarehdan, \textit{et al} & 2008 & Model klasifikasi aritmia berdasar GDA dan SVM & ECG \\
+	\hline
+	ECG Arrhythmia Classification Using R-Peak Based Segmentation, Binary Particle Swarm Optimization and Absolute Euclidean Classifier & Milan S. Shet, Minal Patel, \textit{et al} & 2013 & Model particle swarm yang mengkalsifikasi segmen R peak & ECG \\
+	\hline
+	Automatic Premature Ventricular Contraction Detection in Photoplethysmographic Signalsr & Andrius Solosenko and Vaidotas Marozas & 2014 & Algoritma deteksi PVC pada sinyal PPG & PPG \\
+	\hline
+	Method for Classifying Cardiac Arrhythmias using Photoplethysmography & Luisa F. Polania, Lalit K. Mestha, \textit{at al} & 2015 & Algoritma deteksi arimia berdasarkan 3 fitur PPG & PPG \\
+	\hline
+	Cardiac arrhythmia classification using multi-modal signal analysis & V Kalidas and L S Tamil & 2016 & Metode klasifikasi aritmia dengan kombinasi input ECG dan PPG & ECG, PPG \\
 	\hline
 	\end{tabular}
-	\caption{Perbandingan riset mengenai klasifikasi aritmia otomasis}
-	\label{table:research_comparison}
+	\caption{Ringkasan riset mengenai klasifikasi aritmia otomasis}
+	\label{table:analysis_compare}
 \end{table}
 
 \section{ECG dan PPG}
@@ -160,7 +171,7 @@ Terdapat 2 jenis sensor yang umum digunakan untuk melakukan \textit{monitoring} 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{images/sensors.png}
-    \caption{a. Sensor ECG dengan 3 \textit{leads}; b. Sensor PPG ujung jari; c. Sensor PPG di pergelangan tangan}
+    \caption{a) Sensor ECG dengan 3 \textit{leads}; b) Sensor PPG ujung jari; c) Sensor PPG di pergelangan tangan}
     \label{fig:ecg_n_ppg}
 \end{figure}
 
@@ -172,7 +183,7 @@ ECG perlu melakukan pengukuran minimal di 3 lokasi. Hal ini disebabkan karena EC
     \centering
     \includegraphics[scale=0.3]{images/3_ecg_place.jpg}
 	\includegraphics[scale=0.6]{images/3_ecg_place_2.png}    
-    \caption{a. Penempatan 3 Elektroda di Dada, b. Penempatan 3 Elektroda di Tangan}
+    \caption{a) Penempatan 3 Elektroda di Dada, b) Penempatan 3 Elektroda di Tangan}
     \label{fig:electrode3}
 	\includegraphics[scale=0.8]{images/multi_ecg.png}
     \caption{Lokasi Penempatan Lebih 3 titik}
@@ -230,18 +241,25 @@ Aritmia adalah kategori gangguan jantung yang berupa tidak normal-nya irama jant
 	\includegraphics[scale=1.2]{images/VF.jpg}
     \includegraphics[scale=0.5]{images/PAC1.png}
 	\includegraphics[scale=0.25]{images/PVC1.png}
-    \caption{a. Sinyal VF; b. Sinyal PAC; c. Sinyal PVC}
+    \caption{a) Sinyal VF; b) Sinyal PAC; c) Sinyal PVC}
     \label{fig:contoh_aritmia}	
 \end{figure}
 
 
-\section{Server dan Database}
-%BARU
-Pada konsep IoT, terdapat sedikitnya 3 komponen dalam aristekturnya yaitu \textit{sensor}, \textit{server} dan \textit{actuator}. \textit{Sensor} sebagai pengubah data dari dunia nyata ke bentuk digital agar dipahami oleh mesin. \textit{Server} sebagai pemroses data tersebut. Server
-%BARU
-IoT memungkinkan komunikasi \textit{Machine to Machine} (M2M) terjadi dalam jaringan Internet. Hal ini berarti \textit{sensor}, \textit{server} dan \textit{receptor} berkomunikasi dimana saja selama dapat terhubung dengan Internet. Selain itu, IoT memodelkan agar banyak objek (\textit{Things}) dapat saling berkomunikasi. Sehingga, sebuah sistem yang dirancang untuk menangani banyak objek saling berkomunikasi dimana saja perlu menerapkan IoT.
+\section{Internet of Things}
+\textit{Internet of Things} (IoT) ialah konsep dimana objek objek (Things) dapat saling berinteraksi pada jaringan Internet tanpa membutuhkan manusia. Pada konsep IoT, terdapat sedikitnya 3 komponen dalam aristekturnya yaitu \textit{sensor}, \textit{server} dan \textit{actuator}. \textit{Sensor} sebagai pengubah data dari dunia nyata ke bentuk digital agar dipahami oleh mesin. \textit{Server} sebagai pemroses data tersebut. Actuator sebagai pelaksana keputusan sensor di dunia nyata. IoT memungkinkan komunikasi \textit{Machine to Machine} (M2M) terjadi dalam jaringan Internet. Hal ini berarti \textit{sensor}, \textit{server} dan \textit{receptor} dapat berkomunikasi dimana saja selama dapat terhubung dengan Internet. Selain itu, IoT memodelkan jaringan agar banyak objek (\textit{Things}) dapat saling berkomunikasi. Sehingga, sebuah sistem yang dirancang untuk menangani banyak objek saling berkomunikasi dimana saja, perlu menerapkan IoT.
 
-Sebuah sistem monitoring yang dapat berjalan secara Ubiquitous haruslah dibangun dengan konsep \textit{Internet of Things} (IoT). IoT ialah konsep dimana objek objek (Things) dapat saling berinteraksi pada jaringan Internet tanpa membutuhkan manusia. Pada konsep IoT diperlukan setidaknya 3 komponen yaitu Sensor, Server dan Actuator. Sensor berfungsi sebagai pengambil data. Server yang menjalankan \textit{web service} (layanan web, contoh: http server, mqtt broker dan db server) berfungsi sebagai pengolah data. Actuator berfungsi sebagai pelaksana perintah dari server, seperti mengeluarkan suara dan membelokkan/memutus arus listrik. Node.Js dan Mongo.Db, keduanya dibutuhkan untuk membangun sebuah web service pada server.
+Sebuah sistem monitoring yang dapat berjalan secara Ubiquitous haruslah dibangun dengan konsep \textit{Internet of Things} (IoT). Sensor yang berfungsi sebagai pengambil data dikendalikan oleh sebuah \textit{controller}. \textit{Controller} adalah bagian yang mengatur jadwal pengambilan data sensor dan pengirimannya ke server. Salah satu jenis controller yang popular ialah ESP-12. Server memerlukan sebuah platform pemograman yang dapat mengatur pemrosesan data dan komunikasi benda di jaringan. Platform server yang populer untuk penerapan IoT adalah Node.JS. Selain melayani komunikasi, server juga bertugas untuk menyimpan data. Mongo.Db adalah salah satu \textit{database} NoSQL yang populer untuk digunakan dalam sistem yang menyimpan \textit{big data}.
+
+\subsection{ESP-12}
+ESP-12 (subversi ESP8266) adalah salah satu tipe \textit{System on Module} (SoC) yang diproduksi oleh Espressif dari China. SoC berarti papan sirkuit yang telah terintegrasi oleh sistem tertentu. Kelebihan utama ESP ialah ukurannya yang kecil (16x24x3 mm) tapi dapat berfungsi sebagai \textit{controller} dan telah dilengkapi modul Wi-Fi. Hal ini memungkinkan komunikasi sensor-server melalui jaringan WiFi tanpa perlu menambah modul jaringan lagi.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.22]{images/coin_esp_pulse.jpg}
+	\caption{Koin Rp200 - ESP-12E - Pulse Sensor}
+	\label{fig:coin_esp_pulse}
+\end{figure}
 
 \subsection{Node.Js}
 Node.Js adalah teknologi Javascript (Js) \textit{Runtime} yang dibangun diatas Chrome V8 JS Engine. Node.Js memungkinkan bahasa pemrograman Js menjalankan web service. Node.Js dirancang menggunakan skema \textit{event-driven} dan \textit{non-blocking IO}, sangat sesuai untuk aplikasi \textit{data-intensive real-time} \cite{nodejs}. Node.JS juga telah terbukti secara performansi lebih cepat dari bahasa scripting lain seperti PHP, Python, dan Ruby bahkan tidak jauh lambat dibanding bahasa ter-\textit{compile} seperti JAVA, C, dan C++ \cite{node_comparisson}.
@@ -259,17 +277,7 @@ MongoDB adalah salah satu jenis program penyimpanan data yang bersifat NoSQL. Mo
     \centering
 	\includegraphics[scale=0.15]{images/nodejs.png}
     \includegraphics[scale=0.3]{images/mongodb.png}
-    \caption{a. Node JS; b. Mongo DB;}
-\end{figure}
-
-\section{ESP-12}
-ESP-12 adalah salah satu tipe \textit{System on Module} (SoC) yang diproduksi oleh Espressif dari China. SoC berarti papan sirkuit yang telah terintegrasi oleh sistem tertentu. Kelebihan utama ESP ialah ukurannya yang kecil (16x24x3 mm) tapi dapat berfungsi sebagai \textit{controller} dan telah dilengkapi modul Wi-Fi. Hal ini memungkinkan komunikasi sensor-server melalui jaringan WiFi tanpa perlu menambah modul jaringan lagi.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.22]{images/coin_esp_pulse.jpg}
-	\caption{Koin Rp200 - ESP-12E - Pulse Sensor}
-	\label{fig:coin_esp_pulse}
+    \caption{a) Node JS; b) Mongo DB;}
 \end{figure}
 
 \section{Protokol MQTT}

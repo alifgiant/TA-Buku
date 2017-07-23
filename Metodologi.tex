@@ -125,7 +125,7 @@ Aplikasi ponsel android dibangun untuk dapat berjalan pada ponsel android ber-OS
 	\includegraphics[scale=0.26]{images/web_app.png}
 	\label{fig:viewer_apps}
 	\includegraphics[scale=0.3]{images/phone_app.png}
-	\caption{a. Tampilan Web Monitoring b. Tampilan Aplikasi Monitoring}
+	\caption{a) Tampilan Web Monitoring b) Tampilan Aplikasi Monitoring}
 	\label{fig:viewer_apps}
 \end{figure}
 
@@ -192,7 +192,7 @@ Pengambilan dan Pengiriman sinyal dilakukan di Receptor. Langkah pertama ialah \
 \end{figure}
 
 \subsection{Preprocessing dan Perekaman}
-Setelah data diterima oleh server. Server melakukan \textit{preprocessing} pada data. \textit{Preprocessing} yang dilakukan terbagi menjadi \textit{data completer}, \textit{filtering}, \textit{squaring}, \textit{moving window integration}(MWI) dan \textit{Adaptive Thresholding}. Setelah \textit{filtering} dilakukan nilai dianggap telah bersih \textit{noise} maka nilai ini di simpan/rekam di \textit{database}. Preprocessing berlanjut ke \textit{squaring} dan MWI. Terakhir ekstraksi fitur \textit{peak} (R pada ECG dan Systolic pada PPG) dilakukan dengan \textit{Adaptive Thresholding}. Alir algoritma \textit{preprocessing} dapat dilihat pada diagram alir \ref{flow:fig_preproc_algorithm}. Rangkaian \textit{preprocessing} ini merupakan modifikasi pada algoritma yang diusulkan oleh Pan-Tomkin (1985) dan Deshmane (2009) agar kedua algoritma ini bisa bekerja untuk ECG dan PPG.
+Setelah data diterima oleh server. Server melakukan \textit{preprocessing} pada data. \textit{Preprocessing} yang dilakukan terbagi menjadi \textit{data completer}, \textit{filtering}, \textit{squaring}, \textit{moving window integration}(MWI) dan \textit{Adaptive Thresholding}. Setelah \textit{filtering} dilakukan nilai dianggap telah bersih \textit{noise} maka nilai ini di simpan/rekam di \textit{database}. Preprocessing berlanjut ke \textit{squaring} dan MWI. Terakhir ekstraksi fitur \textit{peak} (R pada ECG dan Systolic pada PPG) dilakukan dengan \textit{Adaptive Thresholding}. Alir algoritma \textit{preprocessing} dapat dilihat pada diagram alir \ref{flow:fig_preproc_algorithm}. Rangkaian \textit{preprocessing} ini merupakan modifikasi pada algoritma yang diusulkan oleh Pan-Tomkin (1985) dan Kalidas-Tamil (2016) agar kedua algoritma ini bisa bekerja untuk ECG dan PPG.
 
 \subsubsection{Data Completer}
 Data Completion berfungsi ialah algoritma untuk menangani hilangnya data selama pengiriman. Hal ini mungkin terjadi karena data dikirimkan dari \textit{receptor} menggunakan QoS 0. Pertama, data dipisahkan antara nilai pembacaan sensor dan header. Header kemudian digunakan untuk memisahkan proses perhitungan, setiap kode sensor akan memiliki proses sendiri. Jika terdapat locatan index pada header (index data yg diterima bukan bertambah 1 dari index data sebelumnya) maka proses akan menambah data buffer sebanyak jumlah index yang terlompati dengan nilai berdasarkan proyeksi garis lurus dari nilai terakhir ke nilai terbaru mengikuti persamaan \ref{eq:line}. Jika tidak ada nilai yang hilang maka nilai akan langsung dimasukkan ke buffer.
@@ -205,7 +205,7 @@ y(n) = \dfrac{n (v_{2} - v_{1})}{d} + v_{1}
 $v_{1}$ adalah nilai terakhir yang diterima, $v_{2}$ adalah nilai terbaru yang diterima, $n$ adalah jarak dari index terakhir, $d$ adalah jarak index terbaru ke terakhir. $y$ adalah nilai index $n$ yang hilang
 
 \subsubsection{Filtering}
-Filtering berfungsi untuk menghilangkan noise yang mempengaruhi sinyal. \textit{Noise} yang umum terdapat ialah \textit{muscle noise} dan \textit{baseline wander}. Filtering yang diterapkan terbagi menjadi dua tahap yaitu \textit{Band Pass Finite Impulse Response(FIR) Filter} kemudian \textit{First Order Derivation Filter}. Tahap ini sesuai dangan algoritma yang diusulkan oleh Pan-Tomkins (1985)\cite{pantom} dan Deshmane (2009) \cite{deshmane}. \textit{Band Pass Filter} yang digunakan memiliki frekuensi response 5-15Hz. Daftar koefisien lengkap untuk \textit{Band Pass Filter} dan \textit{Derivation Filter} tercantum pada tabel x.x di bab lampiran.
+Filtering berfungsi untuk menghilangkan noise yang mempengaruhi sinyal. \textit{Noise} yang umum terdapat ialah \textit{muscle noise} dan \textit{baseline wander}. Filtering yang diterapkan terbagi menjadi dua tahap yaitu \textit{Band Pass Finite Impulse Response(FIR) Filter} kemudian \textit{First Order Derivation Filter}. Tahap ini sesuai dangan algoritma yang diusulkan oleh Pan-Tomkins (1985)\cite{pantom} dan Kalidas-Tamil (2016) \cite{ecg_syncro}. \textit{Band Pass Filter} yang digunakan memiliki frekuensi response 5-15Hz. Daftar koefisien lengkap untuk \textit{Band Pass Filter} dan \textit{Derivation Filter} tercantum pada tabel x.x di bab lampiran.
 
 \subsubsection{Squaring dan MWI}
 Sesuai namanya \textit{Squaring} melakukan penguadratan (persamaan \ref{eq:square}) terhadap data. Sedangkan MWI melakukan penghalusan data berdasarkan n data sebelum. MWI dilakukan dengan persamaan \ref{eq:mwi}.
@@ -519,7 +519,7 @@ Pengukuran akurasi terbagi menjadi 2 yaitu akurasi deteksi detak dan akurasi det
 \end{equation}
 \begin{equation}
 	Specificity = \frac{TN}{TN+FP}
-	\label{eq:specificity}
+	\label{eq:precission}
 \end{equation}
 
 \begin{table}
