@@ -29,6 +29,25 @@ Semua produk yang disebutkan sebelumnya tidaklah \textit{Open Source}. Sehingga 
 
 \begin{table}[H]
 	\centering
+	\begin{tabular}{|l|L{3cm}|c|c|c|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|}
+		\hline
+		\rowcolor{gray}
+		\textbf{No} & \textbf{Produk} & \textbf{Sen} & \textbf{Me} & \textbf{Op} & \multicolumn{8}{c}{\textbf{Fitur}} \\
+		\rowcolor{gray}
+		 & & \textbf{sor} & \textbf{dis} & \textbf{en} & A & B & C & D & E & F & G & H \\
+		\hline
+		1 & Fitbit Blaze & PPG & N & N & Y & Y & Y & Y & N & Y & N & Y \\
+		2 & Samsung Gear S3 & PPG & N & N & Y & Y & Y & N & N & Y & N & Y \\
+		3 & ENDO SE-2003 & ECG & Y & N & Y & Y & Y & Y & N & Y & N & N \\
+		4 & ENDO H-10 & PPG & Y & N & Y & Y & Y & Y & N & Y & N & N \\
+		\hline
+	\end{tabular}
+	\caption{Perbandingan Produk Berupa Alat}
+	\label{table:product_comparison}
+\end{table}
+
+\begin{table}[H]
+	\centering
 	\begin{tabular}{|l|L{4cm}|c|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|}
 		\hline
 		\rowcolor{gray}
@@ -50,25 +69,6 @@ Semua produk yang disebutkan sebelumnya tidaklah \textit{Open Source}. Sehingga 
 	\end{tabular}
 	\caption{Perbandingan 10 Aplikasi Monitoring Jantung di Play Store}
 	\label{table:app_comparison}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|l|L{3cm}|c|c|c|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|L{0.5cm}|}
-		\hline
-		\rowcolor{gray}
-		\textbf{No} & \textbf{Produk} & \textbf{Sen} & \textbf{Me} & \textbf{Op} & \multicolumn{8}{c}{\textbf{Fitur}} \\
-		\rowcolor{gray}
-		 & & \textbf{sor} & \textbf{dis} & \textbf{en} & A & B & C & D & E & F & G & H \\
-		\hline
-		1 & Fitbit Blaze & PPG & N & N & Y & Y & Y & Y & N & Y & N & Y \\
-		2 & Samsung Gear S3 & PPG & N & N & Y & Y & Y & N & N & Y & N & Y \\
-		3 & ENDO SE-2003 & ECG & Y & N & Y & Y & Y & Y & N & Y & N & N \\
-		4 & ENDO H-10 & PPG & Y & N & Y & Y & Y & Y & N & Y & N & N \\
-		\hline
-	\end{tabular}
-	\caption{Perbandingan Produk Berupa Alat}
-	\label{table:product_comparison}
 \end{table}
 
 Ket: \\
@@ -282,16 +282,37 @@ MongoDB adalah salah satu jenis program penyimpanan data yang bersifat NoSQL. Mo
 
 \section{Protokol MQTT}
 Message Queuing Telemetry Transport (MQTT) adalah protokol transport
-dengan skema komunikasi publish dan subscribe. MQTT dirancang menjadi protokol yang ringan, terbuka dan sederhana. Karakteristik ini membuat MQTT sangat tepat untuk digunakan sebagai protokol komunikasi machine-to-machine (M2M) dan Internet of Things (IoT). Protokol ini menggunakan TCP/IP pada layer transport. Terdapat tiga level Qualities of Service (QoS) dalam penyampaian pesan yaitu:
+dengan skema komunikasi publish dan subscribe (gambar \ref{fig:how_mqtt}). MQTT dirancang menjadi protokol yang ringan, terbuka dan sederhana. Karakteristik ini membuat MQTT sangat tepat untuk digunakan sebagai protokol komunikasi machine-to-machine (M2M) dan Internet of Things (IoT). Protokol ini menggunakan TCP/IP pada layer transport. Terdapat tiga level Qualities of Service (QoS) dalam penyampaian pesan yaitu:
 \begin{enumerate}
-	\item QOS 0 atau “At most once”, dimana pesan dikirim dengan skema \textit{fire-and-forget} yang berarti tidak ada upaya menjamin pesan yang dikirim dapat sampai ke tujuan.
-	\item QOS 1 atau “At least once”, dimana pesan dikirim dengan jaminan setidaknya pesan sampai sekali ke tujuan. Sehingga memungkinkan terjadinya duplikasi pesan di tujuan akibat pesan yang dikirim ulang dari pengirim.
-	\item QOS 2 atau "Exactly once", dimana pesan dikirm dengan jaminan diterima tepat sekali ke tujuan. Sehingga tidak ada pesan yang terduplikasi di tujuan.	
+	\item QOS 0 atau “At most once” (gambar \ref{fig:mqtt0}), dimana pesan dikirim dengan skema \textit{fire-and-forget} yang berarti tidak ada upaya menjamin pesan yang dikirim dapat sampai ke tujuan.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{images/qos0.png}
+	\caption{MQTT QOS 0}
+	\label{fig:mqtt0}
+\end{figure}
+
+	\item QOS 1 atau “At least once” (gambar \ref{fig:mqtt1}), dimana pesan dikirim dengan jaminan setidaknya pesan sampai sekali ke tujuan. Sehingga memungkinkan terjadinya duplikasi pesan di tujuan akibat pesan yang dikirim ulang dari pengirim.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{images/qos1.png}
+	\caption{MQTT QOS 1}
+	\label{fig:mqtt1}
+\end{figure}
+
+	\item QOS 2 atau "Exactly once" (gambar \ref{fig:mqtt2}), dimana pesan dikirm dengan jaminan diterima tepat sekali ke tujuan. Sehingga tidak ada pesan yang terduplikasi di tujuan.	
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{images/qos2.png}	
+	\caption{MQTT QOS 2}
+	\label{fig:mqtt2}
+\end{figure}
 \end{enumerate}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.45]{images/mqtt.png}
+	\includegraphics[scale=0.35]{images/mqtt.png}
 	\caption{Cara kerja MQTT}
+	\label{fig:how_mqtt}
 \end{figure}
-
