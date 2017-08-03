@@ -1,7 +1,7 @@
 \chapter{Hasil dan Pembahasan}
 \section{Hasil Pengujian}
 Setelah melaksanakan pengujian sistem seperti yang telah dibahas pada bab sebelumnya sub bab ini akan memaparkan hasil dari percobaan.
-\subsection{Eksistensi Fitur}
+\subsection{Jumlah Fitur Sistem}\label{hasil:jumlahfitur}
 %\subsubsection{Pemantauan dan Deteksi}
 Pemantauan (aktivitas jantung) dan Deteksi (detak dan aritmia) berhasil dilakukan secara realtime (parameter lainnya, dibahas pada sub bab berikutnya). Berikut perbandingan mode \textit{monitoring} pada sistem di Tugas Akhir ini dengan sistem sejenis lainnya yang berada pada puncak 10 Android Playstore (kata pencarian heart rate) \cite{playstore_heart}.
 
@@ -53,10 +53,9 @@ Pengujian dilakukan oleh pengguna yang bergerak secara bebas dalam wilayah cakup
 \subsection{Execution Time}
 \textit{Execution Time} perlu diukur pada 2 lokasi yaitu \textit{Receptor} dan \textit{Server}. Hal ini ditujukan untuk mengetahui \textit{maximum sampling speed} yang mungkin dilakukan pada \textit{receptor} sebelum terjadi \textit{bottleneck}. 
 
-Pengujian pada \textit{receptor} dilakukan sebanyak 3 kali pada waktu yang berdekatan (setelah pengujian, \textit{receptor} di \textit{reboot}). Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi percobaan-1 4.36471 ms, percobaan-2 4.74046 ms dan percobaan-3 4.93947 ms. Hasil pengukuran waktu eksekusi tertera pada gambar \ref{fig:exec_time}. Rata-rata ketiga percobaan ialah 4.68155 ms per sampel. Waktu yang berbeda beda ini dipengaruhi oleh adanya \textit{interupt} pengambilan sampel, pembuatan dan pengiriman paket, dan \textit{buffer memory management}. Sebagai perbandingan, tanpa melakukan pengiriman waktu eksekusi hanya selama 0.001 ms (waktu untuk mengambil sampel).
+Pengujian pada \textit{receptor} dilakukan sebanyak 3 kali pada waktu yang berdekatan (setelah pengujian, \textit{receptor} di \textit{reboot}). Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi percobaan-1 4.36471 ms, percobaan-2 4.74046 ms dan percobaan-3 4.93947 ms. Hasil pengukuran waktu eksekusi tertera pada gambar \ref{fig:exec_time}. Rata-rata ketiga percobaan ialah 4.68155 ms per sampel.
 
-Pengujian pada \textit{server} dilakukan dengan 3 \textit{receptor} yang terhubung (2 + 1 virtual). Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi percobaan-1 0.009496 ms, percobaan-2 0.007823 ms dan percobaan-3 0.008909 ms. Hasil pengukuran waktu eksekusi tertera pada gambar \ref{fig:exec_time2}. Rata-rata ketiga percobaan ialah 0.008742 ms per sampel. Terlihat pada awal waktu eksekusi sangat tinggi kemudian sangat rendah lalu berfluktuasi, hal ini karena pada tahap awal server akan membuka \textit{subprocess} untuk tiap \textit{receptor} yang terhubung. Kemudian, tiap proses hanya mengisi buffer hingga cukup untuk dilakukan operasi deteksi. Penggunaan Node.JS sebagai server juga memberikan 
-dampak dalam kecepatan. Dibandingkan dengan Python, Node.JS dapat bekerja hampir 3 kali lebih cepat (gambar \ref{fig:exec_time3}).
+Pengujian pada \textit{server} dilakukan dengan 3 \textit{receptor} yang terhubung (2 + 1 virtual). Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi percobaan-1 0.009496 ms, percobaan-2 0.007823 ms dan percobaan-3 0.008909 ms. Hasil pengukuran waktu eksekusi tertera pada gambar \ref{fig:exec_time2}. Rata-rata ketiga percobaan ialah 0.008742 ms per sampel.
 
 \begin{figure}[H]
 	\centering
@@ -72,32 +71,102 @@ dampak dalam kecepatan. Dibandingkan dengan Python, Node.JS dapat bekerja hampir
 	\label{fig:exec_time2}
 \end{figure}
 
-\subsection{FPS}
-Setelah melakukan pengujian, ditemukan FPS terbaik untuk dapat berjalan dengan lancar pada kedua jenis \textit{viewer} yaitu 20 FPS. Hasil lengkap percobaan FPS dapat dilihat pada tabel ...
+%\subsection{FPS}
+%FPS umumnya ditentukan oleh kapasitas \textit{hardware} yang me-\textit{render} tampilan, namun untuk memaksimalkan jumlah \textit{viewer}, satu nilai FPS perlu dipilih untuk dijalankan pada semua \textit{viewer}. Berikut hasil lengkap percobaan FPS yang dilakukan pada \textit{viewer} web dan android.
+
+%\begin{table}[H]
+%	\centering
+%	\begin{tabular}{|l|L{4cm}|L{4cm}|}
+%	\rowcolor{gray}
+%	\textbf{FPS} & \textbf{Web} & \textbf{Android} \\
+%	\hline
+%	10 & Grafik Patah Patah tapi lancar & Grafik Patah Patah tapi lancar \\
+%	\hline
+%	20 & Grafik Patah Patah tapi lancar & Grafik halus dan lancar \%\
+%	\hline
+%	30 & Grafik halus dan sekali kali \textit{freeze} & Grafik halus dan sekali kali \textit{freeze} \\
+%	\hline
+%	40 & Grafik halus tapi sekali kali \textit{freeze} & Grafik halus tapi sering \textit{freeze} \\
+%	\hline
+%	50 & Grafik halus tapi sering \textit{freeze} & Grafik halus tapi sering \textit{freeze} \\
+%	\hline
+%	\end{tabular}
+%\end{table}
+
+\subsection{Akurasi}
+Setelah melakukan pengujian didapatkan hasil akurasi 94\% untuk detaksi detak dan xx\% untuk deteksi aritmia.
+\subsubsection{Akurasi Deteksi Puncak}
+Dilakukan percobaan untuk menemukan konfigurasi konstanta deteksi $d$ (durasi window), $\alpha$ (\textit{peak threshold, val by mean}), dan $\beta$ (\textit{min distance threshold, idx by R}). Hasil percobaan dapat dilihat pada tabel \ref{table:exec_time3} dengan variabel eksperimen yang tertera pada tabel \ref{table:experiment_var}. Sedangkan hasil percobaan menggunakan algoritma Pan-Tompkins yang asli dapat dilihat pada tabel \ref{fig:original_pantom}.
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{|l|l|l|l|}
-	
-	\end{tabular}
+	\includegraphics[scale=0.8]{images/modif_beat_detect.png}	
+	\caption{Hasil Pengujian Algoritma (Modifikasi) Deteksi Detak Jantung pada Python}
+	\label{table:exec_time3}
 \end{table}
 
-\subsection{Akurasi}
-Setelah melakukan pengujian didapatkan hasil akurasi xx\% untuk detaksi detak dan xx\% untuk deteksi aritmia.
-\subsubsection{Akurasi Detak}
-Dilakukan percobaan untuk menemukan konfigurasi konstanta deteksi $\alpha$, $\beta$ dan $d$ (durasi window).
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.8]{images/experiment_variable.png}
+	\caption{Variabel eksperiment}
+	\label{table:experiment_var}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.9]{images/original_beat_detect.png}
+	\caption{Hasil Pengujian Algoritma (Original) Deteksi Detak Jantung pada Python}
+	\label{fig:original_pantom}
+\end{table}
+
+Perbandingan antara algoritma modifikasi dengan algoritma pantom yang asli dapat dilihat pada diagram batang \ref{fig:compare_performance_100}, \ref{fig:compare_performance_200} dan \ref{fig:compare_exec}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{images/exec_time3.png}
-	\caption{Hasil Pengujian Algorima Deteksi pada Python}
-	\label{fig:exec_time3}
+	\includegraphics[scale=0.65]{images/beat_perform_100.png}
+	\caption{Perbandingan Performa Deteksi Data Series 100}
+	\label{fig:compare_performance_100}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{images/beat_perform_200.png}
+	\caption{Perbandingan Performa Deteksi Data Series 200}
+	\label{fig:compare_performance_200}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{images/beat_exec.png}
+	\caption{Perbandingan Waktu Akurasi}
+	\label{fig:compare_exec}
 \end{figure}
 
-\subsubsection{Akurasi Aritmia}
+\subsubsection{Akurasi Deteksi Aritmia}
+Pengujian akurasi deteksi aritmia terbagi menjadi 3 bagian. Pengujian pertama, sistem deteksi menerima inputan detak jantung asli sesuai data dari MIT BIH. Pengujian kedua, sistem deteksi menerima inputan detak jantung hasil deteksi tahap sebelumnya dengan algoritma asli dari PanTomkins. Pengujian ketiga, sistem deteksi menerima inputan detak jantung hasil deteksi tahap sebelumnya dengan algoritma modifikasi dari PanTomkins. Hasil perbandingan pengujian dapat dilihat pada gambar \ref{fig:aritmia_accuracy}, \ref{fig:aritmia_sensitivity}, dan \ref{fig:aritmia_specificity}.
+
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/aritmia_acc.png}
+	\caption{Perbandingan akurasi deteksi Aritmia dengan input berbeda}
+	\label{fig:aritmia_accuracy}
+\end{table}
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/aritmia_se.png}
+	\caption{Perbandingan sensitvitas deteksi Aritmia dengan input berbeda}
+	\label{fig:aritmia_sensitivity}
+\end{table}
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/aritmia_sp.png}
+	\caption{Perbandingan spesifisitas deteksi Aritmia dengan input berbeda}
+	\label{fig:aritmia_specificity}
+\end{table}
 
 \section{Pembahasan}
-Dengan terdapatnya mode \textit{monitoring} maka parameter 1 (Eksistensi Fitur) dinyatakan terpenuhi.
+Dengan pengimplementasian rancangan arsitektur, sistem yang dibangun dapat memiliki semua fitur yang dimiliki sistem sejenis (\ref{hasil:jumlahfitur}). Delay yang terjadi selama pengiriman sampel selalu berubah ubah namun memiliki rata rata 1.47326 ms. Perubahan nilai delay terjadi karena pengaruh kehandalan jaringan (WiFi) dan subjek yang bebas bergerak. 
 
+Waktu eksekusi diukur pada \textit{receptor} dan \textit{server}. Pada \textit{receptor} terlihat waktu eksekusi yang berubah ubah, ini dipengaruhi oleh adanya \textit{interupt} pengambilan sampel, pembuatan dan pengiriman paket, dan \textit{buffer memory management}. Sebagai perbandingan, tanpa melakukan pengiriman waktu eksekusi hanya selama 0.001 ms (waktu untuk mengambil sampel). Karena rata rata waktu eksekusi pada \textit{receptor} ialah 4.68 ms maka maksimum frekuensi sampel ialah 200Hz, atau setara dengan 1 sampel/5ms. 
 
-\textit{Delay} dan \textit{Execution time} ini terhitung kecil sehingga tidak menyebabkan fenomena \textit{bottleneck} pada sisi server.
+Sedangkan pada \textit{server}, terlihat waktu eksekusi sangat tinggi pada permulaan kemudian sangat rendah lalu berfluktuasi, hal ini disebabkan oleh server yang membutuhkan waktu lebih lama untuk memulai \textit{subprocess} untuk tiap \textit{receptor} yang terhubung. Kemudian, tiap proses hanya mengisi buffer hingga cukup untuk dilakukan operasi deteksi. Penggunaan Node.JS sebagai server juga memberikan dampak dalam kecepatan. Dibandingkan dengan Python, Node.JS dapat bekerja hampir 3 kali lebih cepat (gambar \ref{table:exec_time3}). Karena maksimum frekuensi sampel yang dapat diterapkan ialah 1 sampel tiap 5ms dan waktu eksekusi 1 sampel ialah 0.008742 ms maka secara matematis server dapat memproses sekitar 570 device secara bersamaan (maksimum total sensor dan dashboard yang terhubung, 5ms / 0.008742ms).
+
+Pada segi performansi, algortima deteksi puncak R terlihat hasil modifikasi menghasilkan akurasi, \textit{specificity} dan \textit{sensitivity} yang hampir menyamai algoritma pantomkins yang asli bahkan cenderung lebih baik (kecuali sensitivity). Hal ini secara langsung berdampak pada performa algoritma deteksi aritmia yang diterapkan sehingga menghasilkan tren performa yang sama (lebih rendah pada paramater sensitivity).

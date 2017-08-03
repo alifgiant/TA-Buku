@@ -5,22 +5,24 @@ Penyakit jantung (Cardiovascular Diseases, CVDs) merupakan penyakit yang dapat m
 
 Telah banyak dikembangkan produk untuk melakukan monitoring baik menggunakan \textit{Electrocardiogram} (ECG) dan \textit{Photoplethysmogram} (PPG)[xx, xx]. Beberapa produk tersebut bahkan dapat memberitahu jumlah \textit{Beat Per Minute} (BPM, detak jantung tiap menit) dan melakukan perekaman aktivitas jantung. Rekam jantung bermanfaat bagi dokter jantung untuk melakukan analisis penyakit dan merancang metode pengobatan. Salah satu jenis CVDs yang dapat diidentifikasi dari rekam jantung ialah Aritmia.
 
-Menurut literatur, Aritmia adalah ritme detak jantung yang tidak teratur\cite{cvd_is}. Aritmia tergolong mudah untuk diidentifikasi berdasarkan gambar rekam jantung seseorang. Sebagian besar jenis aritmia tergolong tidak berbahaya (serangan kecil)\cite{arrhythmia_is}. Walaupun tidak berbahaya, ketika aritmia serangan kecil sering terjadi dapat menandakan kemunculan serangan besar, contohnya ketika \textit{Premature Ventricular Contraction} (PVC) terjadi berulang kali dapat menandakan terjadinya serangan besar seperti \textit{Ventricular Tachycardia} (VT) dan \textit{Ventricular Fibrillation} (VF) \cite{rr_classification}. Berdasarkan studi pustaka yang penulis lakukan, beberapa penelitian sebelumnya telah berhasil membuat algoritma untuk mendeteksi aritmia secara otomatis[xx-xx].
+Menurut literatur, Aritmia adalah ritme detak jantung yang tidak teratur\cite{cvd_is}. Aritmia tergolong mudah untuk diidentifikasi berdasarkan gambar rekam jantung seseorang. Sebagian besar jenis aritmia tergolong tidak berbahaya (serangan kecil)\cite{arrhythmia_is}. Walaupun tidak berbahaya, jika artimia tersebut sering diabaikan potensi serangan aritmia yang lebih besar meningkat, contohnya ketika \textit{Premature Ventricular Contraction} (PVC) terjadi berulang kali dapat menandakan terjadinya serangan besar seperti \textit{Ventricular Tachycardia} (VT) dan \textit{Ventricular Fibrillation} (VF) \cite{rr_classification}. Berdasarkan studi pustaka yang penulis lakukan, beberapa penelitian sebelumnya telah berhasil membuat algoritma untuk mendeteksi aritmia secara otomatis \cite{rr_classification, aritmia_svm, aritmia_swarm, aritmia_ann}.
 
 %--Problem--\\
-Monitoring yang terus-menerus akan mudah dilakukan kepada pasien yang menjalani perawatan intensif di sebuah rumah sakit. Namun tentunya hal tersebut sulit dilakukan kepada pasien yang menjalani rawat jalan. Padahal seseorang yang pernah terkena CVDs akan rawan mengalami serangan baik kecil (tidak berbahaya) maupun besar (berbahaya) dimana saja dan kapan saja.
+Monitoring yang terus-menerus akan mudah dilakukan kepada pasien yang menjalani perawatan intensif di sebuah rumah sakit. Namun tentunya hal tersebut sulit dilakukan kepada pasien yang menjalani rawat jalan. Akibatnya, aritmia pada pasien yang pernah terkena CVD dan sedang menjalani rawat jalan sulit untuk dipantau.
 
-Sedangkan, produk yang telah ada tidak dapat melakukan \textit{monitoring} secara terus menerus dan tidak dapat melakukan analisis otomatis. Analisis harus dilakukan secara manual oleh seorang dokter jantung. Di lain pihak, menurut sekertaris PERKI, Isman Firdaus, Indonesia masih kekurangan jumlah dokter jantung \cite{doctor_deff}. Bahkan secara ideal pun seorang dokter jantung masih ditargetkan untuk mengawasi sangat banyak pasien (sekitar 100 ribu orang)\cite{doctor_deff}. Hal ini mengakibatkan seorang dokter tidak mungkin melakukan \textit{monitoring} seorang pasien secara terus menerus.
+Produk yang telah ada tidak dapat melakukan \textit{monitoring} secara terus menerus dan tidak dapat melakukan analisis otomatis. Analisis harus dilakukan secara manual oleh seorang dokter jantung. Hal ini tidak menjadi masalah jika jumlah pasien sedikit, namun ternyata jumlah pasien jantung di indonesia terus meningkat. Di lain pihak, menurut PERKI, Indonesia masih kekurangan jumlah dokter jantung \cite{doctor_deff}. Bahkan secara ideal pun seorang dokter jantung masih ditargetkan untuk mengawasi sangat banyak pasien (sekitar 100 ribu orang)\cite{doctor_deff}. Dalam beberapa kasus, pasien juga memerlukan pengawasan terus menerus. Hal ini mengakibatkan seorang dokter tidak mungkin melakukan \textit{monitoring} secara maksimal terhadap semua pasiennya secara terus menerus.
 
-%--Objective--\\
-Berdasarkan fakta diatas penulis melihat adanya kebutuhan akan pengembangan terhadap sistem monitoring yang telah ada. Oleh karena itu pada tugas akhir ini penulis merancang arsitektur sistem monitoring dimana sistem dapat melakukan \textit{monitoring} jantung secara ubiquitous dan terus menerus, dapat terkoneksi secara \textit{real time} kepada dokter, mampu melayani banyak pasien sekaligus dan dapat memberikan peringatan ketika aritmia terjadi.
+% --Objective--\\
+% Berdasarkan fakta diatas penulis melihat adanya kebutuhan akan pengembangan terhadap sistem monitoring yang telah ada. Oleh karena itu pada tugas akhir ini penulis merancang arsitektur sistem monitoring dimana sistem dapat melakukan \textit{monitoring} jantung secara ubiquitous dan terus menerus, dapat terkoneksi secara \textit{real time} kepada dokter, mampu melayani banyak pasien sekaligus dan dapat memberikan peringatan ketika aritmia terjadi.
+
 \section{Pernyataan Masalah}
 Berdasarkan latar belakang diatas, sub bab 1.1, dapat disimpulkan terdapat permasalahan pada sistem yang sudah ada, yaitu:
 \begin{enumerate}
-	\item Sistem tidak dapat berjalan secara \textit{Ubiquitous} dan terus menerus,
-	\item Analisis sistem dilakukan manual sehingga membutuhkan waktu lama,
+	\item Sistem yang ada tidak dapat bekerja secara \textit{Ubiquitous} dan terus menerus,
+	\item Analisis sistem tersebut dilakukan manual oleh dokter jantung sehingga membutuhkan waktu lama,
 	\item Seorang dokter jantung harus menangani banyak pasien sekaligus.
 \end{enumerate}
+
 \section{Perumusan Masalah}
 Berdasarkan fakta dan permasalahan yang ditemukan, pada tugas akhir ini penulis merancang sebuah solusi berupa arsitektur sistem monitoring. Yang menjadi rumusan masalah untuk perancangan arsitektur ini ialah sebagai berikut:
 \begin{enumerate}
@@ -41,12 +43,13 @@ Untuk membatasi perancangan sistem tugas akhir ini menetapkan batasan sebagai be
     \item Nilai Pulse Arrival Time (PAT) dianggap konstan.
 \end{enumerate}
 \section{Tujuan}
-Berikut adalah tujuan yang ingin dicapai pada penulisan proposal/TA.
+Berikut adalah tujuan yang ingin dicapai pada penulisan Tugas Akhir yaitu:
 \begin{enumerate}
-    \item Untuk merancang arsitektur sistem monitoring detak jantung yang bersifat ubiquitous dan terus menerus,
-    \item Untuk mengembangkan metode \textit{monitoring} dan peringatan otomatis yang dapat mengawasi banyak pasien sekaligus,
-    \item Untuk menganalisis performansi terhadap arsitektur dan metode yang dikembangkan.
+    \item Merancang arsitektur sistem monitoring jantung yang bersifat ubiquitous dan terus menerus,
+    \item Mengembangkan metode \textit{monitoring} dan peringatan otomatis yang dapat mengawasi banyak pasien sekaligus,
+    \item Menganalisis performansi terhadap arsitektur dan metode yang dikembangkan.
 \end{enumerate}
+
 \section{Hipotesis}
 Hipotesis dari tulisan ini adalah
 \begin{enumerate}

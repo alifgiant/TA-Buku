@@ -1,6 +1,24 @@
 \chapter{Metodologi dan Desain Sistem}
+%\subsection{Flowchart Metodologi}
+%Definisikan bentuk dan warna
+
+\usetikzlibrary{positioning}
+\tikzstyle{cloud} = [draw, ellipse, minimum height=2em]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, minimum width=3cm, draw=black]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
 \section{Metodologi Penelitian}
-Metodologi yang digunakan menyelesaikan tugas akhir, ditunjukkan pada gambar diaram alir \ref{flow:fig_flow_method}. Berikut penjelasan tiap tahap pada diagram alir:
+Diagram alir metodologi yang digunakan untuk menyelesaikan tugas akhir ditampilkan pada gambar \ref{flow:fig_flow_method}. Berikut penjelasan tiap tahap pada diagram alir tersebut:
+
+\begin{figure}[H]
+    \centering
+	\includegraphics[scale=0.73]{images/flowchart_metodologi.png}
+    \caption{Flowchart Metodologi}
+	\label{flow:fig_flow_method}
+\end{figure}
+
 \begin{enumerate}
 	\item \textbf{Studi literatur} \\
 	Pada tahap ini penulis mengumpulkan literatur seperti buku, artikel dan \textit{paper} yang berguna menjadi landasan informasi pada penelitian. Hasil tahap ini ialah fakta dan teori serta masalah yang dihadapi.
@@ -16,51 +34,14 @@ Metodologi yang digunakan menyelesaikan tugas akhir, ditunjukkan pada gambar dia
 	Pada tahap ini penulis melakukan penulisan laporan hasil akhir dari tugas akhir. Hasil dari tahap ini berupa buku tugas akhir dan jurnal penelitian.
 \end{enumerate}
 
-%\subsection{Flowchart Metodologi}
-%Definisikan bentuk dan warna
-
-\usetikzlibrary{positioning}
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, minimum height=2em]
-\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
-\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, minimum width=3cm, draw=black, fill=orange!30]
-\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
-\tikzstyle{arrow} = [thick,->,>=stealth]
-
-\begin{figure}[H]
-    \centering
-    %Mulai menggambar Flowchart
-\begin{tikzpicture}[node distance=2cm]
-\node (start) [cloud] {Start};
-\node (studi) [process, below of=start] {Studi Literatur};
-\node (design) [process, below of=studi] {Perancangan Sistem};
-\node (data) [process, below of=design] {Persiapan Data Uji};
-\node (implementasi) [process, below of=data] {Implementasi};
-\node (pengujian) [process, below of=implementasi] {Pengujian dan Analisis};
-\node (yesno) [decision, below of=pengujian] {Perbaikan?};
-\node (report) [process, below of=yesno] {Penyusunan Laporan};
-\node (stop) [cloud, below of=report] {Stop};
-\draw [arrow] (start) -- (studi);
-\draw [arrow] (studi) -- (design);
-\draw [arrow] (design) -- (data);
-\draw [arrow] (data) -- (implementasi);
-\draw [arrow] (implementasi) -- (pengujian);
-\draw [arrow] (pengujian) -- (yesno);
-\draw [arrow] (yesno.west) -- ++(-40pt,0pt) |- (implementasi.west);
-\draw [arrow] (yesno) -- (report);
-\draw [arrow] (report) -- (stop);
-\end{tikzpicture}
-    \caption{Flowchart Metodologi}
-	\label{flow:fig_flow_method}
-\end{figure}
-
 \section{Gambaran Umum Sistem}
-Untuk menyelesaikan masalah yang ditemukan, penulis merancang sebuah solusi sistem untuk pemantauan jantung. Sistem dirancang untuk bisa dipantau di halaman \textit{web} dan ponsel android. Hasil kalkulasi sistem bukanlah analisa medis, diperlukan dokter untuk mengambil kebijakan/keputusan medis. Pengguna sistem ialah dokter, pasien (pengguna yang memakai sensor), dan keluarga pasien. Sistem ditujukan untuk penggunaan non-medis atau sehari-hari yang berfungsi sebagai peringatan dini. Tujuan dari peringatan ini ialah:
+Untuk menyelesaikan masalah yang ditemukan, penulis merancang sebuah solusi sistem untuk pemantauan jantung. Sistem dirancang untuk bisa dipantau di halaman \textit{web} dan ponsel android. Hasil kalkulasi sistem bukanlah analisa medis, tetapi hanya berupa peringatan. Analisis dokter masih diperlukan untuk mengambil keputusan medis terhadap peringatan yang diberikan oleh sistem. Pengguna sistem ialah dokter, pasien (pengguna yang memakai sensor), dan keluarga pasien. Sistem ditujukan untuk penggunaan non-medis atau sehari-hari yang berfungsi sebagai peringatan dini. Tujuan dari peringatan ini ialah:
 \begin{enumerate}
 	\item bagi pasien atau keluarga pasien agar mereka dapat menghubungi dokter untuk melakukan pengecekan lebih lanjut.
 	\item bagi dokter agar dia dapat merancang pengobatan sesuai analis dokter tersebut.
 \end{enumerate}
 
-Secara umum sistem bekerja dimulai dari pengambilan data jantung menggunakan \textit{Receptor} yang diletakkan pada pergelangan tangan. Receptor kemudian secara periodik melakukan sampel dan mengirimkan sampel tersebut ke server untuk diproses lebih lanjut. Pengguna sistem dapat kapan saja melihat data aktivitas jantung melalui \textit{Viewer} berupa halaman \textit{web} atau ponsel android. Ketika server mendeteksi kemunculan artimia, server akan secara otomatis mengirimkan pesan peringatan kepada \textit{viewer} di pengguna sistem. Arsitektur sistem secara umum digambarkan pada gambar \ref{fig:gambar_umum}.
+Secara umum sistem bekerja dimulai dari pengambilan data jantung menggunakan \textit{Receptor} yang diletakkan pada pergelangan tangan. Receptor kemudian secara periodik melakukan sampel dan mengirimkan sampel tersebut ke server untuk diproses lebih lanjut. Pengguna sistem dapat kapan saja melihat data aktivitas jantung melalui \textit{dashboard} berupa halaman \textit{web} atau ponsel android. Ketika server mendeteksi kemunculan artimia, server akan secara otomatis mengirimkan pesan peringatan kepada \textit{dashboard} di pengguna sistem. Arsitektur sistem secara umum digambarkan pada gambar \ref{fig:gambar_umum}.
 
 \begin{figure}[H]
 	\centering
@@ -70,7 +51,7 @@ Secara umum sistem bekerja dimulai dari pengambilan data jantung menggunakan \te
 \end{figure}
 
 \section{Rancangan Perangkat Keras}
-Sistem yang dirancang haruslah diimplementasikan untuk diuji coba. Oleh karena itu perlu dilakukan pemilihan perangkat keras. Perangkat keras dipilih berdasarkan pada kebutuhan rancangan sistem. Perangkat keras dibagi menjadi 3 bagian yaitu \textit{Receptor}, \textit{Server}, dan \textit{Viewer}.
+Sistem yang dirancang haruslah diimplementasikan untuk diuji coba. Oleh karena itu perlu dilakukan pemilihan perangkat keras. Perangkat keras dipilih berdasarkan pada kebutuhan rancangan sistem. Perangkat keras dibagi menjadi 3 bagian yaitu \textit{Receptor}, \textit{Server}, dan \textit{dashboard}.
 
 Setelah perangkat keras ditentukan, algoritma yang sesuai untuk diterapkan harus dirancang. Rancangan algoritma terbagi menjadi 2 alur yaitu alur deteksi dan alur pemantauan. Rancangan algoritma dijelaskan lebih lengkap pada sub bab \ref{ssec:algorithm_design_1} dan sub bab \ref{ssec:algorithm_design_2}.
 
@@ -84,7 +65,7 @@ Receptor berfungsi untuk mengambil data aktivitas jantung seorang pasien. Sistem
 \label{fig:schematics}
 \end{figure}
 
-\subsubsection{Sensor}
+\subsubsection{a. Sensor}
 Sistem dirancang untuk mengembangkan produk pemantauan jantung yang sudah ada di pasaran. Berdasarkan pengetahuan yang telah dibangun pada bab kajian pustaka, terdapat 2 jenis sensor yang umum digunakan yaitu ECG dan PPG. Berdasarkan rancangan algoritma pada sub bab \ref{ssec:algorithm_design} fitur yang dipilih dapat dihasilkan baik oleh ECG maupun PPG. Dengan demikian ECG dan PPG dapat digunakan dalam sistem.
 
 Dalam tugas akhir ini, penulis memilih menggunakan PPG. Sensor PPG yang digunakan merupakan produksi Pulse Sensor yang dirancang oleh Joel dan Yury \cite{pulse_sensor}, terlihat pada gambar \ref{fig:coin_esp_pulse}. Alasan penulis milihan PPG ialah karena:
@@ -95,10 +76,10 @@ Dalam tugas akhir ini, penulis memilih menggunakan PPG. Sensor PPG yang digunaka
 	\item kekurangan PPG yaitu kurang akurat dibanding ECG, tidak menyalahi tujuan sistem sebagai peringatan dini bukan medis.
 \end{enumerate}
 
-\subsubsection{Controller}
+\subsubsection{b. Controller}
 Sistem dirancang untuk monitoring terus menerus dan \textit{Ubiquitous}. Maka receptor haruslah cukup kecil untuk dibawa kemana saja dan menggunakan media komunikasi \textit{wireless} (tanpa kabel) untuk beriteraksi dengan server. Terdapat banyak jenis media komunikasi \textit{wireless} seperti GSM/CDMA, WiFi, Bluetooth, Infra Red, Zigbee, dll. WiFi dipilih sebagai media, pada sistem, karena jarak cakup yang cukup besar dan mudah untuk dikonfigurasi. Berdasarkan pengetahuan yang telah dibangun pada bab kajian pustaka, terdapat sebuah SoC yang telah memiliki kemampuan \textit{controller} dan memiliki modul WiFi dengan ukuran yang kecil yaitu ESP-12. Oleh karena itu receptor dirancang menggunakan ESP-12.
 
-\subsubsection{Baterai}
+\subsubsection{c. Baterai}
 Untuk memungkinkan receptor dibawa kemana saja dan dikenakan terus menerus diperlukan baterai sebagai catuan. Pada tugas akhir ini penulis menggunakan baterai \textit{Li-Polymer} (LiPo) \textit{protected} berkapasitas 180mAh dan tegangan 3.7V. Baterai ini juga berukuran kecil yaitu 25x18x8 mm dan memiliki bobot 5.3 gr, terlihat pada gambar \ref{fig:battery}.
 
 \begin{figure}[H]
@@ -109,34 +90,34 @@ Untuk memungkinkan receptor dibawa kemana saja dan dikenakan terus menerus diper
 \end{figure}
 
 \subsection{Server}
-Untuk mengimplemantasikan konsep IoT server dirancang agar bisa melayani banyak \textit{receiver} dan \textit{viewer}. Oleh karena itu server harus melayani komunikasi dengan arus data yang tinggi. Alasan ini mendorong penulis memilih menggunakan protokol MQTT sebagai protokol komunikasi, NodeJs sebagai runtime dan MongoDb sebagai penyimpanan data. Server dirancang agar bisa berjalan pada satu perangkat. Hal ini berarti MQTT broker, Web server, DB server, dan Algoritma Detector berjalan pada satu alamat IP yang sama. 
+Untuk mengimplemantasikan konsep IoT server dirancang agar bisa melayani banyak \textit{receiver} dan \textit{dashboard}. Oleh karena itu server harus melayani komunikasi dengan arus data yang tinggi. Alasan ini mendorong penulis memilih menggunakan protokol MQTT sebagai protokol komunikasi, NodeJs sebagai runtime dan MongoDb sebagai penyimpanan data. Server dirancang agar bisa berjalan pada satu perangkat. Hal ini berarti MQTT broker, Web server, DB server, dan Algoritma Detector berjalan pada satu alamat IP yang sama. 
 
-\subsection{Viewer}
+\subsection{Dashboard}
 Sistem dirancang memiliki 2 saluran pemantauan yaitu halaman \textit{web} dan aplikasi pada ponsel Android. Kedua saluran ini dapat melakukan pemantauan selama berada dalam jaringan yang sama dengan server. Penulis memilih Android karena memiliki jumlah pengguna terbesar didunia[xx] sehingga bisa diasumsikan sistem yang dirancang bisa digunakan oleh banyak orang.
 
-\subsubsection{Halaman Web}
-Halaman web dibangun menggunakan \textit{framework} Express.Js. Pada halaman web terjadinya aritmia ditandai dengan bunyi dan bertambahnya angka hitungan aritmia yang terdeteksi. Tampilan halaman web dapat dilihat pada gambar \ref{fig:viewer_apps}.
+\subsubsection{a. Halaman Web}
+Halaman web dibangun menggunakan \textit{framework} Express.Js. Pada halaman web terjadinya aritmia ditandai dengan bunyi dan bertambahnya angka hitungan aritmia yang terdeteksi. Tampilan halaman web dapat dilihat pada gambar \ref{fig:dashboard_apps}.
 
-\subsubsection{Aplikasi Ponsel Android}
-Aplikasi ponsel android dibangun untuk dapat berjalan pada ponsel android ber-OS (\textit{operating system}) minimal Jelly Bean (Android v4.1). Pada aplikasi ini terjadinya aritmia ditandai dengan bunyi atau berubahnya status deteksi dan kode warna ikon seru. Kode warna merah berarti terdeteksi aritmia berbahaya, kuning terdeteksi aritmia tidak berbahaya, dan hijau berarti kondisi normal. Tampilan aplikasi android dapat dilihat pada gambar \ref{fig:viewer_apps}.
+\subsubsection{b. Aplikasi Ponsel Android}
+Aplikasi ponsel android dibangun untuk dapat berjalan pada ponsel android ber-OS (\textit{operating system}) minimal Jelly Bean (Android v4.1). Pada aplikasi ini terjadinya aritmia ditandai dengan bunyi atau berubahnya status deteksi dan kode warna ikon seru. Kode warna merah berarti terdeteksi aritmia berbahaya, kuning terdeteksi aritmia tidak berbahaya, dan hijau berarti kondisi normal. Tampilan aplikasi android dapat dilihat pada gambar \ref{fig:dashboard_apps}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.26]{images/web_app.png}
-	\label{fig:viewer_apps}
+	\label{fig:dashboard_apps}
 	\includegraphics[scale=0.3]{images/phone_app.png}
 	\caption{a) Tampilan Web Monitoring b) Tampilan Aplikasi Monitoring}
-	\label{fig:viewer_apps}
+	\label{fig:dashboard_apps}
 \end{figure}
 
-\section{Rancangan Algoritma Pemantauan} \label{ssec:algorithm_design_1}
-Fungsi utama dari sistem yang dibuat ialah melakukan pemantauan. Untuk melakukan pemantauan sistem perlu mengaplikasikan algoritma pemantauan. Algoritma pemantauan hanya berjalan pada perangkat \textit{viewer} yaitu halaman \textit{web} atau aplikasi ponsel android. Alir algoritma pemantauan dapat dilihat pada gambar diagram alir \ref{flow:fig_report_algorithm}.
+\section{Rancangan Proses Pemantauan} \label{ssec:algorithm_design_1}
+Fungsi utama dari sistem yang dibuat ialah melakukan pemantauan. Untuk melakukan pemantauan sistem perlu mengaplikasikan algoritma pemantauan. Algoritma pemantauan hanya berjalan pada perangkat \textit{dashboard} yaitu halaman \textit{web} atau aplikasi ponsel android. Diagram alir algoritma pemantauan dapat dilihat pada gambar \ref{flow:fig_report_algorithm}.
 \begin{figure}[H]
 	\centering
     %Mulai menggambar Flowchart
 \begin{tikzpicture}[node distance=2cm]
 \node (start) [cloud] {Start};
-\node (open) [process, below of=start] {Membuka Viewer};
+\node (open) [process, below of=start] {Membuka dashboard};
 \node (input) [io, below of=open] {Memasukkan Kode Sensor / User};
 \node (page) [process, below of=input] {Membuka Halaman Pemantauan};
 \node (analysis) [process, below of=page] {Melakukan Analisis};
@@ -151,10 +132,10 @@ Fungsi utama dari sistem yang dibuat ialah melakukan pemantauan. Untuk melakukan
 	\label{flow:fig_report_algorithm}
 \end{figure}
 
-Seorang pengguna baik pasien, keluarga pasien, maupun dokter perlu membuka sebuah perangkat \textit{viewer}. Setelah aplikasi terbuka, baik web maupun aplikasi ponsel, user perlu memasukkan kode sensor atau user yang ingin dipantau. Setelah kode pantau dimasukkan aplikasi akan membuka halaman pemantauan. Setelah grafik pemantauan mulai berjalan pengguna bisa melakukan analisis.
+\textit{Flowchart} diatas (gambar \ref{flow:fig_report_algorithm}) dimulai dengan seorang pengguna baik pasien, keluarga pasien, maupun dokter perlu membuka sebuah perangkat \textit{dashboard}. Setelah aplikasi terbuka, baik web maupun aplikasi ponsel, user perlu memasukkan kode sensor atau user yang ingin dipantau. Setelah kode pantau dimasukkan aplikasi akan membuka halaman pemantauan. Setelah grafik pemantauan mulai berjalan pengguna bisa melakukan analisis.
 
-\section{Rancangan Algoritma Deteksi} \label{ssec:algorithm_design_2}
-Fungsi berikutnya yang akan diterapkan dalam sistem ialah dapat melakukan pendeteksian aritmia otomatis. Untuk itu sistem perlu menerapkan algoritma deteksi. Algoritma deteksi yang diterapkan pada tugas akhir ini terbagi menjadi 5 tahap yaitu Pengambilan dan Pengiriman Sinyal, Preprocessing dan Perekaman, Deteksi Detak Otomatis, Deteksi Aritmia Otomatis dan Pengiriman Laporan. Alir tahap algoritma deteksi digambarkan pada gambar diagram alir \ref{flow:fig_detect_algorithm}.
+\section{Rancangan Proses Deteksi} \label{ssec:algorithm_design_2}
+Fungsi berikutnya yang akan diterapkan dalam sistem ialah dapat melakukan pendeteksian aritmia otomatis. Untuk itu sistem perlu menerapkan algoritma deteksi. Algoritma deteksi yang diterapkan pada tugas akhir ini terbagi menjadi 5 tahap yaitu Pengambilan dan Pengiriman Sinyal, Preprocessing dan Perekaman, Deteksi Detak Otomatis, Deteksi Aritmia Otomatis dan Pengiriman Laporan. Diagram alir tahap algoritma deteksi digambarkan pada gambar \ref{flow:fig_detect_algorithm}.
 
 \begin{figure}[H]
 	\centering
@@ -192,22 +173,22 @@ Pengambilan dan Pengiriman sinyal dilakukan di Receptor. Langkah pertama ialah \
 \end{figure}
 
 \subsection{Preprocessing dan Perekaman}
-Setelah data diterima oleh server. Server melakukan \textit{preprocessing} pada data. \textit{Preprocessing} yang dilakukan terbagi menjadi \textit{data completer}, \textit{filtering}, \textit{squaring}, \textit{moving window integration}(MWI) dan \textit{Adaptive Thresholding}. Setelah \textit{filtering} dilakukan nilai dianggap telah bersih \textit{noise} maka nilai ini di simpan/rekam di \textit{database}. Preprocessing berlanjut ke \textit{squaring} dan MWI. Terakhir ekstraksi fitur \textit{peak} (R pada ECG dan Systolic pada PPG) dilakukan dengan \textit{Adaptive Thresholding}. Alir algoritma \textit{preprocessing} dapat dilihat pada diagram alir \ref{flow:fig_preproc_algorithm}. Rangkaian \textit{preprocessing} ini merupakan modifikasi pada algoritma yang diusulkan oleh Pan-Tomkin (1985) dan Kalidas-Tamil (2016) agar kedua algoritma ini bisa bekerja untuk ECG dan PPG.
+Setelah data diterima oleh server. Server melakukan \textit{preprocessing} pada data. \textit{Preprocessing} yang dilakukan terbagi menjadi \textit{data completer}, \textit{filtering}, \textit{squaring}, \textit{moving window integration}(MWI) dan \textit{Adaptive Thresholding}. Setelah \textit{filtering} dilakukan nilai dianggap telah bersih \textit{noise} maka nilai ini di simpan/rekam di \textit{database}. Preprocessing berlanjut ke \textit{squaring} dan MWI. Terakhir ekstraksi fitur \textit{peak} (R pada ECG dan Systolic pada PPG) dilakukan dengan \textit{Adaptive Thresholding}. Diagram alir algoritma \textit{preprocessing} dapat dilihat pada gambar \ref{flow:fig_preproc_algorithm}. Rangkaian \textit{preprocessing} ini merupakan modifikasi pada algoritma yang diusulkan oleh Pan-Tomkin (1985) (sub bab \ref{bab2_pantom}) dan Kalidas-Tamil (2016) agar kedua algoritma ini bisa bekerja untuk ECG dan PPG.
 
-\subsubsection{Data Completer}
+\subsubsection{a. Data Completer}
 Data Completion berfungsi ialah algoritma untuk menangani hilangnya data selama pengiriman. Hal ini mungkin terjadi karena data dikirimkan dari \textit{receptor} menggunakan QoS 0. Pertama, data dipisahkan antara nilai pembacaan sensor dan header. Header kemudian digunakan untuk memisahkan proses perhitungan, setiap kode sensor akan memiliki proses sendiri. Jika terdapat locatan index pada header (index data yg diterima bukan bertambah 1 dari index data sebelumnya) maka proses akan menambah data buffer sebanyak jumlah index yang terlompati dengan nilai berdasarkan proyeksi garis lurus dari nilai terakhir ke nilai terbaru mengikuti persamaan \ref{eq:line}. Jika tidak ada nilai yang hilang maka nilai akan langsung dimasukkan ke buffer.
 
 \begin{equation}
-y(n) = \dfrac{n (v_{2} - v_{1})}{d} + v_{1}
+y(n) = \dfrac{n (y_{2} - y_{1})}{d} + v_{1}
 \label{eq:line}
 \end{equation}
 
 $v_{1}$ adalah nilai terakhir yang diterima, $v_{2}$ adalah nilai terbaru yang diterima, $n$ adalah jarak dari index terakhir, $d$ adalah jarak index terbaru ke terakhir. $y$ adalah nilai index $n$ yang hilang
 
-\subsubsection{Filtering}
+\subsubsection{b. Filtering}
 Filtering berfungsi untuk menghilangkan noise yang mempengaruhi sinyal. \textit{Noise} yang umum terdapat ialah \textit{muscle noise} dan \textit{baseline wander}. Filtering yang diterapkan terbagi menjadi dua tahap yaitu \textit{Band Pass Finite Impulse Response(FIR) Filter} kemudian \textit{First Order Derivation Filter}. Tahap ini sesuai dangan algoritma yang diusulkan oleh Pan-Tomkins (1985)\cite{pantom} dan Kalidas-Tamil (2016) \cite{ecg_syncro}. \textit{Band Pass Filter} yang digunakan memiliki frekuensi response 5-15Hz. Daftar koefisien lengkap untuk \textit{Band Pass Filter} dan \textit{Derivation Filter} tercantum pada tabel x.x di bab lampiran.
 
-\subsubsection{Squaring dan MWI}
+\subsubsection{c. Squaring dan Moving Window Integration (MWI)}
 Sesuai namanya \textit{Squaring} melakukan penguadratan (persamaan \ref{eq:square}) terhadap data. Sedangkan MWI melakukan penghalusan data berdasarkan n data sebelum. MWI dilakukan dengan persamaan \ref{eq:mwi}.
 
 \begin{equation}
@@ -243,8 +224,10 @@ y(n) = 2v_{n} + v_{n-1} - v_{n-3} - 2v_{n-4}
 	\label{flow:fig_preproc_algorithm}
 \end{figure}
 
-\subsection{Deteksi Detak Otomatis}
-Hal penting untuk dideteksi pada aktivitas jantung ialah detaknya. Tanpa mendeteksi detak deteksi lainnya tidak dapat dilakukan. Deteksi detak dapat dilakukan dengan mencari titik \textit{fiducial}. Titik \textit{fiducial} yang paling menonjol ialah puncak tertinggi dari siklus detak yaitu R (pada ECG) dan Systolic (pada PPG). Untuk mendeteksi puncak dapat dilakukan dengan \textit{Adaptive Thresholding}. Algorima yang diterapkan merupakan modifikasi dari yang diusulkan Pan-Tompkins(1985). Pan-Tompkins(1985) mengusulkan teknik \textit{adaptive} dengan merubah nilai \textit{threshold} berdasarkan nilai puncak pada satu detak. Modifikasi yang diterapkan merubah \textit{threshold} berdasarkan rata-rata nilai pengukuran pada suatu durasi window. Peak ditentukan dengan cara mengambil nilai maksimum dari suatu wilayah yang melewati threshold (persamaan \ref{eq:threshold} dan \ref{eq:r_threshold}). Algoritma deteksi puncak dan penghilang puncak palsu dapat dilihat pada kolom algoritma \ref{Algo:peaksFind} dan \ref{Algo:peaksRemove}.
+\subsection{Algoritma Deteksi Puncak}
+Hal penting untuk dideteksi pada aktivitas jantung ialah detaknya. Tanpa mendeteksi detak deteksi lainnya tidak dapat dilakukan. Deteksi detak dapat dilakukan dengan mencari titik \textit{fiducial}. Titik \textit{fiducial} yang paling menonjol ialah puncak tertinggi dari siklus detak yaitu R (pada ECG) dan Systolic (pada PPG). Untuk mendeteksi puncak dapat dilakukan dengan \textit{Adaptive Thresholding}. Algorima yang diterapkan merupakan modifikasi dari yang diusulkan Pan-Tompkins(1985). Pan-Tompkins(1985) mengusulkan teknik \textit{adaptive} dengan merubah nilai \textit{threshold} berdasarkan nilai puncak pada satu detak (sub bab \ref{bab2_pantom}). 
+
+Penulis melihat algoritma Pan-Tompkins dapat dioptimasi sehingga dapat bekerja lebih cepat. Optimasi dilakukan dengan mempebesar window sehingga mengurangi jumlah eksekusi yang perlu dilakukan dalam waktu yang sama, membuat threshold berdasarkan nilai rata-rata window tersebut (persamaan \ref{eq:threshold}), menghapus false beat dengan menolak R yang terlalu dekat berdasarkan rata rata jarak R \ref{eq:r_threshold}). Secara detil proses deteksi hasil modifikasi dapat dilihat pada gambar \ref{fig:processing_modif}. Pelebaran window berakibat pada meningkatnya delay atas munculnya hasil deteksi sejak diterimanya sampel namun dapat meningkatkan akurasi deteksi. Pseudocode algoritma deteksi puncak dan penghilang puncak palsu dapat dilihat pada kolom algoritma \ref{Algo:peaksFind} dan \ref{Algo:peaksRemove}.
 
 \begin{equation}
 threshold = \alpha (\sum_{n=1}^{d} \frac{v_{n}}{d})
@@ -254,6 +237,12 @@ threshold = \alpha (\sum_{n=1}^{d} \frac{v_{n}}{d})
 rThreshold = \beta (\sum_{i=1}^{j} \frac{r_{i}}{j})
 \label{eq:r_threshold} 
 \end{equation}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale=0.65]{images/processing_modif.png}}
+\caption{Processing: Original R Peak Detection}
+\label{fig:processing_modif}
+\end{figure}
 
 Ket:
 $\alpha$ merupakan variabel konstan untuk menaikkan threshold. $n$ menunjukan posisi sampel. $d$ merupakan durasi window, $n$ hingga jumlah sampel pada durasi tersebut. $v_{n}$ merupakan nilai bacaan pada sample ke-$n$.
@@ -300,48 +289,11 @@ $\beta$ merupakan variabel konstan untuk menaikkan threshold jarak RR. $i$ menun
  \caption{Prosedur Filter False Peak}\label{Algo:peaksRemove}
 \end{algorithm}
 
-\subsection{Deteksi Aritmia Otomatis}
-Deteksi Aritmia merupakan salah satu tujuan dari tugas akhir ini. Untuk melakukan deteksi aritmia pada tugas akhir ini menerapkan algoritma usulan Tsipouras(2005)\cite{rr_classification}. Algoritma ini dipilih karena kelebihannya yaitu dapat melakukan deteksi hanya menggunakan jarak antar titik R pada data ECG. Karena hanya menggunakan titik R, maka algoritma ini juga dapat secara langsung diterapkan pada data PPG. Pada penelitian Tsipouras (2005), ia membangun \textit{rule-based detector} berdasarkan masukan tim dokter jantung yang terlibat. \textit{Rule} ini dengan menggunakan sebuah (i) \textit{window RR-interval}, yang berisi 3 RR-interval, $RR1_i, RR2_i, RR3_i$.
+\subsection{Algoritma Deteksi Aritmia}
+Deteksi Aritmia merupakan salah satu tujuan dari tugas akhir ini. Untuk melakukan deteksi aritmia pada tugas akhir ini menerapkan algoritma usulan Tsipouras (sub bab \ref{bab2_tsipouras}). Algoritma ini dipilih karena kelebihannya yaitu dapat melakukan deteksi hanya menggunakan jarak antar titik R pada data ECG. Karena hanya menggunakan titik R, maka algoritma ini juga dapat secara langsung diterapkan pada data PPG.
 
-Algoritma ini hanya dapat mendeteksi 4 kelompok aritimia. Pengelompokan aritmia ini dapat diihat pada tabel \ref{table:beat_class}. \textit{Rule} untuk pengelompokan ini dapat dilihat pada gambar \ref{Algo:rule}.
-
-\begin{table}[H]
-\centering
-	\begin{tabular}{|L{2cm} | l | L{2cm}|}
-	\hline
-	\rowcolor{gray}
-	\textbf{MIT-BIH Beat Symbol} & \textbf{Arti Symbol} & 	\textbf{Kategori} \\
-	\hline
-	N & Normal & 1 \\
-	. & Normal &  \\
-	/ & Paced Beat & \\ 
-	f & Fusion of paced and normal beat & \\
-	x & Non-conducted P-wave (blocked APB) & \\
-	L & Left bundle branch block & \\ 
-	R & Right bundle branch block & \\ 
-	Q & Unclassifed & \\
-	\hline
-	V & PVC & 2 \\
-	A & PAC & \\
-	\hline
-	! & VF & 3 \\
-	\hline
-	(BII & Heart block & 4 \\
-	\hline
-	\end{tabular}
-	\caption{Pengelompokan Tipe beat}
-	\label{table:beat_class}
-\end{table}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.8]{images/algo_detect.png}
-	\caption{\textit{Rule}/Algoritma yang diajukan Tsipouras (2005)}
-	\label{Algo:rule}
-\end{figure}
-
-\subsection{Pengiriman Laporan}
-Pengguna dapat menerima laporan atau melakukan pemantauan pada \textit{Viewer} mereka. Namun untuk menjaga perangkat \textit{Viewer} dapat me-\textit{render} tampilan dengan baik perlu dilakukan penurunan kecepatan sample (lihat diagram alir ). Selain itu \textit{Viewer} harus terus menerus terkoneksi dengan \textit{Server} untuk bisa mendapatkan data \textit{real-time}. Sehingga kapanpun \textit{server} mendeteksi aritmia pengguna dapat melihat peringatan pada device mereka. 
+\subsection{Visualisasi Gelombang Listrik Jantung}
+Pengguna dapat menerima laporan atau melakukan pemantauan pada \textit{dashboard} mereka. Namun untuk menjaga perangkat \textit{dashboard} dapat me-\textit{render} tampilan dengan baik perlu dilakukan penurunan kecepatan sample (lihat gambar \ref{flow:fig_preproc_algorithm}). Selain itu \textit{dashboard} harus terus menerus terkoneksi dengan \textit{Server} untuk bisa mendapatkan data \textit{real-time}. Sehingga kapanpun \textit{server} mendeteksi aritmia pengguna dapat melihat peringatan pada device mereka. 
 
 \begin{figure}[H]
 \centering
@@ -368,8 +320,8 @@ Pengguna dapat menerima laporan atau melakukan pemantauan pada \textit{Viewer} m
 	\label{flow:fig_preproc_algorithm}
 \end{figure}
 
-\subsection{Hubungan Algoritma Deteksi Dengan Perangkat Keras}
-Hubungan antara algoritma deteksi dengan perangkat keras digambarkan pada gambar diagram tahap \ref{seq:fig_detect_algorithm2}. Seorang pasien yang mengenakan \textit{receptor} akan diambil data jantungnya kemudian dikirim ke \textit{server}. Ketika terdeteksi aritmia, \textit{server} akan mengirim \textit{flag} manandakan aritmia terdeteksi ke \textit{viewer} yang kemudian dilihat oleh pasien, dokter dan keluarga pasien.
+\subsection{Integrasi Algoritma pada Perangkat Keras}
+Tahapan hubungan antara algoritma deteksi dengan perangkat keras digambarkan oleh gambar \ref{seq:fig_detect_algorithm2}. Seorang pasien yang mengenakan \textit{receptor} akan diambil data jantungnya kemudian dikirim ke \textit{server}. Ketika terdeteksi aritmia, \textit{server} akan mengirim \textit{flag} manandakan aritmia terdeteksi ke \textit{dashboard} yang kemudian dilihat oleh pasien, dokter dan keluarga pasien.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{images/sequence1.png}
@@ -389,21 +341,21 @@ Berikut hubungan antara parameter penguji dengan tujuan tugas akhir:
 	\rowcolor{gray}
 	\textbf{No} & \textbf{Parameter} & \textbf{Tujuan yg Dicakup} & \textbf{Alasan}\\
 	\hline
-	1 & Eksistensi Fitur & 2, 4 & Mengetahui apakah fitur yang direncanakan bisa berjalan. \\
+	1 & Jumlah Fitur Sistem & 2, 4 & Mengetahui apakah fitur yang direncanakan bisa berjalan. \\
 	\hline
 	2 & Delay & 1, 3, 4 & Dengan mengukur \textit{delay} dapat diketahui berapa lama proses pengiriman sehingga dapat diketahui seberapa \textit{Real Time} sistem dapat berjalan. \\
 	\hline
 	3 & Execution Time & 1, 2, 3, 4 & Dengan mengukur execution time dapat diketahui seberapa banyak sensor yang dapat ditangani oleh spesifikasi server tertentu \\
 	\hline
-	4 & FPS & 2, 4 & Dengan mengukur FPS dapat diketahui maksimum FPS agar dapat dijalankan pada banyak \textit{viewer} \\
-	\hline
-	5 & Akurasi & 3 & Dengan mengukur akurasi dapat diketahui seberapa akurat algoritma deteksi yang diterapkan \\
+	%4 & FPS & 2, 4 & Dengan mengukur FPS dapat diketahui maksimum FPS agar dapat dijalankan pada banyak \textit{dashboard} \\
+	%\hline
+	4 & Akurasi & 3 & Dengan mengukur akurasi dapat diketahui seberapa akurat algoritma deteksi yang diterapkan \\
 	\hline
 	\end{tabular}
 \end{table}
 
 \subsection{Konfigurasi Perangkat Keras}
-Spesifikasi perangkat keras yang digunakan selama pengujian dapat dilihat pada tabel \ref{tabel:spesifikasi}. Pengujian dilakukan dengan menghubungkan sebuah \textit{receiver}, kepada sebuah \textit{server} dan dipantau oleh 2 \textit{viewer} (web dan ponsel). Hubungan jaringan perangkat keras digambarkan pada gambar \ref{fig:konfigurasi}.
+Spesifikasi perangkat keras yang digunakan selama pengujian dapat dilihat pada tabel \ref{tabel:spesifikasi}. Pengujian dilakukan dengan menghubungkan sebuah \textit{receiver}, kepada sebuah \textit{server} dan dipantau oleh 2 \textit{dashboard} (web dan ponsel). Hubungan jaringan perangkat keras digambarkan pada gambar \ref{fig:konfigurasi}.
 
 \begin{table}[H]
 	\centering
@@ -428,14 +380,14 @@ Spesifikasi perangkat keras yang digunakan selama pengujian dapat dilihat pada t
 		\item RAM DDR3 8GB
 	\end{itemize} \\
 	\hline
-	3 & Viewer Web & 
+	3 & dashboard Web & 
 	\begin{itemize}
 		\item Laptop Lenovo G40S
 		\item AMD A8 5550M CPU @ 2.1GHz
 		\item RAM DDR3 8GB
 	\end{itemize} \\
 	\hline
-	4 & Viewer Android & 
+	4 & dashboard Android & 
 	\begin{itemize}
 		\item ZTE A711, Android Lollipop
 		\item Snapdragon 615 CPU @ 1.7 GHz
@@ -463,9 +415,9 @@ Spesifikasi perangkat keras yang digunakan selama pengujian dapat dilihat pada t
 \subsection{Pengujian Algoritma Pemantauan}
 Sistem tidak bisa dites secara \textit{black box} (memberikan masukkan ke sistem dan melihat hasil) karena pengerjaan tugas akhir tidak didampingi oleh dokter ahli jantung untuk melakukan pengecekan atas hasil deteksi. Sehingga pengujian algoritma dipisah menjadi  2 tahap yaitu, algortima pemantauan dan algoritma deteksi. 
 
-Pengujian algoritma pemantauan dilakukan dengan cara seseorang menggunakan \textit{receiver} dan dilihat keberhasilan pemantauan dari \textit{viewer}. Pengujian ini ditujukan untuk menguji semua parameter selain parameter 5 (Akurasi).
+Pengujian algoritma pemantauan dilakukan dengan cara seseorang menggunakan \textit{receiver} dan dilihat keberhasilan pemantauan dari \textit{dashboard}. Pengujian ini ditujukan untuk menguji semua parameter selain parameter 5 (Akurasi).
 
-\subsubsection{Delay}
+\subsubsection{a. Delay}
 Delay yang diukur ialah waktu tempuh sejak dikirimnya data oleh \textit{receptor} hingga diterima oleh \textit{server}. \textit{Delay} dihitung dengan mengukur rata-rata selisih waktu ($t$) diterimanya data oleh server dikurang dengan waktu kerja sensor ($v$) (persamaan \ref{eq:delay}).
 
 \begin{equation}
@@ -473,7 +425,7 @@ Delay = \alpha (\sum_{i=2}^{d} -\frac{(t_{i} - v_{i})}{d})
 \label{eq:delay} 
 \end{equation}
 
-\subsubsection{Execution Time}
+\subsubsection{b. Execution Time}
 \textit{Execution Time} (Waktu eksekusi) diukur pada \textit{receptor} dan \textit{server}. Pada \textit{receptor} \textit{execution time} ialah waktu sejak sampel diambil hingga selesai dikirim ditambah waktu tidur antar sampel, waktu ini disebut sebagai waktu kerja sensor. Pada \textit{server} \textit{execution time} ialah waktu untuk memproses sebuah sampel hingga dimunculkannya sebuah deteksi. Karena pemrosesan dilakukan setiap sebuah \textit{window} terisi, maka \textit{execution time} yang dihitung dengan membagi durasi \textit{window} terhadap dengan jumlah sampel yang diproses (persamaan \ref{eq:exec_time}).
 
 \begin{equation}
@@ -481,37 +433,37 @@ ET = (\frac{t_d}{d})
 \label{eq:exec_time} 
 \end{equation}
 
-\subsubsection{FPS}
-FPS diukur dengan mecoba konfigurasi \textit{downsample} pada \textit{server} dan melihat tampilan pada \textit{viewer}.
+%\subsubsection{FPS}
+%FPS diukur dengan mecoba konfigurasi \textit{downsample} pada \textit{server} dan melihat tampilan pada \textit{dashboard}.
 
 \subsection{Pengujian Algoritma Deteksi}
-Pengujian algoritma deteksi dilakukan dengan memasukkan dataset ECG dari MIT-BIH Arrhythmia Database \cite{mit_bih_paper}\cite{mit_bih_web} ke dalam sistem. Untuk mempermudah visualisasi dan analisis data, penulis menjalankan algoritma deteksi pada bahasa pemograman python untuk selanjutnya diimplementasikan ke Node.Js. Pengujian ini ditujukan untuk menguji parameter akurasi.
+Pengujian algoritma deteksi dilakukan dengan memasukkan dataset ECG dari MIT-BIH Arrhythmia Database \cite{mit_bih_paper, mit_bih_web} ke dalam sistem. Untuk mempermudah visualisasi dan analisis data, penulis menjalankan algoritma deteksi pada bahasa pemograman python untuk selanjutnya diimplementasikan ke Node.Js. Pengujian ini ditujukan untuk menguji parameter akurasi.
 
-\subsubsection{Dataset}
-Dataset dari MIT-BIH \cite{mit_bih_paper}\cite{mit_bih_web} terbagi menjadi 48 \textit{records}. Masing masing \textit{record} memiliki panjang 30 menit. Dengan jumlah detak yang berbeda-beda. Rekapitulasi detak yang terekam pada dataset dapat dilihat pada tabel \ref{tabel:dataset}. Setiap \textit{record} telah dianotasi (ditandai) oleh dokter ahli jantung\cite{mit_bih_web}. Rekapitulasi anotasi pada dataset dapat dilihat pada tabel \ref{tabel:result1}  dan \ref{tabel:result2}.
+\subsubsection{a. Dataset}
+Dataset dari MIT-BIH \cite{mit_bih_paper, mit_bih_web} terbagi menjadi 48 \textit{records}. Masing masing \textit{record} memiliki panjang 30 menit. Dengan jumlah detak yang berbeda-beda. Rekapitulasi detak yang terekam pada dataset dapat dilihat pada tabel \ref{tabel:dataset}. Setiap \textit{record} telah dianotasi (ditandai) oleh dokter ahli jantung\cite{mit_bih_web}. Rekapitulasi anotasi pada dataset dapat dilihat pada tabel \ref{tabel:result1}  dan \ref{tabel:result2}.
 
 \begin{table}[H]
 	\centering
 	\includegraphics[scale=0.7]{images/tabel_data.png}
-	\caption{Tabel Rakpitulasi Dataset}
+	\caption{Tabel Rakapitulasi Jumlah Detak}
 	\label{tabel:dataset}
 \end{table}	
 
 \begin{table}[H]
 	\centering
-	\includegraphics[scale=0.5]{images/result1.png}
-	\caption{Tabel Rakpitulasi Aritmia series 100}
+	\includegraphics[scale=0.75]{images/result1.png}
+	\caption{Tabel Rakpitulasi Aritmia Series 100 dengan Kategori}
 	\label{tabel:result1}
 \end{table}
 \begin{table}[H]
 	\centering
-	\includegraphics[scale=0.5]{images/result2.png}
-	\caption{Tabel Rakpitulasi Aritmia series 200}
+	\includegraphics[scale=0.75]{images/result2.png}
+	\caption{Tabel Rakpitulasi Aritmia Series 200 dengan Kategori}
 	\label{tabel:result2}
 \end{table}
 
-\subsubsection{Akurasi}
-Pengukuran akurasi terbagi menjadi 2 yaitu akurasi deteksi detak dan akurasi deteksi aritmia. Untuk mengukur akurasi jumlah kelas (detak dan aritmia) digunakan persamaan \ref{eq:accuracy} dan \ref{eq:specificity}.
+\subsubsection{b. Akurasi}
+Pengukuran akurasi terbagi menjadi 2 yaitu akurasi deteksi detak dan akurasi deteksi aritmia. Untuk mengukur akurasi jumlah kelas (detak dan aritmia) digunakan persamaan \ref{eq:accuracy}, \ref{eq:specificity} dan \ref{eq:sensitivity}.
 
 \begin{equation}
 	Accuracy = \frac{TP + TN}{TP+TN+FP+FN}
@@ -519,10 +471,14 @@ Pengukuran akurasi terbagi menjadi 2 yaitu akurasi deteksi detak dan akurasi det
 \end{equation}
 \begin{equation}
 	Specificity = \frac{TN}{TN+FP}
-	\label{eq:precission}
+	\label{eq:specificity}
+\end{equation}
+\begin{equation}
+	Sensitivity = \frac{TP}{FN+TP}
+	\label{eq:sensitivity}
 \end{equation}
 
-\begin{table}
+\begin{table}[H]
 	\centering
 	\begin{tabular}{L{3cm}|C{3cm}|C{3cm}|}
 	 & \textbf{Predicted: No} & \textbf{Predicted Yes} \\
