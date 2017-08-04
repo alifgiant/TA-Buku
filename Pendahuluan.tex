@@ -3,7 +3,7 @@
 %--Overview--\\
 Penyakit jantung (Cardiovascular Diseases, CVDs) merupakan penyakit yang dapat menyerang siapa saja, terjadi kapan saja dan dimana saja. WHO mencatat terjadi sekitar 17,7 juta kematian diakibatkan oleh CVDs di seluruh dunia pada tahun 2015\cite{who2015facts}. Dilain pihak menurut Dinas Kesehatan Republik Indonesia, lebih dari 3 juta kematian akibat CVDs terjadi sebelum usia 60 tahun\cite{depkes2014}. CVDs juga umumnya tidak memiliki gejala sebelum penyakit menyerang\cite{who2015facts}. Oleh karena itu, diperlukan \textit{monitoring} (pemantauan) jantung yang dapat dilakukan secara terus-menerus.
 
-Telah banyak dikembangkan produk untuk melakukan monitoring baik menggunakan \textit{Electrocardiogram} (ECG) dan \textit{Photoplethysmogram} (PPG)[xx, xx]. Beberapa produk tersebut bahkan dapat memberitahu jumlah \textit{Beat Per Minute} (BPM, detak jantung tiap menit) dan melakukan perekaman aktivitas jantung. Rekam jantung bermanfaat bagi dokter jantung untuk melakukan analisis penyakit dan merancang metode pengobatan. Salah satu jenis CVDs yang dapat diidentifikasi dari rekam jantung ialah Aritmia.
+Telah banyak dikembangkan produk untuk melakukan monitoring baik menggunakan \textit{Electrocardiogram} (ECG) \cite{endo_holter} dan \textit{Photoplethysmogram} (PPG)\cite{online:fitbit, online:samsung_gear}. Beberapa produk tersebut bahkan dapat memberitahu jumlah \textit{Beat Per Minute} (BPM, detak jantung tiap menit) dan melakukan perekaman aktivitas jantung. Rekam jantung bermanfaat bagi dokter jantung untuk melakukan analisis penyakit dan merancang metode pengobatan. Salah satu jenis CVDs yang dapat diidentifikasi dari rekam jantung ialah Aritmia.
 
 Menurut literatur, Aritmia adalah ritme detak jantung yang tidak teratur\cite{cvd_is}. Aritmia tergolong mudah untuk diidentifikasi berdasarkan gambar rekam jantung seseorang. Sebagian besar jenis aritmia tergolong tidak berbahaya (serangan kecil)\cite{arrhythmia_is}. Walaupun tidak berbahaya, jika artimia tersebut sering diabaikan potensi serangan aritmia yang lebih besar meningkat, contohnya ketika \textit{Premature Ventricular Contraction} (PVC) terjadi berulang kali dapat menandakan terjadinya serangan besar seperti \textit{Ventricular Tachycardia} (VT) dan \textit{Ventricular Fibrillation} (VF) \cite{rr_classification}. Berdasarkan studi pustaka yang penulis lakukan, beberapa penelitian sebelumnya telah berhasil membuat algoritma untuk mendeteksi aritmia secara otomatis \cite{rr_classification, aritmia_svm, aritmia_swarm, aritmia_ann}.
 
@@ -42,7 +42,7 @@ Untuk membatasi perancangan sistem tugas akhir ini menetapkan batasan sebagai be
     \item Metode klasifikasi yang diuji ialah metode yang diusulkan oleh Pan-Tomkins dan Tsipouras-Fotiadis
     \item Nilai Pulse Arrival Time (PAT) dianggap konstan.
 \end{enumerate}
-\section{Tujuan}
+\section{Tujuan}\label{bab1:tujuan}
 Berikut adalah tujuan yang ingin dicapai pada penulisan Tugas Akhir yaitu:
 \begin{enumerate}
     \item Merancang arsitektur sistem monitoring jantung yang bersifat ubiquitous dan terus menerus,

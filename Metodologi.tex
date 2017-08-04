@@ -53,7 +53,7 @@ Secara umum sistem bekerja dimulai dari pengambilan data jantung menggunakan \te
 \section{Rancangan Perangkat Keras}
 Sistem yang dirancang haruslah diimplementasikan untuk diuji coba. Oleh karena itu perlu dilakukan pemilihan perangkat keras. Perangkat keras dipilih berdasarkan pada kebutuhan rancangan sistem. Perangkat keras dibagi menjadi 3 bagian yaitu \textit{Receptor}, \textit{Server}, dan \textit{dashboard}.
 
-Setelah perangkat keras ditentukan, algoritma yang sesuai untuk diterapkan harus dirancang. Rancangan algoritma terbagi menjadi 2 alur yaitu alur deteksi dan alur pemantauan. Rancangan algoritma dijelaskan lebih lengkap pada sub bab \ref{ssec:algorithm_design_1} dan sub bab \ref{ssec:algorithm_design_2}.
+Setelah perangkat keras ditentukan, algoritma yang sesuai untuk diterapkan harus dirancang. Rancangan algoritma terbagi menjadi 2 alur yaitu alur deteksi dan alur pemantauan. Rancangan proses mengenai algoritma dijelaskan lebih lengkap pada sub bab \ref{ssec:algorithm_design_1} dan sub bab \ref{ssec:algorithm_design_2}.
 
 \subsection{Receptor}
 Receptor berfungsi untuk mengambil data aktivitas jantung seorang pasien. Sistem yang dibangun tidak dapat menggunakan produk monitoring yang sudah ada karena sistem tersebut tidak bersifat \textit{Open Source}. Hal ini mengakibatkan penulis tidak bisa melakukan konfigurasi terhadap sensor dan \textit{controller}-nya. Konfigurasi yang dimaksud ialah menaikkan atau menurunkan frekuensi sampel dan transmit. Oleh karena itu penulis merancang receptor khusus untuk penelitian tugas akhir ini. Receptor dibangun dengan 3 komponen utama yaitu \textit{Sensor}, \textit{Controller}, dan baterai. Secara lengkap skema elektronik dapat dilihat pada gambar \ref{fig:schematics}.
@@ -186,18 +186,19 @@ y(n) = \dfrac{n (y_{2} - y_{1})}{d} + v_{1}
 $v_{1}$ adalah nilai terakhir yang diterima, $v_{2}$ adalah nilai terbaru yang diterima, $n$ adalah jarak dari index terakhir, $d$ adalah jarak index terbaru ke terakhir. $y$ adalah nilai index $n$ yang hilang
 
 \subsubsection{b. Filtering}
-Filtering berfungsi untuk menghilangkan noise yang mempengaruhi sinyal. \textit{Noise} yang umum terdapat ialah \textit{muscle noise} dan \textit{baseline wander}. Filtering yang diterapkan terbagi menjadi dua tahap yaitu \textit{Band Pass Finite Impulse Response(FIR) Filter} kemudian \textit{First Order Derivation Filter}. Tahap ini sesuai dangan algoritma yang diusulkan oleh Pan-Tomkins (1985)\cite{pantom} dan Kalidas-Tamil (2016) \cite{ecg_syncro}. \textit{Band Pass Filter} yang digunakan memiliki frekuensi response 5-15Hz. Daftar koefisien lengkap untuk \textit{Band Pass Filter} dan \textit{Derivation Filter} tercantum pada tabel x.x di bab lampiran.
+Filtering berfungsi untuk menghilangkan noise yang mempengaruhi sinyal. \textit{Noise} yang umum terdapat ialah \textit{muscle noise} dan \textit{baseline wander}. Filtering yang diterapkan terbagi menjadi dua tahap yaitu \textit{Band Pass Finite Impulse Response(FIR) Filter} kemudian \textit{First Order Derivation Filter}. Tahap ini sesuai dangan algoritma yang diusulkan oleh Pan-Tomkins (1985)\cite{pantom} dan Kalidas-Tamil (2016) \cite{ecg_syncro}. Penerapan algortima Kalidas-Tamil dilakukan pada desain \textit{Band Pass Filter} yang digunakan. Band Pass Filter ini dirancang untuk memiliki frekuensi response 5-15Hz sehingga bisa memproses sinyal PPG. Daftar koefisien lengkap untuk \textit{Band Pass Filter} tercantum pada tabel \ref{lampiran:bandpass} di bab lampiran. Sedangkan untuk\textit{Derivation Filter} mengikuti persamaan \ref{eq:derr}.
+
+\begin{equation}
+y(n) = 2v_{n} + v_{n-1} - v_{n-3} - 2v_{n-4}
+\label{eq:derr}
+\end{equation}
 
 \subsubsection{c. Squaring dan Moving Window Integration (MWI)}
-Sesuai namanya \textit{Squaring} melakukan penguadratan (persamaan \ref{eq:square}) terhadap data. Sedangkan MWI melakukan penghalusan data berdasarkan n data sebelum. MWI dilakukan dengan persamaan \ref{eq:mwi}.
+Sesuai namanya \textit{Squaring} melakukan penguadratan (persamaan \ref{eq:square}) terhadap data. Sedangkan MWI melakukan penghalusan data berdasarkan n data sebelum. MWI dilakukan dengan persamaan menjumlahkan nilai posisi i hingga posisi i-47.
 
 \begin{equation}
 y = x^{2}
 \label{eq:square}
-\end{equation}
-\begin{equation}
-y(n) = 2v_{n} + v_{n-1} - v_{n-3} - 2v_{n-4}
-\label{eq:mwi}
 \end{equation}
 
 \begin{figure}[H]

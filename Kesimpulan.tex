@@ -1,6 +1,12 @@
 \chapter{Kesimpulan dan Saran}
 \section{Kesimpulan}
-Arsitektur \textit{monitoring} detak jantung dan peringatan aritmia berhasil dirancang dan diimplementasikan. Hal ini dapat dilihat dari tercapainya semua tujuan tugas akhir yang yang ditandai oleh hasil pengujian.
+Berdasarkan hasil pengujian dapat diambil beberapa kesimpulan sebagai berikut:
+
+\begin{enumerate}
+	\item Arsitektur \textit{monitoring} jantung yang bersifat ubiquitous dan terus menerus berhasil dirancang dan diimplementasikan. Hal ini dapat dilihat dari berhasilnya dilakukan pengujian terhadap arsitektur yang dibahas pada bab \ref{bab4}.
+	\item Mode monitoring yang dirancang dapat mengawasi banyak pasien sekaligus serta memberikan peringatan otomatis ketika terjadi aritmia. Pernyataan ini didukung oleh hasil pembuktian matematis dan performa akurasi deteksi yang dibahas pada sub bab \ref{bab4:pembahasan}.
+	\item Arsitektur yang dirancang memiliki delay pengiriman sebesar \delay, waktu eksekusi pada \textit{receptor} sebesar \exec, waktu eksekusi pada server sebesar \execs, dan performa akurasi sebesar \accuracy. Receptor memiliki maksimum frekuensi sampel sebesar 200Hz dan secara matematis server bisa menangani hingga \sensor \textit{devices} secara bersamaan.
+\end{enumerate}
 
 \section{Saran}
 Berdasarkan proses perancangan dan pengujian sistem, penulis melihat beberapa pengembangan rancangan dan langkah pengujian yang dapat dilakukan, antara lain:

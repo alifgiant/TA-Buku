@@ -1,4 +1,4 @@
-\chapter{Hasil dan Pembahasan}
+\chapter{Hasil dan Pembahasan} \label{bab4}
 \section{Hasil Pengujian}
 Setelah melaksanakan pengujian sistem seperti yang telah dibahas pada bab sebelumnya sub bab ini akan memaparkan hasil dari percobaan.
 \subsection{Jumlah Fitur Sistem}\label{hasil:jumlahfitur}
@@ -55,18 +55,18 @@ Pengujian dilakukan oleh pengguna yang bergerak secara bebas dalam wilayah cakup
 
 Pengujian pada \textit{receptor} dilakukan sebanyak 3 kali pada waktu yang berdekatan (setelah pengujian, \textit{receptor} di \textit{reboot}). Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi percobaan-1 4.36471 ms, percobaan-2 4.74046 ms dan percobaan-3 4.93947 ms. Hasil pengukuran waktu eksekusi tertera pada gambar \ref{fig:exec_time}. Rata-rata ketiga percobaan ialah 4.68155 ms per sampel.
 
-Pengujian pada \textit{server} dilakukan dengan 3 \textit{receptor} yang terhubung (2 + 1 virtual). Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi percobaan-1 0.009496 ms, percobaan-2 0.007823 ms dan percobaan-3 0.008909 ms. Hasil pengukuran waktu eksekusi tertera pada gambar \ref{fig:exec_time2}. Rata-rata ketiga percobaan ialah 0.008742 ms per sampel.
+Pengujian pada \textit{server} dilakukan dengan 3 \textit{receptor} yang terhubung (2 + 1 virtual). Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi percobaan-1 0.005012 ms, percobaan-2 0.007701 ms dan percobaan-3 0.006004 ms. Hasil pengukuran waktu eksekusi tertera pada gambar \ref{fig:exec_time2}. Rata-rata ketiga percobaan ialah \execs ms per sampel.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{images/exec_time1.png}
+	\includegraphics[scale=0.7]{images/exec_time1.png}
 	\caption{Hasil Pengukuran Waktu Eksekusi Pada Receptor}
 	\label{fig:exec_time}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{images/exec_time2.png}
+	\includegraphics[scale=0.7]{images/exec_time2.png}
 	\caption{Hasil Pengukuran Waktu Eksekusi Pada Server}
 	\label{fig:exec_time2}
 \end{figure}
@@ -94,7 +94,7 @@ Pengujian pada \textit{server} dilakukan dengan 3 \textit{receptor} yang terhubu
 %\end{table}
 
 \subsection{Akurasi}
-Setelah melakukan pengujian didapatkan hasil akurasi 94\% untuk detaksi detak dan xx\% untuk deteksi aritmia.
+Setelah melakukan pengujian didapatkan hasil akurasi 99\% untuk detaksi detak dan \accuracy untuk deteksi aritmia.
 \subsubsection{Akurasi Deteksi Puncak}
 Dilakukan percobaan untuk menemukan konfigurasi konstanta deteksi $d$ (durasi window), $\alpha$ (\textit{peak threshold, val by mean}), dan $\beta$ (\textit{min distance threshold, idx by R}). Hasil percobaan dapat dilihat pada tabel \ref{table:exec_time3} dengan variabel eksperimen yang tertera pada tabel \ref{table:experiment_var}. Sedangkan hasil percobaan menggunakan algoritma Pan-Tompkins yang asli dapat dilihat pada tabel \ref{fig:original_pantom}.
 
@@ -162,11 +162,11 @@ Pengujian akurasi deteksi aritmia terbagi menjadi 3 bagian. Pengujian pertama, s
 	\label{fig:aritmia_specificity}
 \end{table}
 
-\section{Pembahasan}
-Dengan pengimplementasian rancangan arsitektur, sistem yang dibangun dapat memiliki semua fitur yang dimiliki sistem sejenis (\ref{hasil:jumlahfitur}). Delay yang terjadi selama pengiriman sampel selalu berubah ubah namun memiliki rata rata 1.47326 ms. Perubahan nilai delay terjadi karena pengaruh kehandalan jaringan (WiFi) dan subjek yang bebas bergerak. 
+\section{Pembahasan}\label{bab4:pembahasan}
+Dengan pengimplementasian rancangan arsitektur, sistem yang dibangun dapat memiliki semua fitur yang dimiliki sistem sejenis (\ref{hasil:jumlahfitur}). Delay yang terjadi selama pengiriman sampel selalu berubah ubah namun memiliki rata rata \delay. Perubahan nilai delay terjadi karena pengaruh kehandalan jaringan (WiFi) dan subjek yang bebas bergerak. 
 
-Waktu eksekusi diukur pada \textit{receptor} dan \textit{server}. Pada \textit{receptor} terlihat waktu eksekusi yang berubah ubah, ini dipengaruhi oleh adanya \textit{interupt} pengambilan sampel, pembuatan dan pengiriman paket, dan \textit{buffer memory management}. Sebagai perbandingan, tanpa melakukan pengiriman waktu eksekusi hanya selama 0.001 ms (waktu untuk mengambil sampel). Karena rata rata waktu eksekusi pada \textit{receptor} ialah 4.68 ms maka maksimum frekuensi sampel ialah 200Hz, atau setara dengan 1 sampel/5ms. 
+Waktu eksekusi diukur pada \textit{receptor} dan \textit{server}. Pada \textit{receptor} terlihat waktu eksekusi yang berubah ubah, ini dipengaruhi oleh adanya \textit{interupt} pengambilan sampel, pembuatan dan pengiriman paket, dan \textit{buffer memory management}. Sebagai perbandingan, tanpa melakukan pengiriman waktu eksekusi hanya selama 0.001 ms (waktu untuk mengambil sampel). Karena rata rata waktu eksekusi pada \textit{receptor} ialah \exec maka maksimum frekuensi sampel ialah 200Hz, atau setara dengan 1 sampel/5ms. 
 
-Sedangkan pada \textit{server}, terlihat waktu eksekusi sangat tinggi pada permulaan kemudian sangat rendah lalu berfluktuasi, hal ini disebabkan oleh server yang membutuhkan waktu lebih lama untuk memulai \textit{subprocess} untuk tiap \textit{receptor} yang terhubung. Kemudian, tiap proses hanya mengisi buffer hingga cukup untuk dilakukan operasi deteksi. Penggunaan Node.JS sebagai server juga memberikan dampak dalam kecepatan. Dibandingkan dengan Python, Node.JS dapat bekerja hampir 3 kali lebih cepat (gambar \ref{table:exec_time3}). Karena maksimum frekuensi sampel yang dapat diterapkan ialah 1 sampel tiap 5ms dan waktu eksekusi 1 sampel ialah 0.008742 ms maka secara matematis server dapat memproses sekitar 570 device secara bersamaan (maksimum total sensor dan dashboard yang terhubung, 5ms / 0.008742ms).
+Sedangkan pada \textit{server}, terlihat waktu eksekusi sangat tinggi pada permulaan kemudian sangat rendah lalu berfluktuasi, hal ini disebabkan oleh server yang membutuhkan waktu lebih lama untuk memulai \textit{subprocess} untuk tiap \textit{receptor} yang terhubung. Kemudian, tiap proses mengisi buffer hingga terisi untuk dilakukan operasi deteksi. Penggunaan Node.JS sebagai server juga memberikan dampak dalam kecepatan. Dibandingkan dengan Python, Node.JS dapat bekerja hampir 3 kali lebih cepat (gambar \ref{table:exec_time3}). Karena maksimum frekuensi sampel yang dapat diterapkan ialah 1 sampel tiap 5ms dan waktu eksekusi 1 sampel ialah \execs maka secara matematis server dapat memproses sekitar \sensor device secara bersamaan (maksimum total sensor dan dashboard yang terhubung, 5ms / \execs).
 
 Pada segi performansi, algortima deteksi puncak R terlihat hasil modifikasi menghasilkan akurasi, \textit{specificity} dan \textit{sensitivity} yang hampir menyamai algoritma pantomkins yang asli bahkan cenderung lebih baik (kecuali sensitivity). Hal ini secara langsung berdampak pada performa algoritma deteksi aritmia yang diterapkan sehingga menghasilkan tren performa yang sama (lebih rendah pada paramater sensitivity).
