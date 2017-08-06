@@ -41,32 +41,32 @@ Untuk menyelesaikan masalah yang ditemukan, penulis merancang sebuah solusi sist
 	\item bagi dokter agar dia dapat merancang pengobatan sesuai analis dokter tersebut.
 \end{enumerate}
 
-Secara umum sistem bekerja dimulai dari pengambilan data jantung menggunakan \textit{Receptor} yang diletakkan pada pergelangan tangan. Receptor kemudian secara periodik melakukan sampel dan mengirimkan sampel tersebut ke server untuk diproses lebih lanjut. Pengguna sistem dapat kapan saja melihat data aktivitas jantung melalui \textit{dashboard} berupa halaman \textit{web} atau ponsel android. Ketika server mendeteksi kemunculan artimia, server akan secara otomatis mengirimkan pesan peringatan kepada \textit{dashboard} di pengguna sistem. Arsitektur sistem secara umum digambarkan pada gambar \ref{fig:gambar_umum}.
+Secara umum sistem bekerja dimulai dari pengambilan data jantung menggunakan \textit{Data Acquisition Unit}(DAU) yang diletakkan pada pergelangan tangan. DAU kemudian secara periodik melakukan sampel dan mengirimkan sampel tersebut ke SPU untuk diproses lebih lanjut. Pengguna sistem dapat kapan saja melihat data aktivitas jantung melalui \textit{Client Monitoring Unit}(CMU) berupa halaman \textit{web} atau aplikasi pada ponsel android. Ketika \textit{Server Processing Unit}(SPU) mendeteksi kemunculan artimia, SPU akan secara otomatis mengirimkan pesan peringatan kepada CMU di pengguna sistem. Arsitektur sistem secara umum digambarkan pada gambar \ref{fig:gambar_umum}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.8]{images/gambar_umum.png}
+	\includegraphics[scale=0.45]{images/gambar_umum.png}
     \caption{Gambaran Umum Sistem}
 	\label{fig:gambar_umum}
 \end{figure}
 
 \section{Rancangan Perangkat Keras}
-Sistem yang dirancang haruslah diimplementasikan untuk diuji coba. Oleh karena itu perlu dilakukan pemilihan perangkat keras. Perangkat keras dipilih berdasarkan pada kebutuhan rancangan sistem. Perangkat keras dibagi menjadi 3 bagian yaitu \textit{Receptor}, \textit{Server}, dan \textit{dashboard}.
+Sistem yang dirancang haruslah diimplementasikan untuk diuji coba. Oleh karena itu perlu dilakukan pemilihan perangkat keras. Perangkat keras dipilih berdasarkan pada kebutuhan rancangan sistem. Perangkat keras dibagi menjadi 3 bagian yaitu \textit{Data Acquisition Unit}(DAU), \textit{Server Processing Unit}(SPU), dan \textit{Client Monitoring Unit}(CMU).
 
 Setelah perangkat keras ditentukan, algoritma yang sesuai untuk diterapkan harus dirancang. Rancangan algoritma terbagi menjadi 2 alur yaitu alur deteksi dan alur pemantauan. Rancangan proses mengenai algoritma dijelaskan lebih lengkap pada sub bab \ref{ssec:algorithm_design_1} dan sub bab \ref{ssec:algorithm_design_2}.
 
-\subsection{Receptor}
-Receptor berfungsi untuk mengambil data aktivitas jantung seorang pasien. Sistem yang dibangun tidak dapat menggunakan produk monitoring yang sudah ada karena sistem tersebut tidak bersifat \textit{Open Source}. Hal ini mengakibatkan penulis tidak bisa melakukan konfigurasi terhadap sensor dan \textit{controller}-nya. Konfigurasi yang dimaksud ialah menaikkan atau menurunkan frekuensi sampel dan transmit. Oleh karena itu penulis merancang receptor khusus untuk penelitian tugas akhir ini. Receptor dibangun dengan 3 komponen utama yaitu \textit{Sensor}, \textit{Controller}, dan baterai. Secara lengkap skema elektronik dapat dilihat pada gambar \ref{fig:schematics}.
+\subsection{\textit{Data Acquisition Unit} (DAU)}
+\textit{Data Acquisition Unit} (DAU) berfungsi untuk mengambil data aktivitas jantung seorang pasien. Sistem yang dibangun tidak dapat menggunakan produk \textit{monitoring} yang sudah ada karena sistem tersebut tidak bersifat \textit{Open Source}. Hal ini mengakibatkan penulis tidak bisa melakukan konfigurasi terhadap \textit{sensor} dan \textit{controller}-nya. Konfigurasi yang dimaksud ialah menaikkan atau menurunkan frekuensi sampel dan transmit. Oleh karena itu penulis merancang DAU khusus untuk penelitian tugas akhir ini. DAU dibangun dengan 3 komponen utama yaitu \textit{Sensor}, \textit{Controller}, dan baterai. Secara lengkap skema elektronik pada DAU dapat dilihat pada gambar \ref{fig:schematics}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{images/schematics.png}
-\caption{Skema Elektronik Receptor}
+\caption{Skema Elektronik DAU}
 \label{fig:schematics}
 \end{figure}
 
 \subsubsection{a. Sensor}
-Sistem dirancang untuk mengembangkan produk pemantauan jantung yang sudah ada di pasaran. Berdasarkan pengetahuan yang telah dibangun pada bab kajian pustaka, terdapat 2 jenis sensor yang umum digunakan yaitu ECG dan PPG. Berdasarkan rancangan algoritma pada sub bab \ref{ssec:algorithm_design} fitur yang dipilih dapat dihasilkan baik oleh ECG maupun PPG. Dengan demikian ECG dan PPG dapat digunakan dalam sistem.
+Sistem dirancang untuk mengembangkan produk pemantauan jantung yang sudah ada di pasaran. Berdasarkan pengetahuan yang telah dibangun pada bab kajian pustaka, terdapat 2 jenis sensor yang umum digunakan yaitu ECG dan PPG. Berdasarkan rancangan proses deteksi pada sub bab \ref{ssec:algorithm_design_2} fitur yang dipilih dapat dihasilkan baik oleh ECG maupun PPG. Dengan demikian ECG dan PPG dapat digunakan dalam sistem.
 
 Dalam tugas akhir ini, penulis memilih menggunakan PPG. Sensor PPG yang digunakan merupakan produksi Pulse Sensor yang dirancang oleh Joel dan Yury \cite{pulse_sensor}, terlihat pada gambar \ref{fig:coin_esp_pulse}. Alasan penulis milihan PPG ialah karena:
 \begin{enumerate}
@@ -77,10 +77,10 @@ Dalam tugas akhir ini, penulis memilih menggunakan PPG. Sensor PPG yang digunaka
 \end{enumerate}
 
 \subsubsection{b. Controller}
-Sistem dirancang untuk monitoring terus menerus dan \textit{Ubiquitous}. Maka receptor haruslah cukup kecil untuk dibawa kemana saja dan menggunakan media komunikasi \textit{wireless} (tanpa kabel) untuk beriteraksi dengan server. Terdapat banyak jenis media komunikasi \textit{wireless} seperti GSM/CDMA, WiFi, Bluetooth, Infra Red, Zigbee, dll. WiFi dipilih sebagai media, pada sistem, karena jarak cakup yang cukup besar dan mudah untuk dikonfigurasi. Berdasarkan pengetahuan yang telah dibangun pada bab kajian pustaka, terdapat sebuah SoC yang telah memiliki kemampuan \textit{controller} dan memiliki modul WiFi dengan ukuran yang kecil yaitu ESP-12. Oleh karena itu receptor dirancang menggunakan ESP-12.
+Sistem dirancang untuk monitoring terus menerus dan \textit{Ubiquitous}. Maka DAU haruslah cukup kecil untuk dibawa kemana saja dan menggunakan media komunikasi \textit{wireless} (tanpa kabel) untuk beriteraksi dengan SPU. Terdapat banyak jenis media komunikasi \textit{wireless} seperti GSM/CDMA, WiFi, Bluetooth, Infra Red, Zigbee, dll. WiFi dipilih sebagai media, pada sistem, karena jarak cakup yang cukup besar dan mudah untuk dikonfigurasi. Berdasarkan pengetahuan yang telah dibangun pada bab kajian pustaka, terdapat sebuah SoC yang telah memiliki kemampuan \textit{controller} dan memiliki modul WiFi serta berukuran kecil yaitu ESP-12. Oleh karena itu DAU dirancang menggunakan ESP-12.
 
 \subsubsection{c. Baterai}
-Untuk memungkinkan receptor dibawa kemana saja dan dikenakan terus menerus diperlukan baterai sebagai catuan. Pada tugas akhir ini penulis menggunakan baterai \textit{Li-Polymer} (LiPo) \textit{protected} berkapasitas 180mAh dan tegangan 3.7V. Baterai ini juga berukuran kecil yaitu 25x18x8 mm dan memiliki bobot 5.3 gr, terlihat pada gambar \ref{fig:battery}.
+Untuk memungkinkan DAU dibawa kemana saja dan dikenakan terus menerus, diperlukan baterai sebagai sumber catuan. Pada tugas akhir ini penulis menggunakan baterai \textit{Li-Polymer} (LiPo) \textit{protected} berkapasitas 180mAh dan tegangan 3.7V. Baterai ini juga berukuran kecil yaitu 25x18x8 mm dan memiliki bobot 5.3 gr, terlihat pada gambar \ref{fig:battery}.
 
 \begin{figure}[H]
 	\centering
@@ -89,36 +89,36 @@ Untuk memungkinkan receptor dibawa kemana saja dan dikenakan terus menerus diper
 	\label{fig:battery}
 \end{figure}
 
-\subsection{Server}
-Untuk mengimplemantasikan konsep IoT server dirancang agar bisa melayani banyak \textit{receiver} dan \textit{dashboard}. Oleh karena itu server harus melayani komunikasi dengan arus data yang tinggi. Alasan ini mendorong penulis memilih menggunakan protokol MQTT sebagai protokol komunikasi, NodeJs sebagai runtime dan MongoDb sebagai penyimpanan data. Server dirancang agar bisa berjalan pada satu perangkat. Hal ini berarti MQTT broker, Web server, DB server, dan Algoritma Detector berjalan pada satu alamat IP yang sama. 
+\subsection{\textit{Server Processing Unit} (SPU)}
+Untuk mengimplemantasikan konsep IoT, sebuah \textit{Server Processing Unit} (SPU) dirancang agar bisa melayani banyak DAU dan CMU. Oleh karena itu SPU harus mampu melayani komunikasi data dengan arus yang tinggi. Alasan ini mendorong penulis memilih menggunakan protokol MQTT sebagai protokol komunikasi, NodeJs sebagai \textit{runtime} dan MongoDb sebagai pengelola penyimpanan data. SPU dirancang agar bisa berjalan pada satu perangkat. Hal ini berarti MQTT broker, \textit{Web Server}, \textit{Database Server}, dan \textit{Detector} berjalan pada satu alamat IP yang sama. 
 
-\subsection{Dashboard}
-Sistem dirancang memiliki 2 saluran pemantauan yaitu halaman \textit{web} dan aplikasi pada ponsel Android. Kedua saluran ini dapat melakukan pemantauan selama berada dalam jaringan yang sama dengan server. Penulis memilih Android karena memiliki jumlah pengguna terbesar didunia[xx] sehingga bisa diasumsikan sistem yang dirancang bisa digunakan oleh banyak orang.
+\subsection{\textit{Client Monitoring Unit} (CMU)}
+Sistem dirancang memiliki 2 jeni CMU yaitu halaman \textit{web} dan aplikasi pada ponsel Android. Kedua saluran ini dapat melakukan pemantauan selama berada dalam jaringan yang sama dengan SPU. Penulis memilih Android karena memiliki jumlah pengguna terbesar didunia. Sehingga bisa diasumsikan sistem yang dirancang bisa digunakan oleh banyak orang.
 
 \subsubsection{a. Halaman Web}
-Halaman web dibangun menggunakan \textit{framework} Express.Js. Pada halaman web terjadinya aritmia ditandai dengan bunyi dan bertambahnya angka hitungan aritmia yang terdeteksi. Tampilan halaman web dapat dilihat pada gambar \ref{fig:dashboard_apps}.
+Halaman web dibangun menggunakan \textit{framework} Express.Js. Pada halaman web terjadinya aritmia ditandai dengan bunyi dan bertambahnya angka hitungan aritmia yang terdeteksi. Tampilan halaman web dapat dilihat pada gambar \ref{fig:CMU_apps}.
 
 \subsubsection{b. Aplikasi Ponsel Android}
-Aplikasi ponsel android dibangun untuk dapat berjalan pada ponsel android ber-OS (\textit{operating system}) minimal Jelly Bean (Android v4.1). Pada aplikasi ini terjadinya aritmia ditandai dengan bunyi atau berubahnya status deteksi dan kode warna ikon seru. Kode warna merah berarti terdeteksi aritmia berbahaya, kuning terdeteksi aritmia tidak berbahaya, dan hijau berarti kondisi normal. Tampilan aplikasi android dapat dilihat pada gambar \ref{fig:dashboard_apps}.
+Aplikasi ponsel android dibangun untuk dapat berjalan pada ponsel android ber-OS (\textit{operating system}) minimal Jelly Bean (Android v4.1). Pada aplikasi ini terjadinya aritmia ditandai dengan bunyi atau berubahnya status deteksi dan kode warna ikon seru. Kode warna merah berarti terdeteksi aritmia berbahaya, kuning terdeteksi aritmia tidak berbahaya, dan hijau berarti kondisi normal. Tampilan aplikasi android dapat dilihat pada gambar \ref{fig:CMU_apps}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.26]{images/web_app.png}
-	\label{fig:dashboard_apps}
+	\label{fig:CMU_apps}
 	\includegraphics[scale=0.3]{images/phone_app.png}
 	\caption{a) Tampilan Web Monitoring b) Tampilan Aplikasi Monitoring}
-	\label{fig:dashboard_apps}
+	\label{fig:CMU_apps}
 \end{figure}
 
 \section{Rancangan Proses Pemantauan} \label{ssec:algorithm_design_1}
-Fungsi utama dari sistem yang dibuat ialah melakukan pemantauan. Untuk melakukan pemantauan sistem perlu mengaplikasikan algoritma pemantauan. Algoritma pemantauan hanya berjalan pada perangkat \textit{dashboard} yaitu halaman \textit{web} atau aplikasi ponsel android. Diagram alir algoritma pemantauan dapat dilihat pada gambar \ref{flow:fig_report_algorithm}.
+Fungsi utama dari sistem yang dibuat ialah melakukan pemantauan. Untuk melakukan pemantauan sistem perlu mengaplikasikan algoritma pemantauan. Algoritma pemantauan hanya berjalan pada perangkat CMU yaitu halaman \textit{web} atau aplikasi ponsel android. Diagram alir algoritma pemantauan dapat dilihat pada gambar \ref{flow:fig_report_algorithm}.
 \begin{figure}[H]
 	\centering
     %Mulai menggambar Flowchart
 \begin{tikzpicture}[node distance=2cm]
 \node (start) [cloud] {Start};
-\node (open) [process, below of=start] {Membuka dashboard};
-\node (input) [io, below of=open] {Memasukkan Kode Sensor / User};
+\node (open) [process, below of=start] {Mengakses Aplikasi CMU};
+\node (input) [io, below of=open] {Memasukkan Kode User};
 \node (page) [process, below of=input] {Membuka Halaman Pemantauan};
 \node (analysis) [process, below of=page] {Melakukan Analisis};
 \node (stop) [cloud, below of=analysis] {Stop};
@@ -132,7 +132,7 @@ Fungsi utama dari sistem yang dibuat ialah melakukan pemantauan. Untuk melakukan
 	\label{flow:fig_report_algorithm}
 \end{figure}
 
-\textit{Flowchart} diatas (gambar \ref{flow:fig_report_algorithm}) dimulai dengan seorang pengguna baik pasien, keluarga pasien, maupun dokter perlu membuka sebuah perangkat \textit{dashboard}. Setelah aplikasi terbuka, baik web maupun aplikasi ponsel, user perlu memasukkan kode sensor atau user yang ingin dipantau. Setelah kode pantau dimasukkan aplikasi akan membuka halaman pemantauan. Setelah grafik pemantauan mulai berjalan pengguna bisa melakukan analisis.
+\textit{Flowchart} diatas (gambar \ref{flow:fig_report_algorithm}) dimulai dengan seorang pengguna baik pasien, keluarga pasien, maupun dokter perlu membuka sebuah perangkat CMU. Setelah aplikasi terbuka, baik web maupun aplikasi ponsel, user perlu memasukkan kode sensor atau user yang ingin dipantau. Setelah kode pantau dimasukkan aplikasi akan membuka halaman pemantauan. Setelah grafik pemantauan mulai berjalan pengguna bisa melakukan analisis.
 
 \section{Rancangan Proses Deteksi} \label{ssec:algorithm_design_2}
 Fungsi berikutnya yang akan diterapkan dalam sistem ialah dapat melakukan pendeteksian aritmia otomatis. Untuk itu sistem perlu menerapkan algoritma deteksi. Algoritma deteksi yang diterapkan pada tugas akhir ini terbagi menjadi 5 tahap yaitu Pengambilan dan Pengiriman Sinyal, Preprocessing dan Perekaman, Deteksi Detak Otomatis, Deteksi Aritmia Otomatis dan Pengiriman Laporan. Diagram alir tahap algoritma deteksi digambarkan pada gambar \ref{flow:fig_detect_algorithm}.
@@ -144,7 +144,7 @@ Fungsi berikutnya yang akan diterapkan dalam sistem ialah dapat melakukan pendet
 \node (start) [cloud] {Start};
 \node (get) [process, below of=start] {1. Pengambilan dan Pengiriman Sinyal};
 \node (record) [process, below of=get] {2. Preprocessing dan Perekaman};
-\node (beat) [process, below of=record] {3. Deteksi Detak Otomatis};
+\node (beat) [process, below of=record] {3. Deteksi Puncak R};
 \node (aritmia) [process, below of=beat] {4. Deteksi Aritmia Otomatis};
 \node (detected) [decision, below of=aritmia] {Terdeteksi?};
 \node (report) [process, below of=detected] {5. Pengiriman Laporan};
@@ -163,7 +163,7 @@ Fungsi berikutnya yang akan diterapkan dalam sistem ialah dapat melakukan pendet
 \end{figure}
 
 \subsection{Pengambilan dan Pengiriman Sinyal}
-Pengambilan dan Pengiriman sinyal dilakukan di Receptor. Langkah pertama ialah \textit{controller} mengambil nilai pada pin analognya. Nilai pada pin analog lalu dikonversi menjadi satuan \textit{Volt}. Nilai yang telah dikonversi kemudian disisipkan header lalu dikirim  menggunakan protokol MQTT dengan QoS 0. \textit{Controller} kemudian tidur selama 2 ms lalu mengulang pengambilan dan pengiriman. Header berisi kode sensor dan angka index untuk menandakan urutan hasil bacaan. Index terebut direset setiap angka 1000. Diagram alir untuk memperjelas algoritma bagian ini dapat dilihat pada gambar \ref{flow:flow_sample}.
+Pengambilan dan Pengiriman sinyal dilakukan di DAU. Langkah pertama ialah \textit{controller} mengambil nilai pada pin analognya. Nilai pada pin analog lalu dimaksukkan ke dalam sebuah buffer sampel. Selama \textit{buffer} masih berisi maka DAU akan mencoba mengirimkan sampel yang paling pertama masuk (skema \textit{First In First Out}). Sebelum dikirim, sampel telah disisipkan header untuk kemudian dikirim menggunakan protokol MQTT dengan QoS 0 kepada SPU. Sampel akan diambil lagi setiap 5ms yang dikendalikan oleh sebuah \textit{thread interrupt}. Ketika tidak ada \textit{interrupt} pengambilan sampel dan \textit{buffer} telah kosong maka DAU akan masuk ke mode sleep. Header berisi kode sensor dan angka index untuk menandakan urutan hasil bacaan. Index terebut direset setiap angka 1000. Diagram alir untuk memperjelas algoritma bagian ini dapat dilihat pada gambar \ref{flow:flow_sample}.
 
 \begin{figure}[H]
 \centering
@@ -173,10 +173,10 @@ Pengambilan dan Pengiriman sinyal dilakukan di Receptor. Langkah pertama ialah \
 \end{figure}
 
 \subsection{Preprocessing dan Perekaman}
-Setelah data diterima oleh server. Server melakukan \textit{preprocessing} pada data. \textit{Preprocessing} yang dilakukan terbagi menjadi \textit{data completer}, \textit{filtering}, \textit{squaring}, \textit{moving window integration}(MWI) dan \textit{Adaptive Thresholding}. Setelah \textit{filtering} dilakukan nilai dianggap telah bersih \textit{noise} maka nilai ini di simpan/rekam di \textit{database}. Preprocessing berlanjut ke \textit{squaring} dan MWI. Terakhir ekstraksi fitur \textit{peak} (R pada ECG dan Systolic pada PPG) dilakukan dengan \textit{Adaptive Thresholding}. Diagram alir algoritma \textit{preprocessing} dapat dilihat pada gambar \ref{flow:fig_preproc_algorithm}. Rangkaian \textit{preprocessing} ini merupakan modifikasi pada algoritma yang diusulkan oleh Pan-Tomkin (1985) (sub bab \ref{bab2_pantom}) dan Kalidas-Tamil (2016) agar kedua algoritma ini bisa bekerja untuk ECG dan PPG.
+Setelah data diterima, SPU kemudian melakukan \textit{preprocessing} pada data. \textit{Preprocessing} yang dilakukan terbagi menjadi \textit{data correction}, \textit{filtering}, \textit{squaring}, \textit{moving window integration}(MWI) dan \textit{Adaptive Thresholding}. Setelah \textit{filtering} dilakukan nilai dianggap telah bersih \textit{noise} maka nilai ini di simpan/rekam di \textit{database}. Preprocessing berlanjut ke \textit{squaring} dan MWI. Terakhir ekstraksi fitur \textit{peak} (R pada ECG dan Systolic pada PPG) dilakukan dengan \textit{Adaptive Thresholding}. Diagram alir algoritma \textit{preprocessing} dapat dilihat pada gambar \ref{flow:fig_preproc_algorithm}. Rangkaian \textit{preprocessing} ini merupakan modifikasi pada algoritma yang diusulkan oleh Pan-Tomkin (1985) (sub bab \ref{bab2_pantom}) dan Kalidas-Tamil (2016) agar kedua algoritma ini bisa bekerja untuk ECG dan PPG.
 
-\subsubsection{a. Data Completer}
-Data Completion berfungsi ialah algoritma untuk menangani hilangnya data selama pengiriman. Hal ini mungkin terjadi karena data dikirimkan dari \textit{receptor} menggunakan QoS 0. Pertama, data dipisahkan antara nilai pembacaan sensor dan header. Header kemudian digunakan untuk memisahkan proses perhitungan, setiap kode sensor akan memiliki proses sendiri. Jika terdapat locatan index pada header (index data yg diterima bukan bertambah 1 dari index data sebelumnya) maka proses akan menambah data buffer sebanyak jumlah index yang terlompati dengan nilai berdasarkan proyeksi garis lurus dari nilai terakhir ke nilai terbaru mengikuti persamaan \ref{eq:line}. Jika tidak ada nilai yang hilang maka nilai akan langsung dimasukkan ke buffer.
+\subsubsection{a. Data Correction}
+Data Correction berfungsi ialah algoritma untuk menangani hilangnya data selama pengiriman. Hal ini mungkin terjadi karena data dikirimkan dari DAU menggunakan QoS 0. Pertama, data dipisahkan antara nilai pembacaan sensor dan header. Header kemudian digunakan untuk memisahkan proses perhitungan, setiap kode sensor akan memiliki proses sendiri. Jika terdapat locatan index pada header (index data yg diterima bukan bertambah 1 dari index data sebelumnya) maka proses akan menambah data buffer sebanyak jumlah index yang terlompati dengan nilai berdasarkan proyeksi garis lurus dari nilai terakhir ke nilai terbaru mengikuti persamaan \ref{eq:line}. Jika tidak ada nilai yang hilang maka nilai akan langsung dimasukkan ke buffer.
 
 \begin{equation}
 y(n) = \dfrac{n (y_{2} - y_{1})}{d} + v_{1}
@@ -294,7 +294,7 @@ $\beta$ merupakan variabel konstan untuk menaikkan threshold jarak RR. $i$ menun
 Deteksi Aritmia merupakan salah satu tujuan dari tugas akhir ini. Untuk melakukan deteksi aritmia pada tugas akhir ini menerapkan algoritma usulan Tsipouras (sub bab \ref{bab2_tsipouras}). Algoritma ini dipilih karena kelebihannya yaitu dapat melakukan deteksi hanya menggunakan jarak antar titik R pada data ECG. Karena hanya menggunakan titik R, maka algoritma ini juga dapat secara langsung diterapkan pada data PPG.
 
 \subsection{Visualisasi Gelombang Listrik Jantung}
-Pengguna dapat menerima laporan atau melakukan pemantauan pada \textit{dashboard} mereka. Namun untuk menjaga perangkat \textit{dashboard} dapat me-\textit{render} tampilan dengan baik perlu dilakukan penurunan kecepatan sample (lihat gambar \ref{flow:fig_preproc_algorithm}). Selain itu \textit{dashboard} harus terus menerus terkoneksi dengan \textit{Server} untuk bisa mendapatkan data \textit{real-time}. Sehingga kapanpun \textit{server} mendeteksi aritmia pengguna dapat melihat peringatan pada device mereka. 
+Pengguna dapat menerima laporan atau melakukan pemantauan pada \textit{CMU} mereka. Namun untuk menjaga perangkat \textit{CMU} dapat me-\textit{render} tampilan dengan baik perlu dilakukan penurunan kecepatan sample (lihat gambar \ref{flow:fig_preproc_algorithm}). Selain itu \textit{CMU} harus terus menerus terkoneksi dengan \textit{SPU} untuk bisa mendapatkan data \textit{real-time}. Sehingga kapanpun \textit{SPU} mendeteksi aritmia pengguna dapat melihat peringatan pada device mereka. 
 
 \begin{figure}[H]
 \centering
@@ -322,7 +322,7 @@ Pengguna dapat menerima laporan atau melakukan pemantauan pada \textit{dashboard
 \end{figure}
 
 \subsection{Integrasi Algoritma pada Perangkat Keras}
-Tahapan hubungan antara algoritma deteksi dengan perangkat keras digambarkan oleh gambar \ref{seq:fig_detect_algorithm2}. Seorang pasien yang mengenakan \textit{receptor} akan diambil data jantungnya kemudian dikirim ke \textit{server}. Ketika terdeteksi aritmia, \textit{server} akan mengirim \textit{flag} manandakan aritmia terdeteksi ke \textit{dashboard} yang kemudian dilihat oleh pasien, dokter dan keluarga pasien.
+Tahapan hubungan antara algoritma deteksi dengan perangkat keras digambarkan oleh gambar \ref{seq:fig_detect_algorithm2}. Seorang pasien yang mengenakan \textit{DAU} akan diambil data jantungnya kemudian dikirim ke \textit{SPU}. Ketika terdeteksi aritmia, \textit{SPU} akan mengirim \textit{flag} manandakan aritmia terdeteksi ke \textit{CMU} yang kemudian dilihat oleh pasien, dokter dan keluarga pasien.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{images/sequence1.png}
@@ -342,13 +342,13 @@ Berikut hubungan antara parameter penguji dengan tujuan tugas akhir:
 	\rowcolor{gray}
 	\textbf{No} & \textbf{Parameter} & \textbf{Tujuan yg Dicakup} & \textbf{Alasan}\\
 	\hline
-	1 & Jumlah Fitur Sistem & 2, 4 & Mengetahui apakah fitur yang direncanakan bisa berjalan. \\
+	1 & Jumlah Fitur Sistem & 1, 2 & Mengetahui apakah fitur yang direncanakan bisa berjalan. \\
 	\hline
-	2 & Delay & 1, 3, 4 & Dengan mengukur \textit{delay} dapat diketahui berapa lama proses pengiriman sehingga dapat diketahui seberapa \textit{Real Time} sistem dapat berjalan. \\
+	2 & Delay & 1 & Dengan mengukur \textit{delay} dapat diketahui berapa lama proses pengiriman sehingga dapat diketahui seberapa \textit{Real Time} sistem dapat berjalan. \\
 	\hline
-	3 & Execution Time & 1, 2, 3, 4 & Dengan mengukur execution time dapat diketahui seberapa banyak sensor yang dapat ditangani oleh spesifikasi server tertentu \\
+	3 & Execution Time & 1, 2 & Dengan mengukur execution time dapat diketahui seberapa banyak sensor yang dapat ditangani oleh spesifikasi SPU tertentu \\
 	\hline
-	%4 & FPS & 2, 4 & Dengan mengukur FPS dapat diketahui maksimum FPS agar dapat dijalankan pada banyak \textit{dashboard} \\
+	%4 & FPS & 2, 4 & Dengan mengukur FPS dapat diketahui maksimum FPS agar dapat dijalankan pada banyak \textit{CMU} \\
 	%\hline
 	4 & Akurasi & 3 & Dengan mengukur akurasi dapat diketahui seberapa akurat algoritma deteksi yang diterapkan \\
 	\hline
@@ -356,7 +356,7 @@ Berikut hubungan antara parameter penguji dengan tujuan tugas akhir:
 \end{table}
 
 \subsection{Konfigurasi Perangkat Keras}
-Spesifikasi perangkat keras yang digunakan selama pengujian dapat dilihat pada tabel \ref{tabel:spesifikasi}. Pengujian dilakukan dengan menghubungkan sebuah \textit{receiver}, kepada sebuah \textit{server} dan dipantau oleh 2 \textit{dashboard} (web dan ponsel). Hubungan jaringan perangkat keras digambarkan pada gambar \ref{fig:konfigurasi}.
+Spesifikasi perangkat keras yang digunakan selama pengujian dapat dilihat pada tabel \ref{tabel:spesifikasi}. Pengujian dilakukan dengan menghubungkan sebuah \textit{receiver}, kepada sebuah \textit{SPU} dan dipantau oleh 2 \textit{CMU} (web dan ponsel). Hubungan jaringan perangkat keras digambarkan pada gambar \ref{fig:konfigurasi}.
 
 \begin{table}[H]
 	\centering
@@ -364,7 +364,7 @@ Spesifikasi perangkat keras yang digunakan selama pengujian dapat dilihat pada t
 	\hline
 	\rowcolor{gray}
 	\textbf{No} & \textbf{Perangkat} & \textbf{Spesifikasi} \\
-	1 & Receptor &
+	1 & DAU &
 	\begin{itemize}
 		\item ESP-12F
 		\item Sensor Pulse
@@ -374,21 +374,21 @@ Spesifikasi perangkat keras yang digunakan selama pengujian dapat dilihat pada t
 		\item Battery LiPo protected 180mAh
 	\end{itemize} \\
 	\hline
-	2 & Server & 
+	2 & SPU & 
 	\begin{itemize}
 		\item Laptop ASUS A43SD
 		\item Intel i3-2350M CPU @ 2.30GHz
 		\item RAM DDR3 8GB
 	\end{itemize} \\
 	\hline
-	3 & dashboard Web & 
+	3 & CMU Web & 
 	\begin{itemize}
 		\item Laptop Lenovo G40S
 		\item AMD A8 5550M CPU @ 2.1GHz
 		\item RAM DDR3 8GB
 	\end{itemize} \\
 	\hline
-	4 & dashboard Android & 
+	4 & CMU Android & 
 	\begin{itemize}
 		\item ZTE A711, Android Lollipop
 		\item Snapdragon 615 CPU @ 1.7 GHz
@@ -416,10 +416,10 @@ Spesifikasi perangkat keras yang digunakan selama pengujian dapat dilihat pada t
 \subsection{Pengujian Algoritma Pemantauan}
 Sistem tidak bisa dites secara \textit{black box} (memberikan masukkan ke sistem dan melihat hasil) karena pengerjaan tugas akhir tidak didampingi oleh dokter ahli jantung untuk melakukan pengecekan atas hasil deteksi. Sehingga pengujian algoritma dipisah menjadi  2 tahap yaitu, algortima pemantauan dan algoritma deteksi. 
 
-Pengujian algoritma pemantauan dilakukan dengan cara seseorang menggunakan \textit{receiver} dan dilihat keberhasilan pemantauan dari \textit{dashboard}. Pengujian ini ditujukan untuk menguji semua parameter selain parameter 5 (Akurasi).
+Pengujian algoritma pemantauan dilakukan dengan cara seseorang menggunakan \textit{receiver} dan dilihat keberhasilan pemantauan dari \textit{CMU}. Pengujian ini ditujukan untuk menguji semua parameter selain parameter 5 (Akurasi).
 
 \subsubsection{a. Delay}
-Delay yang diukur ialah waktu tempuh sejak dikirimnya data oleh \textit{receptor} hingga diterima oleh \textit{server}. \textit{Delay} dihitung dengan mengukur rata-rata selisih waktu ($t$) diterimanya data oleh server dikurang dengan waktu kerja sensor ($v$) (persamaan \ref{eq:delay}).
+Delay yang diukur ialah waktu tempuh sejak dikirimnya data oleh \textit{DAU} hingga diterima oleh \textit{SPU}. \textit{Delay} dihitung dengan mengukur rata-rata selisih waktu ($t$) diterimanya data oleh SPU dikurang dengan waktu kerja sensor ($v$) (persamaan \ref{eq:delay}).
 
 \begin{equation}
 Delay = \alpha (\sum_{i=2}^{d} -\frac{(t_{i} - v_{i})}{d})
@@ -427,7 +427,7 @@ Delay = \alpha (\sum_{i=2}^{d} -\frac{(t_{i} - v_{i})}{d})
 \end{equation}
 
 \subsubsection{b. Execution Time}
-\textit{Execution Time} (Waktu eksekusi) diukur pada \textit{receptor} dan \textit{server}. Pada \textit{receptor} \textit{execution time} ialah waktu sejak sampel diambil hingga selesai dikirim ditambah waktu tidur antar sampel, waktu ini disebut sebagai waktu kerja sensor. Pada \textit{server} \textit{execution time} ialah waktu untuk memproses sebuah sampel hingga dimunculkannya sebuah deteksi. Karena pemrosesan dilakukan setiap sebuah \textit{window} terisi, maka \textit{execution time} yang dihitung dengan membagi durasi \textit{window} terhadap dengan jumlah sampel yang diproses (persamaan \ref{eq:exec_time}).
+\textit{Execution Time} (Waktu eksekusi) diukur pada \textit{DAU} dan \textit{SPU}. Pada \textit{DAU} \textit{execution time} ialah waktu sejak sampel diambil hingga selesai dikirim ditambah waktu tidur antar sampel, waktu ini disebut sebagai waktu kerja sensor. Pada \textit{SPU} \textit{execution time} ialah waktu untuk memproses sebuah sampel hingga dimunculkannya sebuah deteksi. Karena pemrosesan dilakukan setiap sebuah \textit{window} terisi, maka \textit{execution time} yang dihitung dengan membagi durasi \textit{window} terhadap dengan jumlah sampel yang diproses (persamaan \ref{eq:exec_time}).
 
 \begin{equation}
 ET = (\frac{t_d}{d})
@@ -435,7 +435,7 @@ ET = (\frac{t_d}{d})
 \end{equation}
 
 %\subsubsection{FPS}
-%FPS diukur dengan mecoba konfigurasi \textit{downsample} pada \textit{server} dan melihat tampilan pada \textit{dashboard}.
+%FPS diukur dengan mecoba konfigurasi \textit{downsample} pada \textit{SPU} dan melihat tampilan pada \textit{CMU}.
 
 \subsection{Pengujian Algoritma Deteksi}
 Pengujian algoritma deteksi dilakukan dengan memasukkan dataset ECG dari MIT-BIH Arrhythmia Database \cite{mit_bih_paper, mit_bih_web} ke dalam sistem. Untuk mempermudah visualisasi dan analisis data, penulis menjalankan algoritma deteksi pada bahasa pemograman python untuk selanjutnya diimplementasikan ke Node.Js. Pengujian ini ditujukan untuk menguji parameter akurasi.
@@ -452,13 +452,13 @@ Dataset dari MIT-BIH \cite{mit_bih_paper, mit_bih_web} terbagi menjadi 48 \texti
 
 \begin{table}[H]
 	\centering
-	\includegraphics[scale=0.75]{images/result1.png}
+	\includegraphics[scale=0.7]{images/result1.png}
 	\caption{Tabel Rakpitulasi Aritmia Series 100 dengan Kategori}
 	\label{tabel:result1}
 \end{table}
 \begin{table}[H]
 	\centering
-	\includegraphics[scale=0.75]{images/result2.png}
+	\includegraphics[scale=0.7]{images/result2.png}
 	\caption{Tabel Rakpitulasi Aritmia Series 200 dengan Kategori}
 	\label{tabel:result2}
 \end{table}

@@ -41,7 +41,7 @@ G = Aritmia Alert \\
 H = Share Result via Network\\
 
 \subsection{Delay}
-Pengujian dilakukan oleh pengguna yang bergerak secara bebas dalam wilayah cakupan router (\textit{receptor}, \textit{router} dan \textit{server} masih dalam satu wilayah) sehingga tidak ada proses routing antara router. Setelah melakukan pengujian sebanyak 3 kali pada waktu berbeda (pagi, siang, malam). Berdasarkan pengujian, didapatkan rata-rata delay percobaan-1 1.60624 ms, percobaan-2 1.36287 ms dan percobaan-3 1.45066 ms. Hasil pengukuran delay tertera pada gambar \ref{fig:delay}. Rata-rata ketiga percobaan ialah 1.47326 ms per sampel.
+Pengujian dilakukan oleh pengguna yang bergerak secara bebas dalam wilayah cakupan router (\textit{DAU}, \textit{router} dan \textit{SPU} masih dalam satu wilayah) sehingga tidak ada proses routing antara router. Setelah melakukan pengujian sebanyak 10 kali didapatkan rata-rata delay sekitar 1.72541 ms. Hasil rata rata pengukuran delay tiap 10 detik dalam 1 menit tertera pada gambar \ref{fig:delay}. Tabel pengukuran delay yang lengkap terlampir pada lampiran \ref{lampiran:delay}.
 
 \begin{figure}[H]
 	\centering
@@ -51,28 +51,28 @@ Pengujian dilakukan oleh pengguna yang bergerak secara bebas dalam wilayah cakup
 \end{figure}
 
 \subsection{Execution Time}
-\textit{Execution Time} perlu diukur pada 2 lokasi yaitu \textit{Receptor} dan \textit{Server}. Hal ini ditujukan untuk mengetahui \textit{maximum sampling speed} yang mungkin dilakukan pada \textit{receptor} sebelum terjadi \textit{bottleneck}. 
+\textit{Execution Time} perlu diukur pada 2 lokasi yaitu \textit{DAU} dan \textit{SPU}. Hal ini ditujukan untuk mengetahui \textit{maximum sampling speed} yang mungkin dilakukan pada \textit{DAU} sebelum terjadi \textit{bottleneck}. 
 
-Pengujian pada \textit{receptor} dilakukan sebanyak 3 kali pada waktu yang berdekatan (setelah pengujian, \textit{receptor} di \textit{reboot}). Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi percobaan-1 4.36471 ms, percobaan-2 4.74046 ms dan percobaan-3 4.93947 ms. Hasil pengukuran waktu eksekusi tertera pada gambar \ref{fig:exec_time}. Rata-rata ketiga percobaan ialah 4.68155 ms per sampel.
+Pengujian pada \textit{DAU} dilakukan sebanyak 10 kali. Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi ialah \exec ms per sampel. Hasil rata rata pengukuran waktu eksekusi tiap 10 detik dalam 1 menit tertera pada gambar \ref{fig:exec_time}. Tabel pengukuran waktu eksekusi pada DAU yang lengkap terlampir pada lampiran \ref{lampiran:exec_time}.
 
-Pengujian pada \textit{server} dilakukan dengan 3 \textit{receptor} yang terhubung (2 + 1 virtual). Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi percobaan-1 0.005012 ms, percobaan-2 0.007701 ms dan percobaan-3 0.006004 ms. Hasil pengukuran waktu eksekusi tertera pada gambar \ref{fig:exec_time2}. Rata-rata ketiga percobaan ialah \execs ms per sampel.
+Pengujian pada \textit{SPU} dilakukan sebanyak 10 kali. Berdasarkan pengujian, didapatkan rata-rata waktu eksekusi ialah \execs ms per sampel. Hasil rata rata pengukuran waktu eksekusi tiap 10 detik dalam 1 menit tertera pada gambar \ref{fig:exec_time2}. Tabel pengukuran waktu eksekusi pada SPU yang lengkap terlampir pada lampiran \ref{lampiran:exec_time}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{images/exec_time1.png}
-	\caption{Hasil Pengukuran Waktu Eksekusi Pada Receptor}
+	\includegraphics[scale=0.5]{images/exec_time1.png}
+	\caption{Hasil Pengukuran Waktu Eksekusi Pada DAU}
 	\label{fig:exec_time}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{images/exec_time2.png}
-	\caption{Hasil Pengukuran Waktu Eksekusi Pada Server}
+	\includegraphics[scale=0.5]{images/exec_time2.png}
+	\caption{Hasil Pengukuran Waktu Eksekusi Pada SPU}
 	\label{fig:exec_time2}
 \end{figure}
 
 %\subsection{FPS}
-%FPS umumnya ditentukan oleh kapasitas \textit{hardware} yang me-\textit{render} tampilan, namun untuk memaksimalkan jumlah \textit{viewer}, satu nilai FPS perlu dipilih untuk dijalankan pada semua \textit{viewer}. Berikut hasil lengkap percobaan FPS yang dilakukan pada \textit{viewer} web dan android.
+%FPS umumnya ditentukan oleh kapasitas \textit{hardware} yang me-\textit{render} tampilan, namun untuk memaksimalkan jumlah \textit{CMU}, satu nilai FPS perlu dipilih untuk dijalankan pada semua \textit{CMU}. Berikut hasil lengkap percobaan FPS yang dilakukan pada \textit{CMU} web dan android.
 
 %\begin{table}[H]
 %	\centering
@@ -95,15 +95,8 @@ Pengujian pada \textit{server} dilakukan dengan 3 \textit{receptor} yang terhubu
 
 \subsection{Akurasi}
 Setelah melakukan pengujian didapatkan hasil akurasi 99\% untuk detaksi detak dan \accuracy untuk deteksi aritmia.
-\subsubsection{Akurasi Deteksi Puncak}
-Dilakukan percobaan untuk menemukan konfigurasi konstanta deteksi $d$ (durasi window), $\alpha$ (\textit{peak threshold, val by mean}), dan $\beta$ (\textit{min distance threshold, idx by R}). Hasil percobaan dapat dilihat pada tabel \ref{table:exec_time3} dengan variabel eksperimen yang tertera pada tabel \ref{table:experiment_var}. Sedangkan hasil percobaan menggunakan algoritma Pan-Tompkins yang asli dapat dilihat pada tabel \ref{fig:original_pantom}.
-
-\begin{table}[H]
-	\centering
-	\includegraphics[scale=0.8]{images/modif_beat_detect.png}	
-	\caption{Hasil Pengujian Algoritma (Modifikasi) Deteksi Detak Jantung pada Python}
-	\label{table:exec_time3}
-\end{table}
+\subsubsection{a. Akurasi Deteksi Puncak}
+Dilakukan percobaan untuk menemukan konfigurasi konstanta deteksi $d$ (durasi window), $\alpha$ (\textit{peak threshold, val by mean}), dan $\beta$ (\textit{min distance threshold, idx by R}). Skenario percobaan variabel dapat dilihat pada tabel \ref{table:experiment_var}. Hasil percobaan tersebut dapat dilihat pada tabel \ref{table:exec_time3}. Sebagai perbandingan kolom skenario \textit{original} pada tabel \ref{table:exec_time3} merupakan hasil percobaan menggunakan algoritma Pan-Tompkins yang asli.
 
 \begin{table}[H]
 	\centering
@@ -114,9 +107,9 @@ Dilakukan percobaan untuk menemukan konfigurasi konstanta deteksi $d$ (durasi wi
 
 \begin{table}[H]
 	\centering
-	\includegraphics[scale=0.9]{images/original_beat_detect.png}
-	\caption{Hasil Pengujian Algoritma (Original) Deteksi Detak Jantung pada Python}
-	\label{fig:original_pantom}
+	\includegraphics[scale=0.75]{images/modif_beat_detect.png}	
+	\caption{Hasil Pengujian Algoritma Deteksi Detak Jantung pada Python}
+	\label{table:exec_time3}
 \end{table}
 
 Perbandingan antara algoritma modifikasi dengan algoritma pantom yang asli dapat dilihat pada diagram batang \ref{fig:compare_performance_100}, \ref{fig:compare_performance_200} dan \ref{fig:compare_exec}.
@@ -140,33 +133,40 @@ Perbandingan antara algoritma modifikasi dengan algoritma pantom yang asli dapat
 	\label{fig:compare_exec}
 \end{figure}
 
-\subsubsection{Akurasi Deteksi Aritmia}
-Pengujian akurasi deteksi aritmia terbagi menjadi 3 bagian. Pengujian pertama, sistem deteksi menerima inputan detak jantung asli sesuai data dari MIT BIH. Pengujian kedua, sistem deteksi menerima inputan detak jantung hasil deteksi tahap sebelumnya dengan algoritma asli dari PanTomkins. Pengujian ketiga, sistem deteksi menerima inputan detak jantung hasil deteksi tahap sebelumnya dengan algoritma modifikasi dari PanTomkins. Hasil perbandingan pengujian dapat dilihat pada gambar \ref{fig:aritmia_accuracy}, \ref{fig:aritmia_sensitivity}, dan \ref{fig:aritmia_specificity}.
+\subsubsection{b. Akurasi Deteksi Aritmia}
+Pengujian akurasi deteksi aritmia terbagi menjadi 3 bagian. Pengujian pertama, sistem deteksi menerima inputan detak jantung asli sesuai data dari MIT BIH. Pengujian kedua, sistem deteksi menerima inputan detak jantung hasil deteksi tahap sebelumnya dengan algoritma asli dari PanTomkins. Pengujian ketiga, sistem deteksi menerima inputan detak jantung hasil deteksi tahap sebelumnya dengan algoritma modifikasi dari PanTomkins.Hasil pengujian tertera pada tabel \ref{fig:aritmia_compare} merupakan hasil percobaan menggunakan algoritma Pan-Tompkins yang asli. Untuk mempermudah pemahaman hasil pengujian juga dapat dilihat dalam diagram batang pada gambar \ref{fig:aritmia_accuracy}, \ref{fig:aritmia_sensitivity}, dan \ref{fig:aritmia_specificity}.
 
 \begin{table}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/aritmia_compare.png}
+	\caption{Tabel Performa deteksi Aritmia dengan input berbeda}
+	\label{fig:aritmia_compare}
+\end{table}
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{images/aritmia_acc.png}
 	\caption{Perbandingan akurasi deteksi Aritmia dengan input berbeda}
 	\label{fig:aritmia_accuracy}
-\end{table}
-\begin{table}[H]
+\end{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{images/aritmia_se.png}
 	\caption{Perbandingan sensitvitas deteksi Aritmia dengan input berbeda}
 	\label{fig:aritmia_sensitivity}
-\end{table}
-\begin{table}[H]
+\end{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{images/aritmia_sp.png}
 	\caption{Perbandingan spesifisitas deteksi Aritmia dengan input berbeda}
 	\label{fig:aritmia_specificity}
-\end{table}
+\end{figure}
 
 \section{Pembahasan}\label{bab4:pembahasan}
 Dengan pengimplementasian rancangan arsitektur, sistem yang dibangun dapat memiliki semua fitur yang dimiliki sistem sejenis (\ref{hasil:jumlahfitur}). Delay yang terjadi selama pengiriman sampel selalu berubah ubah namun memiliki rata rata \delay. Perubahan nilai delay terjadi karena pengaruh kehandalan jaringan (WiFi) dan subjek yang bebas bergerak. 
 
-Waktu eksekusi diukur pada \textit{receptor} dan \textit{server}. Pada \textit{receptor} terlihat waktu eksekusi yang berubah ubah, ini dipengaruhi oleh adanya \textit{interupt} pengambilan sampel, pembuatan dan pengiriman paket, dan \textit{buffer memory management}. Sebagai perbandingan, tanpa melakukan pengiriman waktu eksekusi hanya selama 0.001 ms (waktu untuk mengambil sampel). Karena rata rata waktu eksekusi pada \textit{receptor} ialah \exec maka maksimum frekuensi sampel ialah 200Hz, atau setara dengan 1 sampel/5ms. 
+Waktu eksekusi diukur pada \textit{DAU} dan \textit{SPU}. Pada \textit{DAU} terlihat waktu eksekusi yang berubah ubah (lihat gambar \ref{fig:exec_time}), ini dipengaruhi oleh adanya \textit{interupt} pengambilan sampel, pembuatan dan pengiriman paket, dan \textit{buffer memory management}. Sebagai perbandingan, tanpa melakukan pengiriman waktu eksekusi hanya selama 0.001 ms (waktu untuk mengambil sampel). Karena rata rata waktu eksekusi pada \textit{DAU} ialah \exec maka maksimum frekuensi sampel ialah 200Hz, atau setara dengan 1 sampel/5ms. 
 
-Sedangkan pada \textit{server}, terlihat waktu eksekusi sangat tinggi pada permulaan kemudian sangat rendah lalu berfluktuasi, hal ini disebabkan oleh server yang membutuhkan waktu lebih lama untuk memulai \textit{subprocess} untuk tiap \textit{receptor} yang terhubung. Kemudian, tiap proses mengisi buffer hingga terisi untuk dilakukan operasi deteksi. Penggunaan Node.JS sebagai server juga memberikan dampak dalam kecepatan. Dibandingkan dengan Python, Node.JS dapat bekerja hampir 3 kali lebih cepat (gambar \ref{table:exec_time3}). Karena maksimum frekuensi sampel yang dapat diterapkan ialah 1 sampel tiap 5ms dan waktu eksekusi 1 sampel ialah \execs maka secara matematis server dapat memproses sekitar \sensor device secara bersamaan (maksimum total sensor dan dashboard yang terhubung, 5ms / \execs).
+Sedangkan pada \textit{SPU}, terlihat waktu eksekusi sangat tinggi pada permulaan kemudian sangat rendah lalu berfluktuasi (lihat gambar \ref{fig:exec_time2}), hal ini disebabkan oleh SPU yang membutuhkan waktu lebih lama untuk memulai \textit{subprocess} untuk tiap \textit{DAU} yang terhubung. Kemudian, tiap proses mengisi buffer hingga terisi untuk dilakukan operasi deteksi. Penggunaan Node.JS sebagai SPU juga memberikan dampak dalam kecepatan. Dibandingkan dengan Python, Node.JS dapat bekerja hampir 3 kali lebih cepat (gambar \ref{table:exec_time3}). Karena maksimum frekuensi sampel yang dapat diterapkan ialah 1 sampel tiap 5ms dan waktu eksekusi 1 sampel ialah \execs maka secara matematis SPU dapat memproses sekitar \sensor device secara bersamaan (maksimum total sensor dan CMU yang terhubung, 5ms / \execs).
 
-Pada segi performansi, algortima deteksi puncak R terlihat hasil modifikasi menghasilkan akurasi, \textit{specificity} dan \textit{sensitivity} yang hampir menyamai algoritma pantomkins yang asli bahkan cenderung lebih baik (kecuali sensitivity). Hal ini secara langsung berdampak pada performa algoritma deteksi aritmia yang diterapkan sehingga menghasilkan tren performa yang sama (lebih rendah pada paramater sensitivity).
+Pada segi performansi, algortima deteksi puncak R terlihat hasil modifikasi menghasilkan akurasi, \textit{specificity} dan \textit{sensitivity} yang hampir menyamai algoritma pantomkins yang asli bahkan cenderung lebih baik (kecuali sensitivity) (lihat gambar \ref{fig:compare_performance_100} dan \ref{fig:compare_performance_200}). Hal ini secara langsung berdampak pada performa algoritma deteksi aritmia yang diterapkan sehingga menghasilkan tren performa yang sama (lebih rendah pada paramater sensitivity) (lihat gambar \ref{fig:aritmia_accuracy}, \ref{fig:aritmia_sensitivity}, dan \ref{fig:aritmia_specificity}).

@@ -5,7 +5,7 @@ Berdasarkan hasil pengujian dapat diambil beberapa kesimpulan sebagai berikut:
 \begin{enumerate}
 	\item Arsitektur \textit{monitoring} jantung yang bersifat ubiquitous dan terus menerus berhasil dirancang dan diimplementasikan. Hal ini dapat dilihat dari berhasilnya dilakukan pengujian terhadap arsitektur yang dibahas pada bab \ref{bab4}.
 	\item Mode monitoring yang dirancang dapat mengawasi banyak pasien sekaligus serta memberikan peringatan otomatis ketika terjadi aritmia. Pernyataan ini didukung oleh hasil pembuktian matematis dan performa akurasi deteksi yang dibahas pada sub bab \ref{bab4:pembahasan}.
-	\item Arsitektur yang dirancang memiliki delay pengiriman sebesar \delay, waktu eksekusi pada \textit{receptor} sebesar \exec, waktu eksekusi pada server sebesar \execs, dan performa akurasi sebesar \accuracy. Receptor memiliki maksimum frekuensi sampel sebesar 200Hz dan secara matematis server bisa menangani hingga \sensor \textit{devices} secara bersamaan.
+	\item Arsitektur yang dirancang memiliki delay pengiriman sebesar \delay, waktu eksekusi pada DAU sebesar \exec, waktu eksekusi pada SPU sebesar \execs, dan performa akurasi sebesar \accuracy. Receptor memiliki maksimum frekuensi sampel sebesar 200Hz dan secara matematis server bisa menangani hingga \sensor \textit{devices} secara bersamaan.
 \end{enumerate}
 
 \section{Saran}
@@ -13,7 +13,7 @@ Berdasarkan proses perancangan dan pengujian sistem, penulis melihat beberapa pe
 \begin{enumerate}
 	\item Bekerjasama dengan dokter ahli jantung untuk melakukan pengujian nyata
 	\item Memilih fitur dan klasifikasi lain untuk meningkatkan kehandalan akurasi deteksi	
-	\item Melakukan simulasi jaringan \textit{unreliable} dengan menggunakan WANem[xx]. Hal ini ditujukan agar dapat menguji kehandalan sistem jika diterapkan di dunia nyata.
+	\item Melakukan simulasi jaringan \textit{unreliable} dengan menggunakan WANem. Hal ini ditujukan agar dapat menguji kehandalan sistem jika diterapkan di dunia nyata.
 	\item Merancang \textit{receptor} yang lebih hemat daya,
 	\item Merancang \textit{Device Interface} dan \textit{Application Programming Iterface} (API) sehingga sistem dapat menerima input dari perangkat yang telah tersedia dipasaran.
 \end{enumerate}

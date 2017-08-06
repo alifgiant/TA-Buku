@@ -147,7 +147,7 @@ Pada tahun 2016, Kalidas dan Tamil mengajukan algoritma klasifikasi aritmia yang
 
 Ringkasan dari hasil keenam riset diatas dapat dilihat pada tabel \ref{table:analysis_compare}.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 	\begin{tabular}{|L{4cm}|L{2.5cm}|C{1cm}|L{4cm}|L{1cm}|}
 	\hline
@@ -346,9 +346,9 @@ Pada tahap processing, Pan-Tompkins menerapkan \textit{adaptive thresholding} te
 \section{Deteksi Aritmia oleh Tsipouras}\label{bab2_tsipouras}
 Tsipouras et al. mengusulkan algoritma deteksi setelah melakukan percobaan bersama dokter spesialis jantung \cite{rr_classification}. Pada penelitiannya, ia membangun \textit{rule-based detector} berdasarkan masukan tim dokter jantung yang terlibat. \textit{Rule} ini dengan menggunakan sebuah (i) \textit{window RR-interval}, yang berisi 3 RR-interval, $RR1_i, RR2_i, RR3_i$. Jenis aritmia yang dapat dideteksinya dibagi menjadi 4 jenis detak aritmia dan 7 jenis ritme aritmia. Namun untuk rancangan pada paper ini artimia yang dapat dideteksi hanyalah jenis aritmia detak dan dikelompokkan kedalam 3 kategori. Kategori yang dipilih ialah 1) Normal, 2) Premature Contraction, dan 3) Ventricular Flutter. Secara detil pengelompokan ini dapat dilihat pada tabel \ref{table:beat_classification}.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
-	\begin{tabular}{|L{2cm}|L{7cm}|C{2cm}|}
+	\begin{tabular}{|L{2cm}|L{8.5cm}|C{2cm}|}
 	\hline
 	\rowcolor{gray}
 	\textbf{MIT-BIH Beat Symbol} & \textbf{Symbol Meaning} & 	\textbf{Category} \\
