@@ -41,7 +41,16 @@ Untuk menyelesaikan masalah yang ditemukan, penulis merancang sebuah solusi sist
 	\item bagi dokter agar dia dapat merancang pengobatan sesuai analis dokter tersebut.
 \end{enumerate}
 
-Secara umum sistem bekerja dimulai dari pengambilan data jantung menggunakan \textit{Data Acquisition Unit}(DAU) yang diletakkan pada pergelangan tangan. DAU kemudian secara periodik melakukan sampel dan mengirimkan sampel tersebut ke SPU untuk diproses lebih lanjut. Pengguna sistem dapat kapan saja melihat data aktivitas jantung melalui \textit{Client Monitoring Unit}(CMU) berupa halaman \textit{web} atau aplikasi pada ponsel android. Ketika \textit{Server Processing Unit}(SPU) mendeteksi kemunculan artimia, SPU akan secara otomatis mengirimkan pesan peringatan kepada CMU di pengguna sistem. Arsitektur sistem secara umum digambarkan pada gambar \ref{fig:gambar_umum}.
+Secara umum sistem bekerja sebagai berikut:
+
+\begin{enumerate}
+	\item \textit{Data Acquisition Unit}(DAU) mengambil data jantung pada pergelangan tangan,
+	\item DAU kemudian secara periodik melakukan sampel dan mengirimkan sampel tersebut ke SPU untuk diproses lebih lanjut,
+	\item Pengguna sistem dapat kapan saja melihat data aktivitas jantung melalui \textit{Client Monitoring Unit}(CMU) berupa halaman \textit{web} atau aplikasi pada ponsel android,
+	\item Ketika \textit{Server Processing Unit}(SPU) mendeteksi kemunculan artimia, SPU akan secara otomatis mengirimkan pesan peringatan kepada CMU di pengguna sistem.
+\end{enumerate} 
+
+Arsitektur sistem secara umum digambarkan pada gambar \ref{fig:gambar_umum}.
 
 \begin{figure}[H]
 	\centering
@@ -51,12 +60,12 @@ Secara umum sistem bekerja dimulai dari pengambilan data jantung menggunakan \te
 \end{figure}
 
 \section{Rancangan Perangkat Keras}
-Sistem yang dirancang haruslah diimplementasikan untuk diuji coba. Oleh karena itu perlu dilakukan pemilihan perangkat keras. Perangkat keras dipilih berdasarkan pada kebutuhan rancangan sistem. Perangkat keras dibagi menjadi 3 bagian yaitu \textit{Data Acquisition Unit}(DAU), \textit{Server Processing Unit}(SPU), dan \textit{Client Monitoring Unit}(CMU).
+Perangkat keras dipilih berdasarkan pada kebutuhan rancangan sistem. Perangkat keras dibagi menjadi 3 bagian yaitu \textit{Data Acquisition Unit}(DAU), \textit{Server Processing Unit}(SPU), dan \textit{Client Monitoring Unit}(CMU).
 
 Setelah perangkat keras ditentukan, algoritma yang sesuai untuk diterapkan harus dirancang. Rancangan algoritma terbagi menjadi 2 alur yaitu alur deteksi dan alur pemantauan. Rancangan proses mengenai algoritma dijelaskan lebih lengkap pada sub bab \ref{ssec:algorithm_design_1} dan sub bab \ref{ssec:algorithm_design_2}.
 
 \subsection{\textit{Data Acquisition Unit} (DAU)}
-\textit{Data Acquisition Unit} (DAU) berfungsi untuk mengambil data aktivitas jantung seorang pasien. Sistem yang dibangun tidak dapat menggunakan produk \textit{monitoring} yang sudah ada karena sistem tersebut tidak bersifat \textit{Open Source}. Hal ini mengakibatkan penulis tidak bisa melakukan konfigurasi terhadap \textit{sensor} dan \textit{controller}-nya. Konfigurasi yang dimaksud ialah menaikkan atau menurunkan frekuensi sampel dan transmit. Oleh karena itu penulis merancang DAU khusus untuk penelitian tugas akhir ini. DAU dibangun dengan 3 komponen utama yaitu \textit{Sensor}, \textit{Controller}, dan baterai. Secara lengkap skema elektronik pada DAU dapat dilihat pada gambar \ref{fig:schematics}.
+\textit{Data Acquisition Unit} (DAU) berfungsi untuk mengambil data aktivitas jantung seorang pasien. Sistem yang dibangun tidak dapat menggunakan produk \textit{monitoring} yang sudah ada karena sistem tersebut tidak bersifat \textit{Open Source}. Akibatnya pada riset ini tidak bisa dilakukan konfigurasi terhadap \textit{sensor} dan \textit{controller}-nya. Konfigurasi yang dimaksud ialah menaikkan atau menurunkan frekuensi sampel dan transmit. Oleh karena itu penulis merancang DAU khusus untuk penelitian tugas akhir ini. DAU dibangun dengan 3 komponen utama yaitu \textit{Sensor}, \textit{Controller}, dan baterai. Secara lengkap skema elektronik pada DAU dapat dilihat pada gambar \ref{fig:schematics}.
 
 \begin{figure}[H]
 \centering
@@ -77,7 +86,7 @@ Dalam tugas akhir ini, penulis memilih menggunakan PPG. Sensor PPG yang digunaka
 \end{enumerate}
 
 \subsubsection{b. Controller}
-Sistem dirancang untuk monitoring terus menerus dan \textit{Ubiquitous}. Maka DAU haruslah cukup kecil untuk dibawa kemana saja dan menggunakan media komunikasi \textit{wireless} (tanpa kabel) untuk beriteraksi dengan SPU. Terdapat banyak jenis media komunikasi \textit{wireless} seperti GSM/CDMA, WiFi, Bluetooth, Infra Red, Zigbee, dll. WiFi dipilih sebagai media, pada sistem, karena jarak cakup yang cukup besar dan mudah untuk dikonfigurasi. Berdasarkan pengetahuan yang telah dibangun pada bab kajian pustaka, terdapat sebuah SoC yang telah memiliki kemampuan \textit{controller} dan memiliki modul WiFi serta berukuran kecil yaitu ESP-12. Oleh karena itu DAU dirancang menggunakan ESP-12.
+Karena sistem dirancang untuk monitoring terus menerus dan \textit{Ubiquitous} maka DAU haruslah cukup kecil untuk dibawa kemana saja dan menggunakan media komunikasi \textit{wireless} (tanpa kabel) untuk beriteraksi dengan SPU. Terdapat banyak jenis media komunikasi \textit{wireless} seperti GSM/CDMA, WiFi, Bluetooth, Infra Red, Zigbee, dll. WiFi dipilih sebagai media, pada sistem, karena jarak cakup yang cukup besar dan mudah untuk dikonfigurasi. Berdasarkan pengetahuan yang telah dibangun pada bab kajian pustaka, terdapat sebuah SoC yang telah memiliki kemampuan \textit{controller} dan memiliki modul WiFi serta berukuran kecil yaitu ESP-12. Oleh karena itu DAU dirancang menggunakan ESP-12.
 
 \subsubsection{c. Baterai}
 Untuk memungkinkan DAU dibawa kemana saja dan dikenakan terus menerus, diperlukan baterai sebagai sumber catuan. Pada tugas akhir ini penulis menggunakan baterai \textit{Li-Polymer} (LiPo) \textit{protected} berkapasitas 180mAh dan tegangan 3.7V. Baterai ini juga berukuran kecil yaitu 25x18x8 mm dan memiliki bobot 5.3 gr, terlihat pada gambar \ref{fig:battery}.
@@ -93,7 +102,7 @@ Untuk memungkinkan DAU dibawa kemana saja dan dikenakan terus menerus, diperluka
 Untuk mengimplemantasikan konsep IoT, sebuah \textit{Server Processing Unit} (SPU) dirancang agar bisa melayani banyak DAU dan CMU. Oleh karena itu SPU harus mampu melayani komunikasi data dengan arus yang tinggi. Alasan ini mendorong penulis memilih menggunakan protokol MQTT sebagai protokol komunikasi, NodeJs sebagai \textit{runtime} dan MongoDb sebagai pengelola penyimpanan data. SPU dirancang agar bisa berjalan pada satu perangkat. Hal ini berarti MQTT broker, \textit{Web Server}, \textit{Database Server}, dan \textit{Detector} berjalan pada satu alamat IP yang sama. 
 
 \subsection{\textit{Client Monitoring Unit} (CMU)}
-Sistem dirancang memiliki 2 jeni CMU yaitu halaman \textit{web} dan aplikasi pada ponsel Android. Kedua saluran ini dapat melakukan pemantauan selama berada dalam jaringan yang sama dengan SPU. Penulis memilih Android karena memiliki jumlah pengguna terbesar didunia. Sehingga bisa diasumsikan sistem yang dirancang bisa digunakan oleh banyak orang.
+Sistem dirancang memiliki 2 jenis CMU yaitu halaman \textit{web} dan aplikasi pada ponsel Android. Kedua saluran ini dapat melakukan pemantauan selama berada dalam jaringan yang sama dengan SPU. Penulis memilih Android karena memiliki jumlah pengguna terbesar didunia. Sehingga bisa diasumsikan sistem yang dirancang bisa digunakan oleh banyak orang.
 
 \subsubsection{a. Halaman Web}
 Halaman web dibangun menggunakan \textit{framework} Express.Js. Pada halaman web terjadinya aritmia ditandai dengan bunyi dan bertambahnya angka hitungan aritmia yang terdeteksi. Tampilan halaman web dapat dilihat pada gambar \ref{fig:CMU_apps}.
@@ -176,10 +185,10 @@ Pengambilan dan Pengiriman sinyal dilakukan di DAU. Langkah pertama ialah \texti
 Setelah data diterima, SPU kemudian melakukan \textit{preprocessing} pada data. \textit{Preprocessing} yang dilakukan terbagi menjadi \textit{data correction}, \textit{filtering}, \textit{squaring}, \textit{moving window integration}(MWI) dan \textit{Adaptive Thresholding}. Setelah \textit{filtering} dilakukan nilai dianggap telah bersih \textit{noise} maka nilai ini di simpan/rekam di \textit{database}. Preprocessing berlanjut ke \textit{squaring} dan MWI. Terakhir ekstraksi fitur \textit{peak} (R pada ECG dan Systolic pada PPG) dilakukan dengan \textit{Adaptive Thresholding}. Diagram alir algoritma \textit{preprocessing} dapat dilihat pada gambar \ref{flow:fig_preproc_algorithm}. Rangkaian \textit{preprocessing} ini merupakan modifikasi pada algoritma yang diusulkan oleh Pan-Tomkin (1985) (sub bab \ref{bab2_pantom}) dan Kalidas-Tamil (2016) agar kedua algoritma ini bisa bekerja untuk ECG dan PPG.
 
 \subsubsection{a. Data Correction}
-Data Correction berfungsi ialah algoritma untuk menangani hilangnya data selama pengiriman. Hal ini mungkin terjadi karena data dikirimkan dari DAU menggunakan QoS 0. Pertama, data dipisahkan antara nilai pembacaan sensor dan header. Header kemudian digunakan untuk memisahkan proses perhitungan, setiap kode sensor akan memiliki proses sendiri. Jika terdapat locatan index pada header (index data yg diterima bukan bertambah 1 dari index data sebelumnya) maka proses akan menambah data buffer sebanyak jumlah index yang terlompati dengan nilai berdasarkan proyeksi garis lurus dari nilai terakhir ke nilai terbaru mengikuti persamaan \ref{eq:line}. Jika tidak ada nilai yang hilang maka nilai akan langsung dimasukkan ke buffer.
+Data Correction berfungsi sebagai algoritma untuk menangani hilangnya data selama pengiriman. Hal ini mungkin terjadi karena data dikirimkan dari DAU menggunakan MQTT \textit{Quality of Service} (QoS) 0 (lihat sub bab \ref{bab2:mqtt}). Pertama, data dipisahkan antara nilai pembacaan sensor dan header. Header kemudian digunakan untuk memisahkan proses perhitungan, setiap kode sensor akan memiliki proses sendiri. Jika terdapat locatan index pada header (index data yg diterima bukan bertambah 1 dari index data sebelumnya) maka proses akan menambah data buffer sebanyak jumlah index yang terlompati dengan nilai berdasarkan proyeksi garis lurus dari nilai terakhir ke nilai terbaru mengikuti persamaan \ref{eq:line}. Jika tidak ada nilai yang hilang maka nilai akan langsung dimasukkan ke buffer.
 
 \begin{equation}
-y(n) = \dfrac{n (y_{2} - y_{1})}{d} + v_{1}
+y(n) = \dfrac{n (v_{2} - v_{1})}{d} + v_{1}
 \label{eq:line}
 \end{equation}
 
@@ -226,9 +235,9 @@ y = x^{2}
 \end{figure}
 
 \subsection{Algoritma Deteksi Puncak}
-Hal penting untuk dideteksi pada aktivitas jantung ialah detaknya. Tanpa mendeteksi detak deteksi lainnya tidak dapat dilakukan. Deteksi detak dapat dilakukan dengan mencari titik \textit{fiducial}. Titik \textit{fiducial} yang paling menonjol ialah puncak tertinggi dari siklus detak yaitu R (pada ECG) dan Systolic (pada PPG). Untuk mendeteksi puncak dapat dilakukan dengan \textit{Adaptive Thresholding}. Algorima yang diterapkan merupakan modifikasi dari yang diusulkan Pan-Tompkins(1985). Pan-Tompkins(1985) mengusulkan teknik \textit{adaptive} dengan merubah nilai \textit{threshold} berdasarkan nilai puncak pada satu detak (sub bab \ref{bab2_pantom}). 
+Hal penting untuk dideteksi pada aktivitas jantung ialah detaknya. Tanpa mendeteksi detak deteksi lainnya tidak dapat dilakukan. Deteksi detak dapat dilakukan dengan mencari titik \textit{fiducial}. Titik \textit{fiducial} yang paling menonjol ialah puncak tertinggi dari siklus detak yaitu R (pada ECG) dan \textit{Systolic} (pada PPG). Untuk mendeteksi puncak dapat dilakukan dengan \textit{Adaptive Thresholding}. Algorima yang diterapkan merupakan modifikasi dari yang diusulkan Pan-Tompkins(1985). Pan-Tompkins(1985) mengusulkan teknik \textit{adaptive} dengan merubah nilai \textit{threshold} berdasarkan nilai puncak pada satu detak (sub bab \ref{bab2_pantom}). 
 
-Penulis melihat algoritma Pan-Tompkins dapat dioptimasi sehingga dapat bekerja lebih cepat. Optimasi dilakukan dengan mempebesar window sehingga mengurangi jumlah eksekusi yang perlu dilakukan dalam waktu yang sama, membuat threshold berdasarkan nilai rata-rata window tersebut (persamaan \ref{eq:threshold}), menghapus false beat dengan menolak R yang terlalu dekat berdasarkan rata rata jarak R \ref{eq:r_threshold}). Secara detil proses deteksi hasil modifikasi dapat dilihat pada gambar \ref{fig:processing_modif}. Pelebaran window berakibat pada meningkatnya delay atas munculnya hasil deteksi sejak diterimanya sampel namun dapat meningkatkan akurasi deteksi. Pseudocode algoritma deteksi puncak dan penghilang puncak palsu dapat dilihat pada kolom algoritma \ref{Algo:peaksFind} dan \ref{Algo:peaksRemove}.
+Penulis melihat algoritma Pan-Tompkins dapat dioptimasi sehingga dapat bekerja lebih cepat. Optimasi dilakukan dengan mempebesar window sehingga mengurangi jumlah eksekusi yang perlu dilakukan dalam waktu yang sama, membuat threshold berdasarkan nilai rata-rata window tersebut (persamaan \ref{eq:threshold}), menghapus false beat dengan menolak R yang terlalu dekat berdasarkan rata rata jarak (persamaan \ref{eq:r_threshold}). Secara detil proses deteksi hasil modifikasi dapat dilihat pada gambar \ref{fig:processing_modif}. Pelebaran window berakibat pada meningkatnya delay atas munculnya hasil deteksi sejak diterimanya sampel namun dapat meningkatkan akurasi deteksi. \textit{Pseudocode} algoritma deteksi puncak dan penghilang puncak palsu dapat dilihat pada kolom algoritma \ref{Algo:peaksFind} dan \ref{Algo:peaksRemove}.
 
 \begin{equation}
 threshold = \alpha (\sum_{n=1}^{d} \frac{v_{n}}{d})
